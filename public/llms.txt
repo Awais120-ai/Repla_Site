@@ -1,0 +1,31 @@
+# REPLA Technologies Pvt. Ltd.
+
+> REPLA Technologies is an AI-first IT company headquartered in Riyadh, Saudi Arabia (founded 2019). We deliver custom software, web and mobile apps, AI solutions, cloud, IoT, cybersecurity, and dedicated development teams.
+
+Languages: English (/en) | Arabic (/ar)
+
+## Pages
+
+- [Home](https://replatechnologies.com/en)
+- [About](https://replatechnologies.com/en/about)
+- [Services](https://replatechnologies.com/en/services)
+- [Industries](https://replatechnologies.com/en/industries)
+- [Solutions](https://replatechnologies.com/en/solutions)
+- [Portfolio](https://replatechnologies.com/en/portfolio)
+- [Team](https://replatechnologies.com/en/team)
+- [Contact](https://replatechnologies.com/en/contact)
+- [Careers](https://replatechnologies.com/en/careers)
+- [Insights](https://replatechnologies.com/en/insights)
+- [FAQ](https://replatechnologies.com/en/faq)
+
+## Contact
+
+- Phone (HR): +92 335 0970604
+- Email: hr.replatech@gmail.com
+- Head Office: Riyadh - Taif Road, Riyadh, 'Asir SA, Riyadh, Saudi Arabia
+- LinkedIn: https://www.linkedin.com/company/replatech
+
+## Optional
+
+- [Full content for LLMs](/llms-full.txt)
+- [Sitemap](/sitemap.xml)

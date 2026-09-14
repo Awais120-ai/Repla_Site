@@ -1,0 +1,67 @@
+import { Footer } from "@/components/layout/Footer";
+import { LoadingScreen } from "@/components/layout/LoadingScreen";
+import { Navbar } from "@/components/layout/Navbar";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { routing } from "@/i18n/routing";
+import { organizationJsonLd } from "@/lib/metadata";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { Inter, Noto_Sans_Arabic, Rajdhani } from "next/font/google";
+import { notFound } from "next/navigation";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const rajdhani = Rajdhani({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-rajdhani",
+  display: "swap",
+});
+
+const notoArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-noto-arabic",
+  display: "swap",
+});
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+  setRequestLocale(locale);
+  const messages = await getMessages();
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
+  return (
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${inter.variable} ${rajdhani.variable} ${notoArabic.variable} h-full antialiased`}
+    >
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        <JsonLd data={organizationJsonLd()} />
+        <NextIntlClientProvider messages={messages}>
+          <LoadingScreen />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}
