@@ -1,9 +1,11 @@
 import { ButtonLink } from "@/components/ui/Button";
-import { IndustryCard, ServiceCard } from "@/components/ui/Cards";
+import { IndustryGrid } from "@/components/home/IndustryGrid";
+import { ServiceCard } from "@/components/ui/Cards";
 import { CTASection } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StatCounter } from "@/components/ui/StatCounter";
+import { WhyChooseSection } from "@/components/home/WhyChooseSection";
 import { companyCopy } from "@/content/company";
 import { industries } from "@/content/industries";
 import { getFeaturedServices } from "@/content/services";
@@ -153,6 +155,8 @@ export default async function HomePage({
         </div>
       </section>
 
+      <WhyChooseSection locale={l} />
+
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <SectionHeader title={loc(companyCopy.whyTitle, l)} description={loc(companyCopy.whySubtitle, l)} />
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -170,18 +174,14 @@ export default async function HomePage({
       <section id="industries" className="border-t border-line py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeader title={t("industries")} description={t("industriesSub")} />
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {industries.map((ind, i) => (
-              <Reveal key={ind.slug} delay={i * 0.03}>
-                <IndustryCard
-                  href={`/industries/${ind.slug}`}
-                  icon={ind.icon}
-                  title={loc(ind.title, l)}
-                  tagline={loc(ind.tagline, l)}
-                />
-              </Reveal>
-            ))}
-          </div>
+          <IndustryGrid
+            items={industries.map((ind) => ({
+              href: `/industries/${ind.slug}`,
+              icon: ind.icon,
+              title: loc(ind.title, l),
+              tagline: loc(ind.tagline, l),
+            }))}
+          />
         </div>
       </section>
 

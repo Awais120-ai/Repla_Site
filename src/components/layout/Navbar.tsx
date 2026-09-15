@@ -1,7 +1,8 @@
 "use client";
 
 import { Icon } from "@/components/icons";
-import { ButtonLink } from "@/components/ui/Button";
+import { BrevoMeetingPopover, useBrevoPopoverId } from "@/components/layout/BrevoMeetingDialog";
+import { Button } from "@/components/ui/Button";
 import { services } from "@/content/services";
 import { industries } from "@/content/industries";
 import { solutions } from "@/content/solutions";
@@ -36,6 +37,8 @@ export function Navbar() {
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const menuId = useId();
+  const bookingPopoverId = useBrevoPopoverId();
+  const bookACallLabel = locale === "ar" ? "احجز مكالمة" : "Book a Call";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -242,9 +245,9 @@ export function Navbar() {
           >
             {locale === "en" ? "العربية" : "English"}
           </button>
-          <ButtonLink href="/contact" size="sm">
-            {t("startProject")}
-          </ButtonLink>
+          <Button type="button" size="sm" popoverTarget={bookingPopoverId} popoverTargetAction="show">
+            {bookACallLabel}
+          </Button>
         </div>
 
         <button
@@ -289,11 +292,24 @@ export function Navbar() {
               >
                 {locale === "en" ? "العربية" : "English"}
               </button>
-              <ButtonLink href="/contact">{t("startProject")}</ButtonLink>
+              <Button
+                type="button"
+                popoverTarget={bookingPopoverId}
+                popoverTargetAction="show"
+                onClick={() => setMobile(false)}
+              >
+                {bookACallLabel}
+              </Button>
             </div>
           </div>
         </div>
       ) : null}
+
+      <BrevoMeetingPopover
+        id={bookingPopoverId}
+        title={bookACallLabel}
+        closeLabel={t("closeMenu")}
+      />
     </header>
   );
 }

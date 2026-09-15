@@ -97,6 +97,49 @@ export const companyCopy = {
       ),
     },
   ],
+  whyChooseEyebrow: L("Why Choose REPLA", "لماذا تختارون REPLA"),
+  whyChooseTitle: L(
+    "Why Businesses Choose Repla Technologies",
+    "لماذا تختار الشركات Repla Technologies",
+  ),
+  whyChooseBody: L(
+    "We combine technical expertise, business understanding, and modern technology to build reliable digital solutions that create real business value.",
+    "نجمع بين الخبرة التقنية وفهم الأعمال والتقنية الحديثة لبناء حلول رقمية موثوقة تُحقق قيمة حقيقية للأعمال.",
+  ),
+  whyChoose: [
+    {
+      icon: "Cpu",
+      title: L("Technical Expertise", "الخبرة التقنية"),
+      body: L(
+        "Our experienced team uses modern technologies and proven development practices to build reliable, scalable, and high-performance solutions.",
+        "يستخدم فريقنا المتمرس تقنيات حديثة وممارسات تطوير مثبتة لبناء حلول موثوقة وقابلة للتوسع وعالية الأداء.",
+      ),
+    },
+    {
+      icon: "Briefcase",
+      title: L("Business-Focused Solutions", "حلول تركز على الأعمال"),
+      body: L(
+        "We understand your business goals first and then design technology solutions that solve real problems and support long-term growth.",
+        "نبدأ بفهم أهداف أعمالكم ثم نصمم حلولاً تقنية تعالج مشكلات حقيقية وتدعم النمو على المدى الطويل.",
+      ),
+    },
+    {
+      icon: "ShieldCheck",
+      title: L("Quality & Reliability", "الجودة والموثوقية"),
+      body: L(
+        "From development to deployment, we focus on clean architecture, performance, security, testing, and maintainable code.",
+        "من التطوير إلى النشر، نركز على بنية نظيفة والأداء والأمان والاختبار وشفرة قابلة للصيانة.",
+      ),
+    },
+    {
+      icon: "Handshake",
+      title: L("Long-Term Partnership", "شراكة طويلة الأمد"),
+      body: L(
+        "We work closely with our clients through every stage of the project and provide continuous support as their business evolves.",
+        "نعمل عن قرب مع عملائنا في كل مرحلة من المشروع ونقدم دعماً مستمراً مع تطور أعمالهم.",
+      ),
+    },
+  ],
   stats: [
     { value: "2019", numeric: 2019, suffix: "", label: L("Founded", "تأسست") },
     { value: "50+", numeric: 50, suffix: "+", label: L("Services offered", "خدمة مقدمة") },
