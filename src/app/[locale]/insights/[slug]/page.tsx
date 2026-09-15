@@ -53,7 +53,7 @@ export default async function InsightArticlePage({
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
         </div>
-        <h2 className="mt-12 font-display text-xl text-white">{tc("relatedServices")}</h2>
+        <h2 className="mt-12 font-display text-xl font-semibold text-white">{tc("relatedServices")}</h2>
         <ul className="mt-3 space-y-2 text-sm">
           {article.relatedServices.map((s) => {
             const svc = getService(s);

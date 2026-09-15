@@ -22,7 +22,8 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-rajdhani), var(--font-inter), sans-serif;
+  --font-display: var(--font-poppins), var(--font-inter), sans-serif;
+  --font-button: var(--font-poppins), var(--font-inter), sans-serif;
   --font-arabic: var(--font-noto-arabic), var(--font-inter), sans-serif;
 }
 
@@ -40,6 +41,7 @@ body {
 
 body {
   font-family: var(--font-sans);
+  font-weight: 400;
   min-height: 100%;
 }
 
@@ -51,15 +53,34 @@ body {
 h1,
 h2,
 h3,
+h4,
 .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
 }
 
+h1 {
+  font-weight: 700;
+}
+
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+button,
+.font-button {
+  font-family: var(--font-button);
+}
+
 [lang="ar"] h1,
 [lang="ar"] h2,
 [lang="ar"] h3,
-[lang="ar"] .font-display {
+[lang="ar"] h4,
+[lang="ar"] .font-display,
+[lang="ar"] button,
+[lang="ar"] .font-button {
   font-family: var(--font-arabic);
   letter-spacing: 0;
 }

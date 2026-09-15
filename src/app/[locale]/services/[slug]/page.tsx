@@ -79,7 +79,7 @@ export default async function ServiceDetailPage({
               <ol className="mt-4 space-y-3">
                 {locList(service.approach, l).map((item, i) => (
                   <li key={item} className="flex gap-3 text-sm text-muted">
-                    <span className="font-display text-brand">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-display font-semibold text-brand">{String(i + 1).padStart(2, "0")}</span>
                     {item}
                   </li>
                 ))}

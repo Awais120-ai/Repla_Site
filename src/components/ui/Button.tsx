@@ -6,10 +6,10 @@ type Size = "md" | "lg" | "sm";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand text-white hover:bg-[#d4252c] shadow-[0_0_0_1px_rgba(196,30,36,0.4),0_10px_30px_rgba(196,30,36,0.18)]",
+    "bg-brand text-white font-semibold hover:bg-[#d4252c] shadow-[0_0_0_1px_rgba(196,30,36,0.4),0_10px_30px_rgba(196,30,36,0.18)]",
   secondary:
-    "border border-white/15 bg-white/5 text-foreground hover:border-brand/50 hover:bg-white/10",
-  ghost: "text-foreground/80 hover:text-white hover:bg-white/5",
+    "border border-white/15 bg-white/5 text-foreground font-medium hover:border-brand/50 hover:bg-white/10",
+  ghost: "text-foreground/80 font-medium hover:text-white hover:bg-white/5",
 };
 
 const sizes: Record<Size, string> = {
@@ -19,7 +19,7 @@ const sizes: Record<Size, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide transition-transform duration-200 ease-out active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-full font-button tracking-wide transition-transform duration-200 ease-out active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none";
 
 type Common = {
   variant?: Variant;

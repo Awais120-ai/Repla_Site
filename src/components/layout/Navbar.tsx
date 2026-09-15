@@ -237,7 +237,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={switchLocale}
-            className="rounded-full border border-white/15 px-3 py-1.5 text-sm text-white hover:border-brand/50"
+            className="rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium text-white hover:border-brand/50"
             aria-label={locale === "en" ? t("switchToArabic") : t("switchToEnglish")}
           >
             {locale === "en" ? "العربية" : "English"}
@@ -285,7 +285,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={switchLocale}
-                className="self-start rounded-full border border-white/15 px-3 py-1.5 text-sm"
+                className="self-start rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium"
               >
                 {locale === "en" ? "العربية" : "English"}
               </button>
@@ -311,7 +311,7 @@ function NavLink({
     <Link
       href={href}
       className={cn(
-        "rounded-full px-3 py-2 text-sm transition-colors",
+        "rounded-full px-3 py-2 text-sm font-medium transition-colors",
         active ? "text-brand" : "text-white/80 hover:text-white",
       )}
     >
@@ -344,7 +344,7 @@ function Mega({
       <button
         type="button"
         className={cn(
-          "inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm text-white/80 hover:text-white",
+          "inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-white/80 hover:text-white",
           open && "text-white",
         )}
         aria-expanded={open}
@@ -369,7 +369,7 @@ function Mega({
 
 function MobileLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="rounded-lg px-2 py-2 text-white/90 hover:bg-white/5">
+    <Link href={href} className="rounded-lg px-2 py-2 font-medium text-white/90 hover:bg-white/5">
       {children}
     </Link>
   );

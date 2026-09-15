@@ -56,7 +56,7 @@ export function IndustryCard({
       href={href}
       className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-surface p-5"
     >
-      <div className="mb-4 text-brand transition-transform duration-300 group-hover:scale-110">
+      <div className="mb-4 flex h-6 w-6 shrink-0 items-center justify-center text-brand">
         <Icon name={icon} className="h-6 w-6" />
       </div>
       <h3 className="font-display text-lg font-semibold text-white">{title}</h3>
@@ -79,7 +79,7 @@ export function EmptyState({
   return (
     <div className="relative overflow-hidden rounded-3xl border border-dashed border-white/15 bg-surface px-6 py-16 text-center sm:px-12">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" />
-      <h2 className="relative font-display text-3xl font-semibold text-white">{title}</h2>
+      <h2 className="relative font-display text-3xl font-bold text-white">{title}</h2>
       <p className="relative mx-auto mt-4 max-w-2xl text-muted">{body}</p>
       <div className="relative mt-8 flex justify-center">
         <ButtonLink href={href}>{cta}</ButtonLink>

@@ -6,19 +6,20 @@ import { routing } from "@/i18n/routing";
 import { organizationJsonLd } from "@/lib/metadata";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { Inter, Noto_Sans_Arabic, Rajdhani } from "next/font/google";
+import { Inter, Noto_Sans_Arabic, Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-inter",
   display: "swap",
 });
 
-const rajdhani = Rajdhani({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-  variable: "--font-rajdhani",
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -51,7 +52,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${inter.variable} ${rajdhani.variable} ${notoArabic.variable} h-full antialiased`}
+      className={`${inter.variable} ${poppins.variable} ${notoArabic.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <JsonLd data={organizationJsonLd()} />

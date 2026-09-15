@@ -36,7 +36,7 @@ export async function Footer() {
           </a>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted">{t("company")}</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("company")}</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
               <Link href="/about" className="hover:text-brand">
@@ -61,7 +61,7 @@ export async function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted">{t("services")}</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("services")}</p>
           <ul className="mt-4 space-y-2 text-sm">
             {featured.map((s) => (
               <li key={s.slug}>
@@ -88,7 +88,7 @@ export async function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted">{t("resources")}</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-muted">{t("resources")}</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
               <Link href="/portfolio" className="hover:text-brand">
@@ -116,7 +116,7 @@ export async function Footer() {
               </Link>
             </li>
           </ul>
-          <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-muted">
+          <p className="mt-6 text-xs font-medium uppercase tracking-widest text-muted">
             {t("contactInfo")}
           </p>
           <ul className="mt-3 space-y-2 text-sm text-muted">

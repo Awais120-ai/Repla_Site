@@ -182,7 +182,7 @@ function Tiles({ suffix, copy = false }: { suffix: string; copy?: boolean }) {
             >
               {logo.mark}
             </span>
-            <span className="font-display text-lg tracking-wide text-white whitespace-nowrap sm:text-xl">
+            <span className="font-display text-lg font-semibold tracking-wide text-white whitespace-nowrap sm:text-xl">
               {tech}
             </span>
           </li>

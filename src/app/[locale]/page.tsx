@@ -51,13 +51,13 @@ export default async function HomePage({
         </div>
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:py-28">
           <div>
-            <p className="inline-flex rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
+            <p className="inline-flex rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-brand">
               {loc(companyCopy.eyebrow, l)}
             </p>
-            <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.08] text-white sm:text-6xl">
+            <h2 className="mt-5 font-display text-3xl font-bold leading-[1.15] text-white sm:text-4xl lg:text-5xl">
               {loc(companyCopy.heroTitle, l)}
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+            </h2>
+            <p className="mt-5 max-w-xl text-base font-normal leading-relaxed text-muted sm:text-lg">
               {loc(companyCopy.heroBody, l)}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
