@@ -10,7 +10,7 @@ import { loc, type Locale } from "@/content/types";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { COMPANY, TECHNOLOGIES } from "@/lib/site";
 import { cn } from "@/lib/cn";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useId, useState } from "react";
 
@@ -67,6 +67,53 @@ export function Navbar() {
         scrolled || mobile ? "glass" : "bg-transparent",
       )}
     >
+      <div className="hidden border-b border-white/10 lg:block">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-4 px-4 text-xs text-white/80 sm:px-6">
+          <div className="flex min-w-0 items-center gap-4">
+            <a
+              href={`mailto:${COMPANY.email}`}
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+            >
+              <Mail className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
+              {COMPANY.email}
+            </a>
+            <a
+              href={COMPANY.phoneHref}
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+              dir="ltr"
+            >
+              <Phone className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
+              {COMPANY.phone}
+            </a>
+            <span className="hidden items-center gap-1.5 xl:inline-flex">
+              <MapPin className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
+              {t("location")}
+            </span>
+          </div>
+          <div className="flex shrink-0 items-center gap-2.5">
+            <button
+              type="button"
+              onClick={switchLocale}
+              className="rounded-full px-2.5 py-1 text-xs font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              aria-label={locale === "en" ? t("switchToArabic") : t("switchToEnglish")}
+            >
+              {locale === "en" ? "العربية" : "English"}
+            </button>
+            <a
+              href={COMPANY.linkedin}
+              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+              rel="noreferrer"
+              target="_blank"
+              aria-label={t("linkedin")}
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.5h4.56V24H.22V8.5zM8.34 8.5h4.37v2.11h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v8.77h-4.56V16.3c0-1.84-.03-4.21-2.57-4.21-2.57 0-2.96 2-2.96 4.07V24H8.34V8.5z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -229,22 +276,6 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href={COMPANY.phoneHref}
-            className="inline-flex items-center gap-2 text-sm text-muted hover:text-white"
-            dir="ltr"
-          >
-            <Phone className="h-4 w-4" />
-            {COMPANY.phone}
-          </a>
-          <button
-            type="button"
-            onClick={switchLocale}
-            className="rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium text-white hover:border-brand/50"
-            aria-label={locale === "en" ? t("switchToArabic") : t("switchToEnglish")}
-          >
-            {locale === "en" ? "العربية" : "English"}
-          </button>
           <Button type="button" size="sm" popoverTarget={bookingPopoverId} popoverTargetAction="show">
             {bookACallLabel}
           </Button>
@@ -282,6 +313,9 @@ export function Navbar() {
             <MobileLink href="/careers">{t("careers")}</MobileLink>
             <MobileLink href="/contact">{t("contact")}</MobileLink>
             <div className="mt-4 flex flex-col gap-3 border-t border-line pt-4">
+              <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted">
+                {COMPANY.email}
+              </a>
               <a href={COMPANY.phoneHref} className="text-sm text-muted" dir="ltr">
                 {COMPANY.phone}
               </a>
