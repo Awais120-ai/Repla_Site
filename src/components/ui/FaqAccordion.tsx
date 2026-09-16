@@ -22,7 +22,7 @@ export function FaqAccordion({
               aria-expanded={isOpen}
               onClick={() => setOpen(isOpen ? null : i)}
             >
-              <span className="font-semibold text-foreground">{item.q}</span>
+              <span className="min-w-0 flex-1 font-semibold text-foreground">{item.q}</span>
               <ChevronDown
                 className={cn(
                   "h-4 w-4 shrink-0 text-muted transition-transform",

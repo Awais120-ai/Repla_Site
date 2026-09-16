@@ -49,15 +49,15 @@ export default async function HomePage({
     <>
       <section className="relative overflow-hidden grain">
         <div className="pointer-events-none absolute inset-0">
-          <div className="glow-orb absolute -top-32 start-1/2 h-[32rem] w-[32rem] -translate-x-1/2" />
+          <div className="glow-orb absolute -top-32 start-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rtl:translate-x-1/2" />
           <div className="absolute inset-0 grid-bg" />
         </div>
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:py-28">
           <div>
-            <p className="inline-flex rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-brand">
+            <p className="inline-block max-w-full break-words rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-brand">
               {loc(companyCopy.eyebrow, l)}
             </p>
-            <h2 className="mt-5 font-display text-3xl font-bold leading-[1.15] text-foreground sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-display text-[clamp(1.8rem,7vw,2.25rem)] font-bold leading-[1.15] text-foreground sm:text-4xl lg:text-5xl">
               {loc(companyCopy.heroTitle, l)}
             </h2>
             <p className="mt-5 max-w-xl text-base font-normal leading-relaxed text-muted sm:text-lg">
@@ -96,7 +96,7 @@ export default async function HomePage({
 
       <section className="relative overflow-hidden border-y border-line bg-surface-2 py-12" aria-label={loc(companyCopy.technologiesLabel, l)}>
         <div className="pointer-events-none absolute inset-0 opacity-40">
-          <div className="glow-orb absolute start-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2" />
+          <div className="glow-orb absolute start-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2" />
         </div>
         <p className="relative mb-8 text-center text-xs uppercase tracking-[0.2em] text-muted">
           {loc(companyCopy.technologiesLabel, l)}

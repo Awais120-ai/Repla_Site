@@ -127,7 +127,8 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
 
 function inputClass(error?: string) {
   return cn(
-    "mt-1.5 w-full rounded-xl border bg-surface-2 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-brand",
+    // 16px text keeps iOS Safari from zooming the viewport on focus.
+    "mt-1.5 w-full rounded-xl border bg-surface-2 px-3 py-3 text-base text-foreground placeholder:text-muted focus:border-brand sm:text-sm",
     error ? "border-brand" : "border-line",
   );
 }

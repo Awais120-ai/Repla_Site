@@ -1,7 +1,4 @@
-"use client";
-
 import { TECHNOLOGIES } from "@/lib/site";
-import { useEffect, useRef, type MutableRefObject } from "react";
 
 const ICONS: Record<(typeof TECHNOLOGIES)[number], { color: string; mark: React.ReactNode }> = {
   "Next.js": {
@@ -173,16 +170,16 @@ function Tiles({ suffix, copy = false }: { suffix: string; copy?: boolean }) {
         return (
           <li
             key={`${tech}-${suffix}`}
-            className="tech-tile flex min-w-60 shrink-0 items-center gap-4 rounded-3xl border border-line bg-surface px-6 py-5"
+            className="tech-tile flex min-w-44 shrink-0 items-center gap-3 rounded-3xl border border-line bg-surface px-4 py-4 sm:min-w-60 sm:gap-4 sm:px-6 sm:py-5"
             style={{ animationDelay: `${i * 0.18}s` }}
           >
             <span
-              className="flex h-16 w-16 items-center justify-center rounded-2xl border border-line bg-foreground/10"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-line bg-foreground/10 sm:h-16 sm:w-16"
               style={{ boxShadow: `0 0 28px color-mix(in srgb, ${logo.color} 28%, transparent)` }}
             >
               {logo.mark}
             </span>
-            <span className="font-display text-lg font-semibold tracking-wide text-foreground whitespace-nowrap sm:text-xl">
+            <span className="whitespace-nowrap font-display text-base font-semibold tracking-wide text-foreground sm:text-xl">
               {tech}
             </span>
           </li>
@@ -192,58 +189,14 @@ function Tiles({ suffix, copy = false }: { suffix: string; copy?: boolean }) {
   );
 }
 
-function TechTrack({ pausedRef }: { pausedRef: MutableRefObject<boolean> }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    let offset = 0;
-    let frame = 0;
-    let last = performance.now();
-    const speed = 42;
-
-    const tick = (now: number) => {
-      const dt = Math.min(now - last, 48) / 1000;
-      last = now;
-      const loopWidth = el.scrollWidth / 2;
-      if (!pausedRef.current && loopWidth > 0) {
-        offset += speed * dt;
-        if (offset >= loopWidth) offset -= loopWidth;
-        const rtl = document.documentElement.dir === "rtl";
-        el.style.transform = `translate3d(${offset * (rtl ? 1 : -1)}px, 0, 0)`;
-      }
-      frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  return (
-    <div ref={ref} className="tech-marquee flex w-max will-change-transform">
-      <Tiles suffix="a" />
-      <Tiles suffix="b" copy />
-    </div>
-  );
-}
-
 export function TechSlider() {
-  const pausedRef = useRef(false);
-
   return (
-    <div
-      className="tech-slider relative"
-      onMouseEnter={() => {
-        pausedRef.current = true;
-      }}
-      onMouseLeave={() => {
-        pausedRef.current = false;
-      }}
-    >
+    <div className="tech-slider relative">
       <div className="overflow-hidden py-2">
-        <TechTrack pausedRef={pausedRef} />
+        <div className="tech-marquee flex w-max">
+          <Tiles suffix="a" />
+          <Tiles suffix="b" copy />
+        </div>
       </div>
     </div>
   );

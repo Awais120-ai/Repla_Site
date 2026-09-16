@@ -50,12 +50,12 @@ export async function Footer() {
       <div className="relative mx-auto max-w-7xl px-4 pt-12 sm:px-6">
         <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-surface/85 px-6 py-10 text-center shadow-[0_24px_70px_rgba(196,30,36,0.1)] sm:px-12 sm:py-14">
           <div className="pointer-events-none absolute inset-0">
-            <div className="glow-orb absolute start-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2" />
+            <div className="glow-orb absolute start-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2" />
             <div className="absolute inset-0 grid-bg opacity-50" />
           </div>
           <span
             aria-hidden
-            className="pointer-events-none absolute -bottom-7 end-4 select-none font-display text-[5.5rem] font-bold leading-none text-foreground/[0.045] sm:text-[7.5rem]"
+            className="pointer-events-none absolute -bottom-7 end-4 select-none font-display text-[4rem] font-bold leading-none text-foreground/[0.045] sm:text-[5.5rem] md:text-[7.5rem]"
           >
             REPLA
           </span>
@@ -76,8 +76,8 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="sm:col-span-2 lg:col-span-1">
+        <div className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="sm:col-span-2 lg:col-span-3 xl:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2">
               <Image src="/logo.png" alt="REPLA" width={40} height={40} className="h-10 w-10 rounded-full" />
               <span className="font-display text-lg font-semibold">REPLA</span>

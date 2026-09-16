@@ -3,14 +3,26 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-const FLOATING = [
-  { name: "Clutch", src: "/brands/clutch.png", top: "4%", left: "58%", delay: "0s" },
-  { name: "GoodFirms", src: "/brands/goodfirms.jpg", top: "16%", left: "6%", delay: "0.6s" },
-  { name: "Upwork", src: "/brands/upwork.png", top: "40%", left: "36%", delay: "1.1s" },
-  { name: "LinkedIn", src: "/brands/linkedin.png", top: "36%", left: "74%", delay: "0.3s" },
-  { name: "Fiverr", src: "/brands/fiverr.jpg", top: "64%", left: "2%", delay: "1.5s" },
-  { name: "Freelancer", src: "/brands/freelancer.png", top: "72%", left: "62%", delay: "0.9s" },
-] as const;
+/** Cards on the trailing side anchor to `end` so they can never overflow the square. */
+type FloatingBrand = {
+  name: string;
+  src: string;
+  top: string;
+  start?: string;
+  end?: string;
+  delay: string;
+};
+
+/* The sphere is drawn at radius `size * 0.38` about the centre, so its silhouette spans
+   12%–88% of this square. Positions below sit on that rim, not in the empty corners. */
+const FLOATING: FloatingBrand[] = [
+  { name: "Clutch", src: "/brands/clutch.png", top: "13%", end: "13%", delay: "0s" },
+  { name: "GoodFirms", src: "/brands/goodfirms.jpg", top: "21%", start: "7%", delay: "0.6s" },
+  { name: "Upwork", src: "/brands/upwork.png", top: "42%", start: "28%", delay: "1.1s" },
+  { name: "LinkedIn", src: "/brands/linkedin.png", top: "40%", end: "4%", delay: "0.3s" },
+  { name: "Fiverr", src: "/brands/fiverr.jpg", top: "66%", start: "5%", delay: "1.5s" },
+  { name: "Freelancer", src: "/brands/freelancer.png", top: "74%", end: "9%", delay: "0.9s" },
+];
 
 type Point = { x: number; y: number; z: number };
 
@@ -72,19 +84,16 @@ function NetworkGlobe() {
       canvas.width = size * dpr;
       canvas.height = size * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (!running) render(performance.now());
     };
 
-    const draw = (now: number) => {
-      if (!running) return;
+    const render = (now: number) => {
       const dt = Math.min(now - last, 48) / 1000;
       last = now;
       if (!reduce) angle += dt * 0.22;
 
       const size = canvas.clientWidth;
-      if (!size) {
-        if (!reduce) frame = requestAnimationFrame(draw);
-        return;
-      }
+      if (!size) return;
       const cx = size / 2;
       const cy = size / 2;
       const scale = size * 0.38;
@@ -121,7 +130,11 @@ function NetworkGlobe() {
         ctx.arc(p.px, p.py, r, 0, Math.PI * 2);
         ctx.fill();
       }
+    };
 
+    const draw = (now: number) => {
+      if (!running) return;
+      render(now);
       if (!reduce) frame = requestAnimationFrame(draw);
     };
 
@@ -131,15 +144,45 @@ function NetworkGlobe() {
     ro.observe(canvas);
 
     const themeWatcher = new MutationObserver(() => {
-      if (reduce) draw(performance.now());
+      if (reduce || !running) render(performance.now());
     });
     themeWatcher.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
-    return () => {
+    const start = () => {
+      if (reduce || running) return;
+      running = true;
+      last = performance.now();
+      frame = requestAnimationFrame(draw);
+    };
+
+    const stop = () => {
       running = false;
       cancelAnimationFrame(frame);
+    };
+
+    let onScreen = true;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
+      { rootMargin: "120px" },
+    );
+    io.observe(canvas);
+
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (onScreen) start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      stop();
+      io.disconnect();
       ro.disconnect();
       themeWatcher.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
@@ -157,15 +200,21 @@ export function BrandNetworkGlobe() {
         <div
           key={brand.name}
           className="brand-float-card"
-          style={{ top: brand.top, left: brand.left, animationDelay: brand.delay }}
+          style={{
+            top: brand.top,
+            insetInlineStart: brand.start,
+            insetInlineEnd: brand.end,
+            animationDelay: brand.delay,
+          }}
         >
-          <span className="flex items-center justify-center rounded-md bg-white px-2.5 py-1.5">
+          <span className="flex items-center justify-center rounded-md bg-white px-2 py-1 sm:px-2.5 sm:py-1.5">
             <Image
               src={brand.src}
               alt={brand.name}
               width={160}
               height={48}
-              className="h-6 w-auto max-w-[6.5rem] object-contain sm:h-7"
+              sizes="(max-width: 640px) 80px, 112px"
+              className="h-5 w-auto max-w-[5rem] object-contain sm:h-7 sm:max-w-[6.5rem]"
             />
           </span>
         </div>

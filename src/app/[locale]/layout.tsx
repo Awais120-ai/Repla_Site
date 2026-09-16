@@ -29,6 +29,8 @@ const notoArabic = Noto_Sans_Arabic({
   subsets: ["arabic"],
   variable: "--font-noto-arabic",
   display: "swap",
+  // Only fetched when Arabic text is actually rendered, so /en pages skip it.
+  preload: false,
 });
 
 export function generateStaticParams() {

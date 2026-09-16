@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import { useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export function Reveal({
@@ -13,12 +12,11 @@ export function Reveal({
   className?: string;
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (reduce) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setShown(true);
       return;
     }
@@ -39,7 +37,7 @@ export function Reveal({
       io.disconnect();
       window.clearTimeout(fallback);
     };
-  }, [reduce]);
+  }, []);
 
   return (
     <div

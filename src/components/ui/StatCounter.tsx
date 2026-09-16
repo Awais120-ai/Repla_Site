@@ -50,8 +50,8 @@ export function StatCounter({
   }, [numeric, suffix, value]);
 
   return (
-    <div ref={ref} className="card-hover rounded-2xl border border-line bg-surface p-6">
-      <p className="font-display text-4xl font-bold text-foreground sm:text-5xl">{shown}</p>
+    <div ref={ref} className="card-hover rounded-2xl border border-line bg-surface p-5 sm:p-6">
+      <p className="font-display text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">{shown}</p>
       <p className="mt-2 text-sm text-muted">{label}</p>
     </div>
   );

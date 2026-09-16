@@ -53,10 +53,10 @@ export default async function ContactPage({
             href={COMPANY.phoneHref}
             className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
           >
-            <Phone className="mt-0.5 h-5 w-5 text-brand" />
-            <span>
+            <Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+            <span className="min-w-0">
               <span className="block text-sm text-muted">{tc("phone")}</span>
-              <span className="text-foreground" dir="ltr">
+              <span className="block text-foreground" dir="ltr">
                 {COMPANY.phone} ({tf("hr")})
               </span>
             </span>
@@ -65,25 +65,25 @@ export default async function ContactPage({
             href={`mailto:${COMPANY.emailInfo}`}
             className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
           >
-            <Mail className="mt-0.5 h-5 w-5 text-brand" />
-            <span>
+            <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+            <span className="min-w-0">
               <span className="block text-sm text-muted">{tc("email")}</span>
-              <span className="text-foreground">{COMPANY.emailInfo}</span>
+              <span className="block break-all text-foreground">{COMPANY.emailInfo}</span>
             </span>
           </a>
           <a
             href={`mailto:${COMPANY.email}`}
             className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
           >
-            <Mail className="mt-0.5 h-5 w-5 text-brand" />
-            <span>
+            <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+            <span className="min-w-0">
               <span className="block text-sm text-muted">{tc("email")}</span>
-              <span className="text-foreground">{COMPANY.email}</span>
+              <span className="block break-all text-foreground">{COMPANY.email}</span>
             </span>
           </a>
           <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5">
-            <MapPin className="mt-0.5 h-5 w-5 text-brand" />
-            <span>
+            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+            <span className="min-w-0">
               <span className="block text-sm text-muted">{tc("office")}</span>
               <span className="text-foreground">{COMPANY.address}</span>
             </span>
