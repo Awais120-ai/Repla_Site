@@ -13,7 +13,11 @@ export const COMPANY = {
   phone: "+92 335 0970604",
   phoneHref: "tel:+923350970604",
   email: "hr.replatech@gmail.com",
+  emailInfo: "info@replatechnologies.co.uk",
   linkedin: "https://www.linkedin.com/company/replatech",
+  instagram: "https://www.instagram.com/replatechnologies/",
+  facebook: "https://www.facebook.com/replatechnologies",
+  youtube: "https://www.youtube.com/@replatechnologies",
   copyrightYear: 2026,
 } as const;
 

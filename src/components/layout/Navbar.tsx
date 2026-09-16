@@ -2,6 +2,7 @@
 
 import { Icon } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { BrevoMeetingPopover, useBrevoPopoverId } from "@/components/layout/BrevoMeetingDialog";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/content/services";
@@ -72,8 +73,15 @@ export function Navbar() {
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-4 px-4 text-xs text-foreground/80 sm:px-6">
           <div className="flex min-w-0 items-center gap-4">
             <a
-              href={`mailto:${COMPANY.email}`}
+              href={`mailto:${COMPANY.emailInfo}`}
               className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+            >
+              <Mail className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
+              {COMPANY.emailInfo}
+            </a>
+            <a
+              href={`mailto:${COMPANY.email}`}
+              className="hidden items-center gap-1.5 transition-colors hover:text-foreground xl:inline-flex"
             >
               <Mail className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
               {COMPANY.email}
@@ -86,7 +94,7 @@ export function Navbar() {
               <Phone className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
               {COMPANY.phone}
             </a>
-            <span className="hidden items-center gap-1.5 xl:inline-flex">
+            <span className="hidden items-center gap-1.5 2xl:inline-flex">
               <MapPin className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
               {t("location")}
             </span>
@@ -95,23 +103,13 @@ export function Navbar() {
             <button
               type="button"
               onClick={switchLocale}
-              className="rounded-full px-2.5 py-1 text-xs font-medium text-foreground/80 transition-colors hover:bg-foreground/10 hover:text-foreground"
+              className="relative rounded-full px-2.5 py-1 text-xs font-medium text-foreground/80 btn-animate-soft hover:bg-foreground/10 hover:text-foreground"
               aria-label={locale === "en" ? t("switchToArabic") : t("switchToEnglish")}
             >
               {locale === "en" ? "العربية" : "English"}
             </button>
             <ThemeToggle />
-            <a
-              href={COMPANY.linkedin}
-              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-foreground/10 hover:text-foreground"
-              rel="noreferrer"
-              target="_blank"
-              aria-label={t("linkedin")}
-            >
-              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.5h4.56V24H.22V8.5zM8.34 8.5h4.37v2.11h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v8.77h-4.56V16.3c0-1.84-.03-4.21-2.57-4.21-2.57 0-2.96 2-2.96 4.07V24H8.34V8.5z" />
-              </svg>
-            </a>
+            <SocialLinks size="sm" />
           </div>
         </div>
       </div>
@@ -287,7 +285,7 @@ export function Navbar() {
           <ThemeToggle className="h-10 w-10" />
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line"
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-line btn-animate-soft"
             aria-expanded={mobile}
             aria-label={mobile ? t("closeMenu") : t("openMenu")}
             onClick={() => setMobile((v) => !v)}
@@ -318,16 +316,20 @@ export function Navbar() {
             <MobileLink href="/careers">{t("careers")}</MobileLink>
             <MobileLink href="/contact">{t("contact")}</MobileLink>
             <div className="mt-4 flex flex-col gap-3 border-t border-line pt-4">
+              <a href={`mailto:${COMPANY.emailInfo}`} className="text-sm text-muted">
+                {COMPANY.emailInfo}
+              </a>
               <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted">
                 {COMPANY.email}
               </a>
               <a href={COMPANY.phoneHref} className="text-sm text-muted" dir="ltr">
                 {COMPANY.phone}
               </a>
+              <SocialLinks />
               <button
                 type="button"
                 onClick={switchLocale}
-                className="self-start rounded-full border border-line px-3 py-1.5 text-sm font-medium"
+                className="relative self-start rounded-full border border-line px-3 py-1.5 text-sm font-medium btn-animate"
               >
                 {locale === "en" ? "العربية" : "English"}
               </button>
@@ -366,7 +368,7 @@ function NavLink({
     <Link
       href={href}
       className={cn(
-        "rounded-full px-3 py-2 text-sm font-medium transition-colors",
+        "relative rounded-full px-3 py-2 text-sm font-medium btn-animate-soft",
         active ? "text-brand" : "text-foreground/80 hover:text-foreground",
       )}
     >
@@ -399,7 +401,7 @@ function Mega({
       <button
         type="button"
         className={cn(
-          "inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground",
+          "relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 btn-animate-soft hover:text-foreground",
           open && "text-foreground",
         )}
         aria-expanded={open}
@@ -424,7 +426,7 @@ function Mega({
 
 function MobileLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="rounded-lg px-2 py-2 font-medium text-foreground/90 hover:bg-foreground/5">
+    <Link href={href} className="relative rounded-lg px-2 py-2 font-medium text-foreground/90 btn-animate-soft hover:bg-foreground/5">
       {children}
     </Link>
   );

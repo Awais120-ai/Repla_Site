@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { StatCounter } from "@/components/ui/StatCounter";
 import { WhyChooseSection } from "@/components/home/WhyChooseSection";
+import { TrustedBrands } from "@/components/home/TrustedBrands";
 import { companyCopy } from "@/content/company";
 import { industries } from "@/content/industries";
 import { getFeaturedServices } from "@/content/services";
@@ -154,6 +155,8 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+
+      <TrustedBrands />
 
       <WhyChooseSection locale={l} />
 

@@ -6,6 +6,7 @@ import { loc, type Locale } from "@/content/types";
 import { COMPANY, SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -61,6 +62,16 @@ export default async function ContactPage({
             </span>
           </a>
           <a
+            href={`mailto:${COMPANY.emailInfo}`}
+            className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
+          >
+            <Mail className="mt-0.5 h-5 w-5 text-brand" />
+            <span>
+              <span className="block text-sm text-muted">{tc("email")}</span>
+              <span className="text-foreground">{COMPANY.emailInfo}</span>
+            </span>
+          </a>
+          <a
             href={`mailto:${COMPANY.email}`}
             className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
           >
@@ -77,14 +88,7 @@ export default async function ContactPage({
               <span className="text-foreground">{COMPANY.address}</span>
             </span>
           </div>
-          <a
-            href={COMPANY.linkedin}
-            className="inline-flex text-sm text-brand hover:underline"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {tc("linkedin")}
-          </a>
+          <SocialLinks className="pt-2" />
         </div>
         <ContactForm />
       </section>

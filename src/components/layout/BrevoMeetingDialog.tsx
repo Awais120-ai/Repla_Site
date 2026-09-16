@@ -28,7 +28,7 @@ export function BrevoMeetingPopover({
       >
         <button
           type="button"
-          className="absolute end-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white text-black hover:bg-black/5"
+          className="absolute end-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white text-black btn-animate-soft hover:bg-black/5"
           aria-label={closeLabel}
           popoverTarget={id}
           popoverTargetAction="hide"

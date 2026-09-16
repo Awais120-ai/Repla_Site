@@ -62,9 +62,9 @@ export function organizationJsonLd() {
       addressLocality: "Riyadh",
       addressCountry: "SA",
     },
-    email: COMPANY.email,
+    email: [COMPANY.emailInfo, COMPANY.email],
     telephone: COMPANY.phone,
-    sameAs: [COMPANY.linkedin],
+    sameAs: [COMPANY.linkedin, COMPANY.instagram, COMPANY.facebook, COMPANY.youtube],
     areaServed: ["SA", "PK", "Worldwide"],
   };
 }
