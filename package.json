@@ -2,6 +2,11 @@
   "name": "repla-technologies-website",
   "version": "0.1.0",
   "private": true,
+  "allowScripts": {
+    "@parcel/watcher": true,
+    "@swc/core": true,
+    "unrs-resolver": true
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
