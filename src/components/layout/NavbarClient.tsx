@@ -5,6 +5,7 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { BrevoMeetingPopover, useBrevoPopoverId } from "@/components/layout/BrevoMeetingDialog";
 import { Button } from "@/components/ui/Button";
+import { TechLogo } from "@/components/ui/TechLogo";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { COMPANY } from "@/lib/site";
 import { cn } from "@/lib/cn";
@@ -128,10 +129,8 @@ export function NavbarClient({
           <span className="font-display text-lg font-semibold tracking-wide text-foreground">REPLA</span>
         </Link>
 
+        {/* No Home entry: the logo is the route home. */}
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-          <NavLink href="/" active={pathname === "/"}>
-            {t("home")}
-          </NavLink>
           <Mega
             id={`${menuId}-services`}
             label={t("services")}
@@ -139,12 +138,19 @@ export function NavbarClient({
             onOpen={() => setOpen("services")}
             onClose={() => setOpen(null)}
           >
-            <div className="grid gap-8 lg:grid-cols-[180px_1fr]">
+            <div className="grid gap-8 lg:grid-cols-[200px_1fr]">
               <div>
                 <p className="text-xs uppercase tracking-widest text-muted">{t("technologies")}</p>
-                <ul className="mt-3 space-y-1 text-sm text-muted">
+                <ul className="mt-3 space-y-0.5 text-sm text-muted">
                   {technologies.map((tech) => (
-                    <li key={tech}>{tech}</li>
+                    <li key={tech}>
+                      <span className="flex items-center gap-2.5 rounded-lg px-1.5 py-1">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-line bg-foreground/5">
+                          <TechLogo name={tech} className="h-4 w-4" />
+                        </span>
+                        {tech}
+                      </span>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -307,7 +313,6 @@ export function NavbarClient({
       {mobile ? (
         <div className="border-t border-line lg:hidden">
           <div className="mx-auto flex max-h-[80vh] max-w-7xl flex-col gap-1 overflow-y-auto px-4 py-4">
-            <MobileLink href="/">{t("home")}</MobileLink>
             <p className="px-2 pt-3 text-xs uppercase tracking-widest text-muted">{t("services")}</p>
             {featured.slice(0, 8).map((s) => (
               <MobileLink key={s.slug} href={`/services/${s.slug}`}>
@@ -425,7 +430,7 @@ function Mega({
           id={id}
           className="absolute start-1/2 top-full z-50 w-[min(920px,calc(100vw-2rem))] -translate-x-1/2 pt-3 rtl:translate-x-1/2"
         >
-          <div className="glass rounded-2xl p-6 shadow-2xl">{children}</div>
+          <div className="nav-panel rounded-2xl p-6">{children}</div>
         </div>
       ) : null}
     </div>
