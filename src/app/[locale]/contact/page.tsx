@@ -55,7 +55,7 @@ export default async function ContactPage({
             <Phone className="mt-0.5 h-5 w-5 text-brand" />
             <span>
               <span className="block text-sm text-muted">{tc("phone")}</span>
-              <span className="text-white" dir="ltr">
+              <span className="text-foreground" dir="ltr">
                 {COMPANY.phone} ({tf("hr")})
               </span>
             </span>
@@ -67,14 +67,14 @@ export default async function ContactPage({
             <Mail className="mt-0.5 h-5 w-5 text-brand" />
             <span>
               <span className="block text-sm text-muted">{tc("email")}</span>
-              <span className="text-white">{COMPANY.email}</span>
+              <span className="text-foreground">{COMPANY.email}</span>
             </span>
           </a>
           <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5">
             <MapPin className="mt-0.5 h-5 w-5 text-brand" />
             <span>
               <span className="block text-sm text-muted">{tc("office")}</span>
-              <span className="text-white">{COMPANY.address}</span>
+              <span className="text-foreground">{COMPANY.address}</span>
             </span>
           </div>
           <a

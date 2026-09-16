@@ -8,12 +8,12 @@ const ICONS: Record<(typeof TECHNOLOGIES)[number], { color: string; mark: React.
     color: "#ffffff",
     mark: (
       <svg viewBox="0 0 24 24" className="h-10 w-10" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" fill="#fff" />
+        <circle cx="12" cy="12" r="10" fill="currentColor" className="text-foreground" />
         <path
-          fill="#050505"
+          fill="var(--background)"
           d="M16.7 20.1 10.1 8.4H8.6v7.2h1.2v-5.6l5.8 10.2A10 10 0 0 0 16.7 20Z"
         />
-        <path fill="#050505" d="M15.2 8.4h-1.3v7.2h1.3z" />
+        <path fill="var(--background)" d="M15.2 8.4h-1.3v7.2h1.3z" />
       </svg>
     ),
   },
@@ -173,16 +173,16 @@ function Tiles({ suffix, copy = false }: { suffix: string; copy?: boolean }) {
         return (
           <li
             key={`${tech}-${suffix}`}
-            className="tech-tile flex min-w-60 shrink-0 items-center gap-4 rounded-3xl border border-white/8 bg-black/45 px-6 py-5"
+            className="tech-tile flex min-w-60 shrink-0 items-center gap-4 rounded-3xl border border-line bg-surface px-6 py-5"
             style={{ animationDelay: `${i * 0.18}s` }}
           >
             <span
-              className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/8"
+              className="flex h-16 w-16 items-center justify-center rounded-2xl border border-line bg-foreground/10"
               style={{ boxShadow: `0 0 28px color-mix(in srgb, ${logo.color} 28%, transparent)` }}
             >
               {logo.mark}
             </span>
-            <span className="font-display text-lg font-semibold tracking-wide text-white whitespace-nowrap sm:text-xl">
+            <span className="font-display text-lg font-semibold tracking-wide text-foreground whitespace-nowrap sm:text-xl">
               {tech}
             </span>
           </li>

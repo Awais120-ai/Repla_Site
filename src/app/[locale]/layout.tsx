@@ -2,6 +2,8 @@ import { Footer } from "@/components/layout/Footer";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
 import { Navbar } from "@/components/layout/Navbar";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { ThemeScript } from "@/components/theme/ThemeScript";
 import { routing } from "@/i18n/routing";
 import { organizationJsonLd } from "@/lib/metadata";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -52,15 +54,21 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${inter.variable} ${poppins.variable} ${notoArabic.variable} h-full antialiased`}
+      className={`${inter.variable} ${poppins.variable} ${notoArabic.variable} dark h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <JsonLd data={organizationJsonLd()} />
         <NextIntlClientProvider messages={messages}>
-          <LoadingScreen />
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ThemeProvider>
+            <LoadingScreen />
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

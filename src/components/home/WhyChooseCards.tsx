@@ -65,7 +65,7 @@ function WhyChooseCard({
         <div className="why-choose-icon mb-5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-colors duration-500">
           <Icon className="h-5 w-5" aria-hidden="true" />
         </div>
-        <h3 className="font-display text-xl font-semibold text-white">{loc(item.title, locale)}</h3>
+        <h3 className="font-display text-xl font-semibold text-foreground">{loc(item.title, locale)}</h3>
         <p
           className={cn(
             "mt-2 text-sm leading-relaxed text-muted",

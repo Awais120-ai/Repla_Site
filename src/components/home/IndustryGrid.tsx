@@ -1,4 +1,8 @@
+"use client";
+
 import { IndustryCard } from "@/components/ui/Cards";
+import { cn } from "@/lib/cn";
+import { useEffect, useRef, type ReactNode } from "react";
 
 type Item = {
   href: string;
@@ -7,16 +11,94 @@ type Item = {
   tagline: string;
 };
 
-export function IndustryGrid({ items }: { items: Item[] }) {
+export function IndustryReveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("is-in");
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-in");
+        } else if (entry.boundingClientRect.top > (entry.rootBounds?.height ?? window.innerHeight)) {
+          el.classList.remove("is-in");
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <>
       <style>{industrySlideCss}</style>
-      <div className="industry-grid mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        ref={ref}
+        className={cn("industry-slide", className)}
+        style={{ transitionDelay: `${delay}ms` }}
+      >
+        {children}
+      </div>
+    </>
+  );
+}
+
+export function IndustryGrid({ items }: { items: Item[] }) {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const cards = [...grid.querySelectorAll<HTMLElement>(".industry-slide")];
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      cards.forEach((card) => card.classList.add("is-in"));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-in");
+          } else if (entry.boundingClientRect.top > (entry.rootBounds?.height ?? window.innerHeight)) {
+            entry.target.classList.remove("is-in");
+          }
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    cards.forEach((card) => io.observe(card));
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <>
+      <style>{industrySlideCss}</style>
+      <div
+        ref={gridRef}
+        className="industry-grid mt-10 grid gap-3 overflow-x-clip sm:grid-cols-2 lg:grid-cols-4"
+      >
         {items.map((item, i) => (
           <div
             key={item.href}
             className="industry-slide h-full"
-            style={{ animationDelay: `${(i % 4) * 0.07}s` }}
+            style={{ transitionDelay: `${(i % 4) * 80}ms` }}
           >
             <IndustryCard href={item.href} icon={item.icon} title={item.title} tagline={item.tagline} />
           </div>
@@ -27,38 +109,24 @@ export function IndustryGrid({ items }: { items: Item[] }) {
 }
 
 const industrySlideCss = `
-.industry-grid .industry-slide {
-  animation: industry-slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+.industry-slide {
+  opacity: 0;
+  transform: translateY(56px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
-@keyframes industry-slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(48px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@supports (animation-timeline: view()) {
-  .industry-grid .industry-slide {
-    animation-delay: 0s;
-    animation-timeline: view();
-    animation-range: entry 0% entry 42%;
-  }
-  .industry-grid .industry-slide:nth-child(4n + 2) {
-    animation-range: entry 8% entry 50%;
-  }
-  .industry-grid .industry-slide:nth-child(4n + 3) {
-    animation-range: entry 16% entry 58%;
-  }
-  .industry-grid .industry-slide:nth-child(4n + 4) {
-    animation-range: entry 24% entry 66%;
-  }
+.industry-slide.is-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .industry-grid .industry-slide {
-    animation-duration: 0.28s;
+  .industry-slide {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
   }
 }
 `;

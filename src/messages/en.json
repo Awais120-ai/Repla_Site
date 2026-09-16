@@ -29,7 +29,9 @@
     "switchToEnglish": "Switch to English",
     "language": "Language",
     "location": "Riyadh, Saudi Arabia",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
   },
   "footer": {
     "company": "Company",

@@ -34,7 +34,7 @@ export default async function TermsPage({
       <article className="mx-auto max-w-3xl space-y-10 px-4 py-16 sm:px-6">
         {terms.sections.map((section) => (
           <section key={section.title.en}>
-            <h2 className="font-display text-2xl font-semibold text-white">{loc(section.title, l)}</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground">{loc(section.title, l)}</h2>
             {locList(section.body, l).map((p) => (
               <p key={p.slice(0, 20)} className="mt-3 leading-relaxed text-muted">
                 {p}

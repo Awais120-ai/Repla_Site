@@ -55,7 +55,7 @@ export default async function SolutionsPage({
                 className="card-hover block h-full rounded-2xl border border-line bg-surface p-6"
               >
               <Icon name={s.icon} className="h-6 w-6 text-brand" />
-              <h2 className="mt-4 font-display text-2xl font-semibold text-white">{loc(s.title, l)}</h2>
+              <h2 className="mt-4 font-display text-2xl font-semibold text-foreground">{loc(s.title, l)}</h2>
               <p className="mt-2 text-sm text-muted">{loc(s.tagline, l)}</p>
               </Link>
             </Reveal>

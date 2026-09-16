@@ -1,6 +1,34 @@
 @import "tailwindcss";
 
-:root {
+@property --background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #050505;
+}
+@property --foreground {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f5f5f5;
+}
+@property --surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #0a0a0a;
+}
+@property --surface-2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #111111;
+}
+@property --muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a3a3a3;
+}
+
+:root,
+html.dark {
+  color-scheme: dark;
   --background: #050505;
   --foreground: #f5f5f5;
   --brand: #c41e24;
@@ -10,6 +38,29 @@
   --muted: #a3a3a3;
   --line: rgba(255, 255, 255, 0.08);
   --glow: rgba(196, 30, 36, 0.28);
+  --glass: rgba(10, 10, 10, 0.72);
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --shimmer: rgba(255, 255, 255, 0.08);
+  --tile-fill: rgba(0, 0, 0, 0.7);
+  --heading-gradient: linear-gradient(120deg, #fff 0%, #f5f5f5 38%, var(--brand) 100%);
+}
+
+html.light {
+  color-scheme: light;
+  --background: #f3f4f6;
+  --foreground: #0c0d10;
+  --brand: #c41e24;
+  --brand-soft: rgba(196, 30, 36, 0.1);
+  --surface: #ffffff;
+  --surface-2: #e8eaee;
+  --muted: #575a63;
+  --line: rgba(12, 13, 16, 0.1);
+  --glow: rgba(196, 30, 36, 0.16);
+  --glass: rgba(255, 255, 255, 0.78);
+  --grid-line: rgba(12, 13, 16, 0.06);
+  --shimmer: rgba(12, 13, 16, 0.06);
+  --tile-fill: #ffffff;
+  --heading-gradient: linear-gradient(120deg, #0c0d10 0%, #2a2d36 42%, var(--brand) 100%);
 }
 
 @theme inline {
@@ -97,8 +148,8 @@ button,
 
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
 }
@@ -118,13 +169,13 @@ button,
 }
 
 .glass {
-  background: rgba(10, 10, 10, 0.72);
+  background: var(--glass);
   backdrop-filter: blur(18px);
   border: 1px solid var(--line);
 }
 
 .gradient-text {
-  background: linear-gradient(120deg, #fff 0%, #f5f5f5 38%, var(--brand) 100%);
+  background: var(--heading-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -155,7 +206,7 @@ button,
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(255, 255, 255, 0.08) 50%,
+    var(--shimmer) 50%,
     transparent 60%
   );
   background-size: 200% 100%;
@@ -211,7 +262,7 @@ button,
 .tech-tile:hover {
   animation-play-state: paused;
   border-color: color-mix(in srgb, var(--brand) 45%, transparent);
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--tile-fill);
   box-shadow: 0 12px 32px rgba(196, 30, 36, 0.16);
 }
 
@@ -219,4 +270,42 @@ button,
   html {
     scroll-behavior: auto;
   }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+html.light .theme-icon-sun {
+  display: none;
+}
+
+html.light .theme-icon-moon {
+  display: block;
+}
+
+html.light .grain::after {
+  opacity: 0.045;
+}
+
+html.light .card-hover {
+  box-shadow: 0 10px 30px rgba(12, 13, 16, 0.04);
+}
+
+html.light .card-hover:hover {
+  box-shadow: 0 18px 50px rgba(196, 30, 36, 0.1);
 }

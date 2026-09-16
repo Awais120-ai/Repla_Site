@@ -21,7 +21,7 @@ export function CTASection({
         <div className="absolute inset-0 grid-bg" />
       </div>
       <div className="relative mx-auto max-w-4xl px-4 py-20 text-center sm:px-6">
-        <h2 className="font-display text-3xl font-bold text-white sm:text-5xl">{title}</h2>
+        <h2 className="font-display text-3xl font-bold text-foreground sm:text-5xl">{title}</h2>
         <p className="mx-auto mt-4 max-w-2xl font-normal text-muted sm:text-lg">{body}</p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <ButtonLink href={primary.href} size="lg">
@@ -59,7 +59,7 @@ export function PageHero({
             {eyebrow}
           </p>
         ) : null}
-        <h1 className="max-w-4xl font-display text-4xl font-bold leading-[1.1] text-white sm:text-6xl">
+        <h1 className="max-w-4xl font-display text-4xl font-bold leading-[1.1] text-foreground sm:text-6xl">
           {title}
         </h1>
         {description ? (

@@ -63,7 +63,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
 
   const field = (name: string, label: string, opts?: { textarea?: boolean; type?: string; optional?: boolean; defaultValue?: string }) => (
     <label className="block text-sm">
-      <span className="text-white/90">
+      <span className="text-foreground/90">
         {label}
         {opts?.optional ? <span className="text-muted"> ({t("optional")})</span> : null}
       </span>
@@ -90,7 +90,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-line bg-surface p-6 sm:p-8" noValidate>
-      <h2 className="font-display text-2xl font-semibold text-white">{t("title")}</h2>
+      <h2 className="font-display text-2xl font-semibold text-foreground">{t("title")}</h2>
       <p className="text-sm text-muted">{loc(companyCopy.contactHelp, locale)}</p>
       <div className="grid gap-4 sm:grid-cols-2">
         {field("firstName", t("firstName"))}
@@ -127,7 +127,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
 
 function inputClass(error?: string) {
   return cn(
-    "mt-1.5 w-full rounded-xl border bg-black/40 px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-brand",
+    "mt-1.5 w-full rounded-xl border bg-surface-2 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-brand",
     error ? "border-brand" : "border-line",
   );
 }

@@ -48,12 +48,12 @@ export default async function InsightArticlePage({
       <PageHero title={loc(article.title, l)} description={loc(article.excerpt, l)} />
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <p className="text-sm text-muted">{tc("insightsBy")}</p>
-        <div className="mt-8 space-y-5 text-base leading-relaxed text-white/80">
+        <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground/80">
           {locList(article.body, l).map((p) => (
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
         </div>
-        <h2 className="mt-12 font-display text-xl font-semibold text-white">{tc("relatedServices")}</h2>
+        <h2 className="mt-12 font-display text-xl font-semibold text-foreground">{tc("relatedServices")}</h2>
         <ul className="mt-3 space-y-2 text-sm">
           {article.relatedServices.map((s) => {
             const svc = getService(s);

@@ -61,7 +61,7 @@ export default async function AboutPage({
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           <Reveal>
             <article className="card-hover h-full rounded-2xl border border-line bg-surface p-8">
-              <h2 className="font-display text-2xl font-semibold text-white">
+              <h2 className="font-display text-2xl font-semibold text-foreground">
                 {loc(companyCopy.missionTitle, l)}
               </h2>
               <p className="mt-3 leading-relaxed text-muted">{loc(companyCopy.mission, l)}</p>
@@ -69,7 +69,7 @@ export default async function AboutPage({
           </Reveal>
           <Reveal delay={0.06}>
             <article className="card-hover h-full rounded-2xl border border-line bg-surface p-8">
-              <h2 className="font-display text-2xl font-semibold text-white">
+              <h2 className="font-display text-2xl font-semibold text-foreground">
                 {loc(companyCopy.visionTitle, l)}
               </h2>
               <p className="mt-3 leading-relaxed text-muted">{loc(companyCopy.vision, l)}</p>
@@ -77,32 +77,32 @@ export default async function AboutPage({
           </Reveal>
         </div>
         <Reveal className="mt-8 rounded-2xl border border-line bg-surface p-8">
-          <h2 className="font-display text-2xl font-semibold text-white">
+          <h2 className="font-display text-2xl font-semibold text-foreground">
             {loc(companyCopy.storyTitle, l)}
           </h2>
           <p className="mt-3 max-w-3xl leading-relaxed text-muted">{loc(companyCopy.story, l)}</p>
         </Reveal>
         <div id="values" className="mt-16 scroll-mt-28">
-          <h2 className="font-display text-3xl font-bold text-white">
+          <h2 className="font-display text-3xl font-bold text-foreground">
             {loc(companyCopy.valuesTitle, l)}
           </h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {companyCopy.values.map((v) => (
               <article key={v.title.en} className="card-hover rounded-2xl border border-line bg-surface p-6">
-                <h3 className="font-display text-xl font-semibold text-white">{loc(v.title, l)}</h3>
+                <h3 className="font-display text-xl font-semibold text-foreground">{loc(v.title, l)}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{loc(v.body, l)}</p>
               </article>
             ))}
           </div>
         </div>
         <div className="mt-16">
-          <h2 className="font-display text-3xl font-bold text-white">{tc("journey")}</h2>
+          <h2 className="font-display text-3xl font-bold text-foreground">{tc("journey")}</h2>
           <ol className="mt-8 space-y-4 border-s border-line ps-6">
             {companyCopy.journey.map((step) => (
               <li key={step.year} className="relative">
                 <span className="absolute -start-[1.9rem] top-1.5 h-3 w-3 rounded-full bg-brand" />
                 <p className="text-xs uppercase tracking-widest text-brand">{step.year}</p>
-                <h3 className="mt-1 font-display text-xl font-semibold text-white">{loc(step.title, l)}</h3>
+                <h3 className="mt-1 font-display text-xl font-semibold text-foreground">{loc(step.title, l)}</h3>
                 <p className="mt-1 text-sm text-muted">{loc(step.body, l)}</p>
               </li>
             ))}
@@ -110,7 +110,7 @@ export default async function AboutPage({
         </div>
         <div className="mt-16 grid gap-8 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-3xl font-bold text-white">{tc("expertise")}</h2>
+            <h2 className="font-display text-3xl font-bold text-foreground">{tc("expertise")}</h2>
             <ul className="mt-4 space-y-2 text-sm text-muted">
               {locList(companyCopy.expertise, l).map((item) => (
                 <li key={item} className="border-s-2 border-brand/50 ps-3">
@@ -120,13 +120,13 @@ export default async function AboutPage({
             </ul>
           </div>
           <div>
-            <h2 className="font-display text-3xl font-bold text-white">{tc("technologies")}</h2>
+            <h2 className="font-display text-3xl font-bold text-foreground">{tc("technologies")}</h2>
             <p className="mt-3 text-sm text-muted">{loc(companyCopy.technologiesNote, l)}</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {TECHNOLOGIES.map((tech) => (
                 <li
                   key={tech}
-                  className="rounded-full border border-line bg-black px-3 py-1 text-sm text-white/80"
+                  className="rounded-full border border-line bg-surface-2 px-3 py-1 text-sm text-foreground/80"
                 >
                   {tech}
                 </li>

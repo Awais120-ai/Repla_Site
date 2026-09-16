@@ -29,7 +29,9 @@
     "switchToEnglish": "التبديل إلى الإنجليزية",
     "language": "اللغة",
     "location": "الرياض، المملكة العربية السعودية",
-    "linkedin": "لينكد إن"
+    "linkedin": "لينكد إن",
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن"
   },
   "footer": {
     "company": "الشركة",

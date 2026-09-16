@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { BrevoMeetingPopover, useBrevoPopoverId } from "@/components/layout/BrevoMeetingDialog";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/content/services";
@@ -67,19 +68,19 @@ export function Navbar() {
         scrolled || mobile ? "glass" : "bg-transparent",
       )}
     >
-      <div className="hidden border-b border-white/10 lg:block">
-        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-4 px-4 text-xs text-white/80 sm:px-6">
+      <div className="hidden border-b border-line lg:block">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-4 px-4 text-xs text-foreground/80 sm:px-6">
           <div className="flex min-w-0 items-center gap-4">
             <a
               href={`mailto:${COMPANY.email}`}
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
             >
               <Mail className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
               {COMPANY.email}
             </a>
             <a
               href={COMPANY.phoneHref}
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
               dir="ltr"
             >
               <Phone className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
@@ -94,14 +95,15 @@ export function Navbar() {
             <button
               type="button"
               onClick={switchLocale}
-              className="rounded-full px-2.5 py-1 text-xs font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+              className="rounded-full px-2.5 py-1 text-xs font-medium text-foreground/80 transition-colors hover:bg-foreground/10 hover:text-foreground"
               aria-label={locale === "en" ? t("switchToArabic") : t("switchToEnglish")}
             >
               {locale === "en" ? "العربية" : "English"}
             </button>
+            <ThemeToggle />
             <a
               href={COMPANY.linkedin}
-              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-foreground/10 hover:text-foreground"
               rel="noreferrer"
               target="_blank"
               aria-label={t("linkedin")}
@@ -118,7 +120,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-2 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="REPLA" width={40} height={40} className="h-10 w-10 rounded-full" />
-          <span className="font-display text-lg font-semibold tracking-wide text-white">REPLA</span>
+          <span className="font-display text-lg font-semibold tracking-wide text-foreground">REPLA</span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -154,11 +156,11 @@ export function Navbar() {
                       <li key={s.slug}>
                         <Link
                           href={`/services/${s.slug}`}
-                          className="flex items-start gap-2 rounded-lg p-2 hover:bg-white/5"
+                          className="flex items-start gap-2 rounded-lg p-2 hover:bg-foreground/5"
                         >
                           <Icon name={s.icon} className="mt-0.5 h-4 w-4 text-brand" />
                           <span>
-                            <span className="block text-sm text-white">{loc(s.title, locale)}</span>
+                            <span className="block text-sm text-foreground">{loc(s.title, locale)}</span>
                             <span className="block text-xs text-muted line-clamp-2">
                               {loc(s.tagline, locale)}
                             </span>
@@ -183,7 +185,7 @@ export function Navbar() {
                 <li key={i.slug}>
                   <Link
                     href={`/industries/${i.slug}`}
-                    className="flex items-center gap-2 rounded-lg p-2 text-sm text-white/90 hover:bg-white/5"
+                    className="flex items-center gap-2 rounded-lg p-2 text-sm text-foreground/90 hover:bg-foreground/5"
                   >
                     <Icon name={i.icon} className="h-4 w-4 text-brand" />
                     {loc(i.title, locale)}
@@ -204,9 +206,9 @@ export function Navbar() {
                 <li key={s.slug}>
                   <Link
                     href={`/solutions/${s.slug}`}
-                    className="block rounded-lg p-3 hover:bg-white/5"
+                    className="block rounded-lg p-3 hover:bg-foreground/5"
                   >
-                    <span className="font-medium text-white">{loc(s.title, locale)}</span>
+                    <span className="font-medium text-foreground">{loc(s.title, locale)}</span>
                     <span className="mt-1 block text-sm text-muted">{loc(s.tagline, locale)}</span>
                   </Link>
                 </li>
@@ -223,42 +225,42 @@ export function Navbar() {
             <div className="grid gap-8 sm:grid-cols-2">
               <ul className="space-y-1 text-sm">
                 <li>
-                  <Link href="/about" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/about" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("about")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/services" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("services")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about#values" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/about#values" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("process")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/industries" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/industries" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("industries")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/team" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/team" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("team")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/portfolio" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/portfolio" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("portfolio")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/careers" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/careers" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("careers")}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="block rounded-lg px-2 py-2 hover:bg-white/5">
+                  <Link href="/contact" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
                     {t("contact")}
                   </Link>
                 </li>
@@ -266,7 +268,7 @@ export function Navbar() {
               <div>
                 <p className="text-sm text-muted">{t("partnersNote")}</p>
                 <p className="mt-3 text-xs uppercase tracking-widest text-muted">{t("technologies")}</p>
-                <p className="mt-2 text-sm text-white/80">{TECHNOLOGIES.slice(0, 6).join(" · ")}</p>
+                <p className="mt-2 text-sm text-foreground/80">{TECHNOLOGIES.slice(0, 6).join(" · ")}</p>
               </div>
             </div>
           </Mega>
@@ -281,15 +283,18 @@ export function Navbar() {
           </Button>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 lg:hidden"
-          aria-expanded={mobile}
-          aria-label={mobile ? t("closeMenu") : t("openMenu")}
-          onClick={() => setMobile((v) => !v)}
-        >
-          {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle className="h-10 w-10" />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line"
+            aria-expanded={mobile}
+            aria-label={mobile ? t("closeMenu") : t("openMenu")}
+            onClick={() => setMobile((v) => !v)}
+          >
+            {mobile ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {mobile ? (
@@ -322,7 +327,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={switchLocale}
-                className="self-start rounded-full border border-white/15 px-3 py-1.5 text-sm font-medium"
+                className="self-start rounded-full border border-line px-3 py-1.5 text-sm font-medium"
               >
                 {locale === "en" ? "العربية" : "English"}
               </button>
@@ -362,7 +367,7 @@ function NavLink({
       href={href}
       className={cn(
         "rounded-full px-3 py-2 text-sm font-medium transition-colors",
-        active ? "text-brand" : "text-white/80 hover:text-white",
+        active ? "text-brand" : "text-foreground/80 hover:text-foreground",
       )}
     >
       {children}
@@ -394,8 +399,8 @@ function Mega({
       <button
         type="button"
         className={cn(
-          "inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-white/80 hover:text-white",
-          open && "text-white",
+          "inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground",
+          open && "text-foreground",
         )}
         aria-expanded={open}
         aria-controls={id}
@@ -419,7 +424,7 @@ function Mega({
 
 function MobileLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="rounded-lg px-2 py-2 font-medium text-white/90 hover:bg-white/5">
+    <Link href={href} className="rounded-lg px-2 py-2 font-medium text-foreground/90 hover:bg-foreground/5">
       {children}
     </Link>
   );

@@ -61,7 +61,7 @@ export default async function IndustryDetailPage({
         <p className="max-w-3xl leading-relaxed text-muted">{loc(industry.description, l)}</p>
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <section>
-            <h2 className="font-display text-2xl font-semibold text-white">{tc("challenges")}</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground">{tc("challenges")}</h2>
             <ul className="mt-4 space-y-3">
               {locList(industry.challenges, l).map((item) => (
                 <li key={item} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
@@ -71,7 +71,7 @@ export default async function IndustryDetailPage({
             </ul>
           </section>
           <section>
-            <h2 className="font-display text-2xl font-semibold text-white">{tc("howWeHelp")}</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground">{tc("howWeHelp")}</h2>
             <ul className="mt-4 space-y-3">
               {locList(industry.capabilities, l).map((item) => (
                 <li key={item} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
@@ -82,7 +82,7 @@ export default async function IndustryDetailPage({
           </section>
         </div>
         <section className="mt-12">
-          <h2 className="font-display text-2xl font-semibold text-white">{tc("relatedServices")}</h2>
+          <h2 className="font-display text-2xl font-semibold text-foreground">{tc("relatedServices")}</h2>
           <ul className="mt-4 flex flex-wrap gap-2">
             {industry.relatedServices.map((s) => {
               const svc = getService(s);

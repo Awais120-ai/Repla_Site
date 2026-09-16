@@ -13,7 +13,7 @@ export async function Footer() {
   const featured = getFeaturedServices();
 
   return (
-    <footer className="border-t border-line bg-black">
+    <footer className="border-t border-line bg-background">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Link href="/" className="inline-flex items-center gap-2">
@@ -25,7 +25,7 @@ export async function Footer() {
           </p>
           <a
             href={COMPANY.linkedin}
-            className="mt-4 inline-flex items-center gap-2 text-sm text-white/80 hover:text-brand"
+            className="mt-4 inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-brand"
             rel="noreferrer"
             target="_blank"
           >
@@ -121,12 +121,12 @@ export async function Footer() {
           </p>
           <ul className="mt-3 space-y-2 text-sm text-muted">
             <li>
-              <a href={COMPANY.phoneHref} className="hover:text-white" dir="ltr">
+              <a href={COMPANY.phoneHref} className="hover:text-foreground" dir="ltr">
                 {COMPANY.phone} ({t("hr")})
               </a>
             </li>
             <li>
-              <a href={`mailto:${COMPANY.email}`} className="hover:text-white">
+              <a href={`mailto:${COMPANY.email}`} className="hover:text-foreground">
                 {COMPANY.email}
               </a>
             </li>

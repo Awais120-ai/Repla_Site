@@ -51,7 +51,7 @@ export default async function ServicesPage({
         }
       />
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-2xl font-semibold text-white">{tc("featured")}</h2>
+        <h2 className="font-display text-2xl font-semibold text-foreground">{tc("featured")}</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.03}>
@@ -66,7 +66,7 @@ export default async function ServicesPage({
             </Reveal>
           ))}
         </div>
-        <h2 className="mt-16 font-display text-2xl font-semibold text-white">{tc("catalog")}</h2>
+        <h2 className="mt-16 font-display text-2xl font-semibold text-foreground">{tc("catalog")}</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {catalog.map((s, i) => (
             <Reveal key={s.slug} delay={i * 0.03}>

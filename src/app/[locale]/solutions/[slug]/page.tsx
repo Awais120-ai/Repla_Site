@@ -58,7 +58,7 @@ export default async function SolutionDetailPage({
       <article className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <Icon name={solution.icon} className="h-8 w-8 text-brand" />
         <p className="mt-6 max-w-3xl leading-relaxed text-muted">{loc(solution.description, l)}</p>
-        <h2 className="mt-10 font-display text-2xl font-semibold text-white">{tc("capabilities")}</h2>
+        <h2 className="mt-10 font-display text-2xl font-semibold text-foreground">{tc("capabilities")}</h2>
         <ul className="mt-4 space-y-2 text-sm text-muted">
           {locList(solution.capabilities, l).map((item) => (
             <li key={item}>— {item}</li>

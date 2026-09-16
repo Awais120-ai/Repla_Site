@@ -51,7 +51,7 @@ export default async function InsightsPage({
                   href={`/insights/${article.slug}`}
                   className="card-hover block rounded-2xl border border-line bg-surface p-6"
                 >
-                <h2 className="font-display text-2xl font-semibold text-white">{loc(article.title, l)}</h2>
+                <h2 className="font-display text-2xl font-semibold text-foreground">{loc(article.title, l)}</h2>
                 <p className="mt-2 text-sm text-muted">{loc(article.excerpt, l)}</p>
                 <span className="mt-4 inline-block text-sm text-brand">{tc("readMore")}</span>
                 </Link>

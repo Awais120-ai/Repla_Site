@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/components/ui/Button";
-import { IndustryGrid } from "@/components/home/IndustryGrid";
+import { IndustryGrid, IndustryReveal } from "@/components/home/IndustryGrid";
 import { ServiceCard } from "@/components/ui/Cards";
 import { CTASection } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
@@ -56,7 +56,7 @@ export default async function HomePage({
             <p className="inline-flex rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-brand">
               {loc(companyCopy.eyebrow, l)}
             </p>
-            <h2 className="mt-5 font-display text-3xl font-bold leading-[1.15] text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-display text-3xl font-bold leading-[1.15] text-foreground sm:text-4xl lg:text-5xl">
               {loc(companyCopy.heroTitle, l)}
             </h2>
             <p className="mt-5 max-w-xl text-base font-normal leading-relaxed text-muted sm:text-lg">
@@ -78,13 +78,13 @@ export default async function HomePage({
                 {featured.slice(0, 5).map((s, i) => (
                   <li
                     key={s.slug}
-                    className="card-hover card-enter flex items-center gap-3 rounded-xl border border-white/5 bg-white/3 px-3 py-3"
+                    className="card-hover card-enter flex items-center gap-3 rounded-xl border border-line bg-foreground/[0.04] px-3 py-3"
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand/15 text-brand">
                       <Icon name={s.icon} className="h-4 w-4" />
                     </span>
-                    <span className="text-sm text-white">{loc(s.shortTitle, l)}</span>
+                    <span className="text-sm text-foreground">{loc(s.shortTitle, l)}</span>
                   </li>
                 ))}
               </ul>
@@ -130,7 +130,7 @@ export default async function HomePage({
         </Reveal>
       </section>
 
-      <section className="border-y border-line bg-black/40 py-20">
+      <section className="border-y border-line bg-surface-2 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeader eyebrow={tn("services")} title={t("coreServices")} description={t("coreServicesSub")} />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -163,7 +163,7 @@ export default async function HomePage({
           {companyCopy.why.map((item, i) => (
             <Reveal key={item.title.en} delay={i * 0.05}>
               <div className="card-hover h-full rounded-2xl border border-line bg-surface p-6">
-                <p className="font-display text-xl font-semibold text-white">{loc(item.title, l)}</p>
+                <p className="font-display text-xl font-semibold text-foreground">{loc(item.title, l)}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{loc(item.body, l)}</p>
               </div>
             </Reveal>
@@ -171,9 +171,11 @@ export default async function HomePage({
         </div>
       </section>
 
-      <section id="industries" className="border-t border-line py-20">
+      <section id="industries" className="overflow-x-clip border-t border-line py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <SectionHeader title={t("industries")} description={t("industriesSub")} />
+          <IndustryReveal>
+            <SectionHeader title={t("industries")} description={t("industriesSub")} />
+          </IndustryReveal>
           <IndustryGrid
             items={industries.map((ind) => ({
               href: `/industries/${ind.slug}`,

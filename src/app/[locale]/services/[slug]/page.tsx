@@ -62,10 +62,10 @@ export default async function ServiceDetailPage({
             <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/15 text-brand">
               <Icon name={service.icon} className="h-6 w-6" />
             </div>
-            <h2 className="font-display text-2xl font-semibold text-white">{tc("overview")}</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground">{tc("overview")}</h2>
             <p className="mt-3 leading-relaxed text-muted">{loc(service.overview, l)}</p>
             <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold text-white">{tc("problems")}</h2>
+              <h2 className="font-display text-2xl font-semibold text-foreground">{tc("problems")}</h2>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {locList(service.problems, l).map((item) => (
                   <li key={item} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
@@ -75,7 +75,7 @@ export default async function ServiceDetailPage({
               </ul>
             </section>
             <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold text-white">{tc("approach")}</h2>
+              <h2 className="font-display text-2xl font-semibold text-foreground">{tc("approach")}</h2>
               <ol className="mt-4 space-y-3">
                 {locList(service.approach, l).map((item, i) => (
                   <li key={item} className="flex gap-3 text-sm text-muted">
@@ -86,17 +86,17 @@ export default async function ServiceDetailPage({
               </ol>
             </section>
             <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold text-white">{tc("capabilities")}</h2>
+              <h2 className="font-display text-2xl font-semibold text-foreground">{tc("capabilities")}</h2>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {locList(service.capabilities, l).map((item) => (
-                  <li key={item} className="rounded-full border border-line px-3 py-1 text-sm text-white/80">
+                  <li key={item} className="rounded-full border border-line px-3 py-1 text-sm text-foreground/80">
                     {item}
                   </li>
                 ))}
               </ul>
             </section>
             <section className="mt-10">
-              <h2 className="font-display text-2xl font-semibold text-white">{tc("benefits")}</h2>
+              <h2 className="font-display text-2xl font-semibold text-foreground">{tc("benefits")}</h2>
               <ul className="mt-4 space-y-2 text-sm text-muted">
                 {locList(service.benefits, l).map((item) => (
                   <li key={item}>— {item}</li>
@@ -105,7 +105,7 @@ export default async function ServiceDetailPage({
             </section>
             {service.faqs.length ? (
               <section className="mt-10">
-                <h2 className="mb-4 font-display text-2xl font-semibold text-white">{tc("faq")}</h2>
+                <h2 className="mb-4 font-display text-2xl font-semibold text-foreground">{tc("faq")}</h2>
                 <FaqAccordion
                   items={service.faqs.map((f) => ({ q: loc(f.q, l), a: loc(f.a, l) }))}
                 />
@@ -115,7 +115,7 @@ export default async function ServiceDetailPage({
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
             <div className="rounded-2xl border border-line bg-surface p-5">
               <p className="text-xs uppercase tracking-widest text-muted">{tc("technologies")}</p>
-              <ul className="mt-3 space-y-1 text-sm text-white/80">
+              <ul className="mt-3 space-y-1 text-sm text-foreground/80">
                 {service.technologies.map((tech) => (
                   <li key={tech}>{tech}</li>
                 ))}

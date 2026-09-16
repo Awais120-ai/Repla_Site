@@ -30,7 +30,7 @@ export function ServiceCard({
       <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-transform duration-300 group-hover:scale-110">
         <Icon name={icon} className="h-5 w-5" />
       </div>
-      <h3 className="font-display text-xl font-semibold text-white">{title}</h3>
+      <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
       <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{description}</p>
       <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand">
         {cta}
@@ -59,7 +59,7 @@ export function IndustryCard({
       <div className="mb-4 flex h-6 w-6 shrink-0 items-center justify-center text-brand">
         <Icon name={icon} className="h-6 w-6" />
       </div>
-      <h3 className="font-display text-lg font-semibold text-white">{title}</h3>
+      <h3 className="font-display text-lg font-semibold text-foreground">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">{tagline}</p>
     </Link>
   );
@@ -77,9 +77,9 @@ export function EmptyState({
   href: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-dashed border-white/15 bg-surface px-6 py-16 text-center sm:px-12">
+    <div className="relative overflow-hidden rounded-3xl border border-dashed border-line bg-surface px-6 py-16 text-center sm:px-12">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" />
-      <h2 className="relative font-display text-3xl font-bold text-white">{title}</h2>
+      <h2 className="relative font-display text-3xl font-bold text-foreground">{title}</h2>
       <p className="relative mx-auto mt-4 max-w-2xl text-muted">{body}</p>
       <div className="relative mt-8 flex justify-center">
         <ButtonLink href={href}>{cta}</ButtonLink>

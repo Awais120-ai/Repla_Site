@@ -8,8 +8,8 @@ const variants: Record<Variant, string> = {
   primary:
     "bg-brand text-white font-semibold hover:bg-[#d4252c] shadow-[0_0_0_1px_rgba(196,30,36,0.4),0_10px_30px_rgba(196,30,36,0.18)]",
   secondary:
-    "border border-white/15 bg-white/5 text-foreground font-medium hover:border-brand/50 hover:bg-white/10",
-  ghost: "text-foreground/80 font-medium hover:text-white hover:bg-white/5",
+    "border border-line bg-foreground/5 text-foreground font-medium hover:border-brand/50 hover:bg-foreground/10",
+  ghost: "text-foreground/80 font-medium hover:text-foreground hover:bg-foreground/5",
 };
 
 const sizes: Record<Size, string> = {
