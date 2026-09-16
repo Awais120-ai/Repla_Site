@@ -76,16 +76,19 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Equal-width tracks made the gutters look uneven, because each column's longest
+            link differs. Sizing tracks to their content and spreading the leftover space
+            with justify-between gives every column the same visual breathing room. */}
+        <div className="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(5,auto)] xl:justify-between">
           <div className="sm:col-span-2 lg:col-span-3 xl:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2">
               <Image src="/logo.png" alt="REPLA" width={40} height={40} className="h-10 w-10 rounded-full" />
               <span className="font-display text-lg font-semibold">REPLA</span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+            <p className="mt-4 max-w-[17.5rem] text-sm leading-relaxed text-muted">
               {loc(companyCopy.footerBlurb, locale)}
             </p>
-            <ul className="mt-6 space-y-3 text-sm text-muted">
+            <ul className="mt-6 max-w-[17.5rem] space-y-3 text-sm text-muted">
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden />
                 <span>{COMPANY.address}</span>

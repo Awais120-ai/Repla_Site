@@ -207,7 +207,9 @@ export function BrandNetworkGlobe() {
             animationDelay: brand.delay,
           }}
         >
-          <span className="flex items-center justify-center rounded-md bg-white px-2 py-1 sm:px-2.5 sm:py-1.5">
+          {/* Stretches to the card's inner box so short logos (Clutch) fill the plate
+              instead of leaving a dark margin around a small white pill. */}
+          <span className="flex w-full self-stretch items-center justify-center rounded-lg bg-white px-2 py-1 sm:px-2.5 sm:py-1.5">
             <Image
               src={brand.src}
               alt={brand.name}
