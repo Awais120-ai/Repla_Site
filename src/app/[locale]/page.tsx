@@ -98,7 +98,7 @@ export default async function HomePage({
         <div className="pointer-events-none absolute inset-0 opacity-40">
           <div className="glow-orb absolute start-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2" />
         </div>
-        <p className="relative mb-8 text-center text-xs uppercase tracking-[0.2em] text-muted">
+        <p className="relative mb-8 text-center text-sm font-medium uppercase tracking-[0.2em] text-muted">
           {loc(companyCopy.technologiesLabel, l)}
         </p>
         <TechSlider />

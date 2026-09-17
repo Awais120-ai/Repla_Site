@@ -1,6 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { LoadingScreen } from "@/components/layout/LoadingScreen";
 import { Navbar } from "@/components/layout/Navbar";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
@@ -72,6 +73,7 @@ export default async function LocaleLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
+            <ScrollToTop />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

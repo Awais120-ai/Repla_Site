@@ -23,6 +23,17 @@ export type NavEntry = {
   icon: string;
 };
 
+const COMPANY_LINKS = [
+  { href: "/about", labelKey: "about" as const, icon: "Building2" },
+  { href: "/services", labelKey: "services" as const, icon: "Briefcase" },
+  { href: "/about#values", labelKey: "process" as const, icon: "Workflow" },
+  { href: "/industries", labelKey: "industries" as const, icon: "Globe" },
+  { href: "/team", labelKey: "team" as const, icon: "Users" },
+  { href: "/portfolio", labelKey: "portfolio" as const, icon: "FolderKanban" },
+  { href: "/careers", labelKey: "careers" as const, icon: "UserPlus" },
+  { href: "/contact", labelKey: "contact" as const, icon: "Mail" },
+];
+
 export function NavbarClient({
   featured,
   industries,
@@ -213,10 +224,15 @@ export function NavbarClient({
                 <li key={s.slug}>
                   <Link
                     href={`/solutions/${s.slug}`}
-                    className="block rounded-lg p-3 hover:bg-foreground/5"
+                    className="flex items-start gap-3 rounded-lg p-3 hover:bg-foreground/5"
                   >
-                    <span className="font-medium text-foreground">{s.title}</span>
-                    <span className="mt-1 block text-sm text-muted">{s.tagline}</span>
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-line bg-brand/10 text-brand">
+                      <Icon name={s.icon} className="h-4 w-4" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-medium text-foreground">{s.title}</span>
+                      <span className="mt-1 block text-sm text-muted">{s.tagline}</span>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -231,46 +247,17 @@ export function NavbarClient({
           >
             <div className="grid gap-8 sm:grid-cols-2">
               <ul className="space-y-1 text-sm">
-                <li>
-                  <Link href="/about" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("about")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/services" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("services")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about#values" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("process")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/industries" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("industries")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/team" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("team")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/portfolio" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("portfolio")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/careers" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("careers")}
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="block rounded-lg px-2 py-2 hover:bg-foreground/5">
-                    {t("contact")}
-                  </Link>
-                </li>
+                {COMPANY_LINKS.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="flex items-center gap-2.5 rounded-lg px-2 py-2 hover:bg-foreground/5"
+                    >
+                      <Icon name={item.icon} className="h-4 w-4 shrink-0 text-brand" />
+                      {t(item.labelKey)}
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <div>
                 <p className="text-sm text-muted">{t("partnersNote")}</p>

@@ -35,7 +35,8 @@
     "youtube": "YouTube",
     "social": "Social media",
     "switchToLight": "Switch to light mode",
-    "switchToDark": "Switch to dark mode"
+    "switchToDark": "Switch to dark mode",
+    "scrollToTop": "Scroll to top"
   },
   "footer": {
     "company": "Company",

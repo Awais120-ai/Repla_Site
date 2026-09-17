@@ -609,6 +609,28 @@ html.light .brand-float-card {
   transform: none;
 }
 
+.scroll-to-top-core {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--brand) 45%, transparent),
+    0 10px 28px rgba(196, 30, 36, 0.35);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    background-color 0.2s ease;
+}
+
+.scroll-to-top:hover .scroll-to-top-core,
+.scroll-to-top:focus-visible .scroll-to-top-core {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--brand) 55%, transparent),
+    0 14px 32px rgba(196, 30, 36, 0.42);
+}
+
+.scroll-to-top:active .scroll-to-top-core {
+  transform: translateY(0) scale(0.96);
+}
+
 .footer-link {
   display: inline-flex;
   align-items: center;
@@ -685,6 +707,12 @@ html.light .brand-float-card {
   .footer-link:focus-visible,
   [dir="rtl"] .footer-link:hover,
   [dir="rtl"] .footer-link:focus-visible {
+    transform: none;
+  }
+
+  .scroll-to-top:hover .scroll-to-top-core,
+  .scroll-to-top:focus-visible .scroll-to-top-core,
+  .scroll-to-top:active .scroll-to-top-core {
     transform: none;
   }
 

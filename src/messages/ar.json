@@ -35,7 +35,8 @@
     "youtube": "يوتيوب",
     "social": "وسائل التواصل",
     "switchToLight": "التبديل إلى الوضع الفاتح",
-    "switchToDark": "التبديل إلى الوضع الداكن"
+    "switchToDark": "التبديل إلى الوضع الداكن",
+    "scrollToTop": "العودة إلى الأعلى"
   },
   "footer": {
     "company": "الشركة",
