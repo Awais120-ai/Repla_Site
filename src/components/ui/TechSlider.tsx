@@ -7,7 +7,7 @@ function Tiles({ suffix, copy = false }: { suffix: string; copy?: boolean }) {
       {TECHNOLOGIES.map((tech, i) => (
         <li
           key={`${tech}-${suffix}`}
-          className="tech-tile flex min-w-36 shrink-0 items-center gap-2.5 rounded-2xl border border-line bg-surface px-3 py-2.5 sm:min-w-48 sm:gap-3 sm:px-4 sm:py-3"
+          className="tech-tile flex min-w-36 shrink-0 cursor-default items-center gap-2.5 rounded-2xl border border-line bg-surface px-3 py-2.5 sm:min-w-48 sm:gap-3 sm:px-4 sm:py-3"
           style={{ animationDelay: `${i * 0.18}s` }}
         >
           <span

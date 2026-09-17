@@ -163,7 +163,7 @@ export default async function HomePage({
               </Reveal>
             ))}
           </div>
-          <div className="mt-10">
+          <div className="mt-10 flex justify-center">
             <ButtonLink href="/services" variant="secondary">
               {tc("allServices")}
             </ButtonLink>

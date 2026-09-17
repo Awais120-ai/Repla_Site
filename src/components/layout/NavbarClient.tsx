@@ -5,14 +5,13 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { BrevoMeetingPopover, useBrevoPopoverId } from "@/components/layout/BrevoMeetingDialog";
 import { Button } from "@/components/ui/Button";
-import { TechLogo } from "@/components/ui/TechLogo";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { COMPANY } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { ArrowRight, ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 
 /** Pre-localized nav entries built on the server, so content modules stay out of this bundle. */
 export type NavEntry = {
@@ -38,13 +37,11 @@ export function NavbarClient({
   featured,
   industries,
   solutions,
-  technologies,
   technologiesPreview,
 }: {
   featured: NavEntry[];
   industries: NavEntry[];
   solutions: NavEntry[];
-  technologies: string[];
   technologiesPreview: string;
 }) {
   const t = useTranslations("nav");
@@ -168,7 +165,9 @@ export function NavbarClient({
             sizes="40px"
             className="h-10 w-10 rounded-full"
           />
-          <span className="font-display text-lg font-semibold tracking-wide text-foreground">REPLA</span>
+          <span className="font-display text-lg font-semibold tracking-wide text-foreground">
+            Repla technologies
+          </span>
         </Link>
 
         {/* No Home entry: the logo is the route home. */}
@@ -180,47 +179,31 @@ export function NavbarClient({
             open={open === "services"}
             onOpen={() => setOpen("services")}
             onClose={() => setOpen(null)}
+            panelClassName="w-[min(760px,calc(100vw-2rem))]"
           >
-            <div className="grid gap-8 lg:grid-cols-[200px_1fr]">
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted">{t("technologies")}</p>
-                <ul className="mt-3 space-y-0.5 text-sm text-muted">
-                  {technologies.map((tech) => (
-                    <li key={tech}>
-                      <span className="flex items-center gap-2.5 rounded-lg px-1.5 py-1">
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-line bg-foreground/[0.03]">
-                          <TechLogo name={tech} className="h-4 w-4" />
-                        </span>
-                        {tech}
+            <div>
+              <div className="mb-3 flex items-center justify-between">
+                <p className="text-xs uppercase tracking-widest text-muted">{t("services")}</p>
+                <Link href="/services" className="text-sm text-muted transition-colors hover:text-foreground">
+                  {t("viewAll")}
+                </Link>
+              </div>
+              <ul className="grid gap-1 sm:grid-cols-2 xl:grid-cols-3">
+                {featured.map((s) => (
+                  <li key={s.slug}>
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="flex items-start gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-foreground/[0.04]"
+                    >
+                      <Icon name={s.icon} className="mt-0.5 h-4 w-4 text-foreground/55" />
+                      <span className="min-w-0">
+                        <span className="block text-sm text-foreground">{s.title}</span>
+                        <span className="block text-xs text-muted line-clamp-2">{s.tagline}</span>
                       </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <div className="mb-3 flex items-center justify-between">
-                  <p className="text-xs uppercase tracking-widest text-muted">{t("services")}</p>
-                  <Link href="/services" className="text-sm text-muted transition-colors hover:text-foreground">
-                    {t("viewAll")}
-                  </Link>
-                </div>
-                <ul className="grid gap-1 sm:grid-cols-2 xl:grid-cols-3">
-                  {featured.map((s) => (
-                    <li key={s.slug}>
-                      <Link
-                        href={`/services/${s.slug}`}
-                        className="flex items-start gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-foreground/[0.04]"
-                      >
-                        <Icon name={s.icon} className="mt-0.5 h-4 w-4 text-foreground/55" />
-                        <span className="min-w-0">
-                          <span className="block text-sm text-foreground">{s.title}</span>
-                          <span className="block text-xs text-muted line-clamp-2">{s.tagline}</span>
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Mega>
           <Mega
@@ -230,6 +213,7 @@ export function NavbarClient({
             open={open === "industries"}
             onOpen={() => setOpen("industries")}
             onClose={() => setOpen(null)}
+            panelClassName="w-[min(720px,calc(100vw-2rem))]"
           >
             <ul className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
               {industries.map((i) => (
@@ -251,6 +235,7 @@ export function NavbarClient({
             open={open === "solutions"}
             onOpen={() => setOpen("solutions")}
             onClose={() => setOpen(null)}
+            panelClassName="w-[min(560px,calc(100vw-2rem))]"
           >
             <ul className="grid gap-1 sm:grid-cols-2">
               {solutions.map((s) => (
@@ -277,6 +262,7 @@ export function NavbarClient({
             open={open === "company"}
             onOpen={() => setOpen("company")}
             onClose={() => setOpen(null)}
+            panelClassName="w-[min(560px,calc(100vw-2rem))]"
           >
             <div className="grid gap-8 sm:grid-cols-2">
               <ul className="space-y-0.5 text-sm">
@@ -496,6 +482,7 @@ function Mega({
   open,
   onOpen,
   onClose,
+  panelClassName,
   children,
 }: {
   id: string;
@@ -504,8 +491,34 @@ function Mega({
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
+  panelClassName?: string;
   children: React.ReactNode;
 }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+
+    const place = () => {
+      const wrap = wrapRef.current;
+      const panel = panelRef.current;
+      if (!wrap || !panel) return;
+
+      const trigger = wrap.getBoundingClientRect();
+      const width = panel.offsetWidth;
+      const pad = 16;
+      // Center on the trigger label, then keep the panel inside the viewport.
+      const ideal = trigger.left + trigger.width / 2 - width / 2;
+      const left = Math.min(Math.max(ideal, pad), window.innerWidth - width - pad);
+      panel.style.left = `${left - trigger.left}px`;
+    };
+
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [open]);
+
   const triggerClass = cn(
     "relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 btn-animate-soft hover:text-foreground",
     open && "text-foreground",
@@ -513,6 +526,7 @@ function Mega({
 
   return (
     <div
+      ref={wrapRef}
       className="relative"
       onMouseEnter={onOpen}
       onMouseLeave={onClose}
@@ -543,8 +557,12 @@ function Mega({
       )}
       {open ? (
         <div
+          ref={panelRef}
           id={id}
-          className="absolute start-1/2 top-full z-50 w-[min(920px,calc(100vw-2rem))] -translate-x-1/2 pt-3 rtl:translate-x-1/2"
+          className={cn(
+            "absolute top-full z-50 pt-3",
+            panelClassName ?? "w-[min(720px,calc(100vw-2rem))]",
+          )}
         >
           <div className="nav-panel rounded-2xl p-6">{children}</div>
         </div>

@@ -51,7 +51,6 @@ export async function Navbar() {
       featured={featured}
       industries={industries.map((i) => toEntry(i, locale))}
       solutions={solutions.map((s) => toEntry(s, locale))}
-      technologies={[...TECHNOLOGIES]}
       technologiesPreview={TECHNOLOGIES.slice(0, 6).join(" · ")}
     />
   );

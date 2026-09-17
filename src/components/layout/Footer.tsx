@@ -16,6 +16,9 @@ const footerIndustrySlugs = [
   "real-estate",
   "retail-ecommerce",
   "education",
+  "insurance",
+  "government",
+  "travel-hospitality",
 ] as const;
 
 export async function Footer() {
@@ -132,11 +135,6 @@ export async function Footer() {
           <div>
             <p className="footer-heading">{t("services")}</p>
             <ul className="mt-5 space-y-2.5 text-sm">
-              <li>
-                <Link href="/services" className="footer-link font-medium">
-                  {t("viewAllServices")}
-                </Link>
-              </li>
               {featured.map((s) => (
                 <li key={s.slug}>
                   <Link href={`/services/${s.slug}`} className="footer-link">
@@ -165,11 +163,6 @@ export async function Footer() {
           <div>
             <p className="footer-heading">{tn("industries")}</p>
             <ul className="mt-5 space-y-2.5 text-sm">
-              <li>
-                <Link href="/industries" className="footer-link font-medium">
-                  {t("viewAllIndustries")}
-                </Link>
-              </li>
               {featuredIndustries.map((industry) => (
                 <li key={industry.slug}>
                   <Link href={`/industries/${industry.slug}`} className="footer-link">

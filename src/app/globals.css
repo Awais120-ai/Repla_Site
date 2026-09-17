@@ -327,7 +327,16 @@ html.light .navbar-shell-scrolled {
 }
 
 .tech-slider {
+  cursor: default;
   mask-image: linear-gradient(to inline-end, transparent, black 7%, black 93%, transparent);
+}
+
+.tech-tile {
+  cursor: default;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Duration, not distance, sets the speed: the track is two identical copies, so
@@ -362,13 +371,6 @@ html.light .navbar-shell-scrolled {
   .tech-marquee {
     --marquee-duration: 46s;
   }
-}
-
-.tech-tile {
-  transition:
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
 }
 
 /* Per-tile bobbing is decorative: keep it off phones and reduced-motion users. */
