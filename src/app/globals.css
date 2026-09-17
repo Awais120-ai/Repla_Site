@@ -366,14 +366,16 @@ button,
   z-index: 20;
   display: flex;
   width: max-content;
-  max-width: 7.25rem;
+  max-width: 7.75rem;
   align-items: center;
   justify-content: center;
-  border-radius: 0.55rem;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: #101218;
-  padding: 0.14rem;
-  box-shadow: 0 10px 22px rgba(12, 13, 16, 0.22);
+  border-radius: 0.65rem;
+  border: 2px solid #0a0a0a;
+  background: #0a0a0a;
+  padding: 0.2rem;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 12px 28px rgba(0, 0, 0, 0.45);
   transform: translate(-50%, -50%);
   animation: brand-float 5.2s ease-in-out infinite;
 }
@@ -383,27 +385,36 @@ button,
   width: 100%;
   align-items: center;
   justify-content: center;
-  border-radius: 0.4rem;
+  border-radius: 0.45rem;
+  border: 1.5px solid #0a0a0a;
   background: #fff;
-  padding: 0.35rem 0.55rem;
+  padding: 0.4rem 0.65rem;
 }
 
 @media (max-width: 639px) {
   .brand-float-card {
-    max-width: 5.75rem;
-    padding: 0.1rem;
-    border-radius: 0.45rem;
+    max-width: 6.25rem;
+    padding: 0.15rem;
+    border-radius: 0.55rem;
+    border-width: 1.5px;
   }
 
   .brand-float-plate {
-    padding: 0.28rem 0.4rem;
+    padding: 0.3rem 0.45rem;
+    border-radius: 0.35rem;
   }
 }
 
 html.light .brand-float-card {
-  border-color: rgba(12, 13, 16, 0.08);
-  background: #16181e;
-  box-shadow: 0 14px 28px rgba(12, 13, 16, 0.14);
+  border-color: #0a0a0a;
+  background: #0a0a0a;
+  box-shadow:
+    0 0 0 1px rgba(12, 13, 16, 0.08),
+    0 14px 28px rgba(12, 13, 16, 0.2);
+}
+
+html.light .brand-float-plate {
+  border-color: #0a0a0a;
 }
 
 .brand-float-card img {

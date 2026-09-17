@@ -12,19 +12,15 @@ type FloatingBrand = {
   delay: string;
 };
 
-/* Even ring around the globe (radius ~40% from centre). Sphere silhouette spans ~12%–88%. */
+/* Even ring of seven brands around the globe (radius ~40% from centre). */
 const FLOATING: FloatingBrand[] = [
   { name: "Clutch", src: "/brands/clutch.svg", x: "50%", y: "10%", delay: "0s" },
-  { name: "GoodFirms", src: "/brands/goodfirms.jpg", x: "71.6%", y: "16.3%", delay: "0.35s" },
-  { name: "DesignRush", src: "/brands/designrush.svg", x: "86.4%", y: "33.4%", delay: "0.7s" },
-  { name: "LinkedIn", src: "/brands/linkedin.svg", x: "89.6%", y: "55.7%", delay: "1.05s" },
-  { name: "TopDevelopers", src: "/brands/topdevelopers.svg", x: "80.2%", y: "76.2%", delay: "1.4s" },
-  { name: "Freelancer", src: "/brands/freelancer.svg", x: "61.3%", y: "88.4%", delay: "0.2s" },
-  { name: "Crunchbase", src: "/brands/crunchbase.svg", x: "38.7%", y: "88.4%", delay: "0.55s" },
-  { name: "Fiverr", src: "/brands/fiverr.jpg", x: "19.8%", y: "76.2%", delay: "0.9s" },
-  { name: "BusinessFirms", src: "/brands/businessfirms.svg", x: "10.4%", y: "55.7%", delay: "1.25s" },
-  { name: "Upwork", src: "/brands/upwork.svg", x: "13.6%", y: "33.4%", delay: "1.6s" },
-  { name: "Tech Behemoths", src: "/brands/techbehemoths.svg", x: "28.4%", y: "16.3%", delay: "1.8s" },
+  { name: "GoodFirms", src: "/brands/goodfirms.jpg", x: "81.3%", y: "25.1%", delay: "0.4s" },
+  { name: "DesignRush", src: "/brands/designrush.svg", x: "89%", y: "58.9%", delay: "0.8s" },
+  { name: "LinkedIn", src: "/brands/linkedin.svg", x: "67.4%", y: "86%", delay: "1.2s" },
+  { name: "Freelancer", src: "/brands/freelancer.svg", x: "32.6%", y: "86%", delay: "0.2s" },
+  { name: "Fiverr", src: "/brands/fiverr.jpg", x: "11%", y: "58.9%", delay: "0.6s" },
+  { name: "Upwork", src: "/brands/upwork.svg", x: "18.7%", y: "25.1%", delay: "1s" },
 ];
 
 type Point = { x: number; y: number; z: number };
