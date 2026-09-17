@@ -9,7 +9,7 @@ import { TechLogo } from "@/components/ui/TechLogo";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { COMPANY } from "@/lib/site";
 import { cn } from "@/lib/cn";
-import { ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useId, useState } from "react";
@@ -54,6 +54,7 @@ export function NavbarClient({
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
   const menuId = useId();
   const bookingPopoverId = useBrevoPopoverId();
   const bookACallLabel = locale === "ar" ? "احجز مكالمة" : "Book a Call";
@@ -68,10 +69,24 @@ export function NavbarClient({
   useEffect(() => {
     setMobile(false);
     setOpen(null);
+    setMobileSection(null);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!mobile) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobile]);
 
   const switchLocale = () => {
     router.replace(pathname, { locale: locale === "en" ? "ar" : "en" });
+  };
+
+  const toggleMobileSection = (id: string) => {
+    setMobileSection((current) => (current === id ? null : id));
   };
 
   return (
@@ -287,7 +302,7 @@ export function NavbarClient({
           <ThemeToggle className="h-10 w-10" />
           <button
             type="button"
-            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-line btn-animate-soft"
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line btn-animate-soft"
             aria-expanded={mobile}
             aria-label={mobile ? t("closeMenu") : t("openMenu")}
             onClick={() => setMobile((v) => !v)}
@@ -298,49 +313,129 @@ export function NavbarClient({
       </div>
 
       {mobile ? (
-        <div className="border-t border-line lg:hidden">
-          <div className="mx-auto flex max-h-[80vh] max-w-7xl flex-col gap-1 overflow-y-auto px-4 py-4">
-            <p className="px-2 pt-3 text-xs uppercase tracking-widest text-muted">{t("services")}</p>
-            {featured.slice(0, 8).map((s) => (
-              <MobileLink key={s.slug} href={`/services/${s.slug}`}>
-                {s.shortTitle}
-              </MobileLink>
-            ))}
-            <MobileLink href="/services">{t("viewAll")}</MobileLink>
-            <MobileLink href="/industries">{t("industries")}</MobileLink>
-            <MobileLink href="/solutions">{t("solutions")}</MobileLink>
-            <MobileLink href="/about">{t("about")}</MobileLink>
-            <MobileLink href="/team">{t("team")}</MobileLink>
-            <MobileLink href="/portfolio">{t("portfolio")}</MobileLink>
-            <MobileLink href="/careers">{t("careers")}</MobileLink>
-            <MobileLink href="/contact">{t("contact")}</MobileLink>
-            <div className="mt-4 flex flex-col gap-3 border-t border-line pt-4">
-              <a href={`mailto:${COMPANY.emailInfo}`} className="text-sm text-muted">
-                {COMPANY.emailInfo}
-              </a>
-              <a href={`mailto:${COMPANY.email}`} className="text-sm text-muted">
-                {COMPANY.email}
-              </a>
-              <a href={COMPANY.phoneHref} className="text-sm text-muted" dir="ltr">
-                {COMPANY.phone}
-              </a>
-              <SocialLinks />
-              <button
-                type="button"
-                onClick={switchLocale}
-                className="relative min-h-11 self-start rounded-full border border-line px-4 py-2.5 text-sm font-medium btn-animate"
+        <div className="border-t border-line bg-background lg:hidden">
+          <div
+            className="mx-auto flex max-h-[calc(100dvh-4.5rem)] max-w-7xl flex-col overflow-y-auto px-4 pb-8 pt-2 sm:px-6"
+            data-no-smooth-scroll
+          >
+            <nav className="flex flex-col" aria-label="Mobile">
+              <MobileNavLink href="/" active={pathname === "/"}>
+                {t("home")}
+              </MobileNavLink>
+
+              <MobileAccordion
+                label={t("services")}
+                open={mobileSection === "services"}
+                onToggle={() => toggleMobileSection("services")}
               >
-                {locale === "en" ? "العربية" : "English"}
-              </button>
+                {featured.slice(0, 8).map((s) => (
+                  <MobileSubLink key={s.slug} href={`/services/${s.slug}`}>
+                    {s.shortTitle}
+                  </MobileSubLink>
+                ))}
+                <MobileSubLink href="/services">{t("viewAll")}</MobileSubLink>
+              </MobileAccordion>
+
+              <MobileAccordion
+                label={t("industries")}
+                open={mobileSection === "industries"}
+                onToggle={() => toggleMobileSection("industries")}
+              >
+                {industries.slice(0, 8).map((i) => (
+                  <MobileSubLink key={i.slug} href={`/industries/${i.slug}`}>
+                    {i.title}
+                  </MobileSubLink>
+                ))}
+                <MobileSubLink href="/industries">{t("viewAll")}</MobileSubLink>
+              </MobileAccordion>
+
+              <MobileAccordion
+                label={t("solutions")}
+                open={mobileSection === "solutions"}
+                onToggle={() => toggleMobileSection("solutions")}
+              >
+                {solutions.map((s) => (
+                  <MobileSubLink key={s.slug} href={`/solutions/${s.slug}`}>
+                    {s.title}
+                  </MobileSubLink>
+                ))}
+                <MobileSubLink href="/solutions">{t("viewAll")}</MobileSubLink>
+              </MobileAccordion>
+
+              <MobileAccordion
+                label={t("company")}
+                open={mobileSection === "company"}
+                onToggle={() => toggleMobileSection("company")}
+              >
+                <MobileSubLink href="/about">{t("about")}</MobileSubLink>
+                <MobileSubLink href="/team">{t("team")}</MobileSubLink>
+                <MobileSubLink href="/portfolio">{t("portfolio")}</MobileSubLink>
+                <MobileSubLink href="/careers">{t("careers")}</MobileSubLink>
+              </MobileAccordion>
+
+              <MobileNavLink href="/contact" active={pathname === "/contact"}>
+                {t("contact")}
+              </MobileNavLink>
+            </nav>
+
+            <div className="mt-6 space-y-5">
               <Button
                 type="button"
-                className="btn-slide-round hover:!bg-brand"
+                size="lg"
+                className="w-full justify-center gap-2 rounded-xl shadow-[0_12px_32px_rgba(196,30,36,0.35)]"
                 popoverTarget={bookingPopoverId}
                 popoverTargetAction="show"
                 onClick={() => setMobile(false)}
               >
                 {bookACallLabel}
+                <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
               </Button>
+
+              <ul className="space-y-3.5 px-0.5">
+                <li className="flex items-start gap-3 text-sm text-foreground/80">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+                  <span>{COMPANY.address}</span>
+                </li>
+                <li>
+                  <a
+                    href={COMPANY.phoneHref}
+                    className="flex items-center gap-3 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                    dir="ltr"
+                  >
+                    <Phone className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+                    {COMPANY.phone}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${COMPANY.emailInfo}`}
+                    className="flex items-center gap-3 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                  >
+                    <Mail className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+                    <span className="break-all">{COMPANY.emailInfo}</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${COMPANY.email}`}
+                    className="flex items-center gap-3 text-sm text-foreground/80 transition-colors hover:text-foreground"
+                  >
+                    <Mail className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+                    <span className="break-all">{COMPANY.email}</span>
+                  </a>
+                </li>
+              </ul>
+
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <SocialLinks />
+                <button
+                  type="button"
+                  onClick={switchLocale}
+                  className="relative min-h-10 rounded-full border border-line px-4 py-2 text-sm font-medium btn-animate-soft"
+                >
+                  {locale === "en" ? "العربية" : "English"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -424,11 +519,72 @@ function Mega({
   );
 }
 
-function MobileLink({ href, children }: { href: string; children: React.ReactNode }) {
+function MobileNavLink({
+  href,
+  children,
+  active,
+}: {
+  href: string;
+  children: React.ReactNode;
+  active?: boolean;
+}) {
   return (
     <Link
       href={href}
-      className="relative flex min-h-11 items-center rounded-lg px-2 py-2.5 font-medium text-foreground/90 btn-animate-soft hover:bg-foreground/5"
+      className={cn(
+        "flex min-h-14 items-center border-b border-line text-[17px] font-medium transition-colors",
+        active ? "text-brand" : "text-foreground hover:text-brand",
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function MobileAccordion({
+  label,
+  open,
+  onToggle,
+  children,
+}: {
+  label: string;
+  open: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="border-b border-line">
+      <button
+        type="button"
+        className="flex min-h-14 w-full items-center justify-between gap-3 text-start text-[17px] font-medium text-foreground transition-colors hover:text-brand"
+        aria-expanded={open}
+        onClick={onToggle}
+      >
+        {label}
+        <ChevronDown
+          className={cn("h-4 w-4 shrink-0 text-muted transition-transform duration-300", open && "rotate-180 text-brand")}
+          aria-hidden="true"
+        />
+      </button>
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows,opacity] duration-300 ease-out",
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="flex flex-col gap-0.5 pb-3 ps-1">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileSubLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="rounded-lg px-3 py-2.5 text-[15px] text-foreground/75 transition-colors hover:bg-foreground/5 hover:text-foreground"
     >
       {children}
     </Link>
