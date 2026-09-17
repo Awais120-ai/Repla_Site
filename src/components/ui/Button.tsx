@@ -6,10 +6,11 @@ type Size = "md" | "lg" | "sm";
 
 const variants: Record<Variant, string> = {
   primary:
-    "btn-animate btn-primary bg-brand text-white font-semibold hover:bg-[#d4252c] shadow-[0_0_0_1px_rgba(196,30,36,0.4),0_10px_30px_rgba(196,30,36,0.18)]",
+    "btn-animate btn-slide-round btn-primary bg-brand text-white font-semibold shadow-[0_0_0_1px_rgba(196,30,36,0.4),0_10px_30px_rgba(196,30,36,0.18)]",
   secondary:
-    "btn-animate btn-secondary border border-line bg-foreground/5 text-foreground font-medium hover:border-brand/50 hover:bg-foreground/10",
-  ghost: "btn-animate btn-ghost text-foreground/80 font-medium hover:text-foreground hover:bg-foreground/5",
+    "btn-animate btn-slide-round btn-secondary border border-line bg-foreground/5 text-foreground font-medium",
+  ghost:
+    "btn-animate btn-slide-round btn-ghost text-foreground/80 font-medium hover:text-foreground",
 };
 
 const sizes: Record<Size, string> = {

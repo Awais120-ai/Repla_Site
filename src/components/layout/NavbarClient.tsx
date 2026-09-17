@@ -290,7 +290,6 @@ export function NavbarClient({
           <Button
             type="button"
             size="sm"
-            className="btn-slide-round hover:!bg-brand"
             popoverTarget={bookingPopoverId}
             popoverTargetAction="show"
           >
