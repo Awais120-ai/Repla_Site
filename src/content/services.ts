@@ -98,6 +98,9 @@ export const services: Service[] = [
     faqs: [
       faq("Do you build AI agents or only chat interfaces?", "هل تبنون وكلاء ذكاء اصطناعي أم واجهات دردشة فقط؟", "We build agents, multi-agent systems, chatbots, and the integrations those products need inside enterprise software.", "نبنى وكلاء وأنظمة متعددة الوكلاء وروبوتات دردشة والتكاملات التي تحتاجها داخل برمجيات المؤسسات."),
       faq("Which models do you use?", "ما النماذج التي تستخدمونها؟", "We integrate large language models into your stack. Model choice follows data sensitivity, language needs, and where the workload must run.", "نربط نماذج اللغة الكبيرة بمجموعتكم التقنية. اختيار النموذج يتبع حساسية البيانات واحتياج اللغة ومكان تشغيل الحمل."),
+      faq("Can AI connect to our CRM or ERP?", "هل يمكن ربط الذكاء الاصطناعي بـ CRM أو ERP لدينا؟", "Yes. Enterprise AI integration is a core part of this service: agents and models call the systems your teams already use, with clear permissions and audit trails.", "نعم. تكامل الذكاء الاصطناعي المؤسسي جزء أساسي من هذه الخدمة: الوكلاء والنماذج تستدعي الأنظمة التي تستخدمها فرقكم، مع صلاحيات واضحة ومسارات تدقيق."),
+      faq("How do you keep AI from acting without oversight?", "كيف تمنعون الذكاء الاصطناعي من التصرف دون إشراف؟", "We design human review at high-risk steps, log tool calls, and set limits on what an agent can change. Supervision level matches the business risk of each workflow.", "نصمم مراجعة بشرية عند الخطوات عالية الخطر، ونسجل استدعاءات الأدوات، ونضع حدوداً لما يمكن للوكيل تغييره. مستوى الإشراف يطابق خطر كل سير عمل."),
+      faq("Do you support predictive analytics and computer vision?", "هل تدعمون التحليلات التنبؤية والرؤية الحاسوبية؟", "Yes. Both are listed capabilities. We apply them where the data and operational outcome justify the investment — forecasting, classification, or visual inspection — not as a generic add-on.", "نعم. كلاهما قدرات معلنة. نطبّقها حيث تبرّر البيانات والنتيجة التشغيلية الاستثمار — للتنبؤ أو التصنيف أو الفحص البصري — وليس كإضافة عامة."),
     ],
   },
   {
@@ -183,6 +186,9 @@ export const services: Service[] = [
     faqs: [
       faq("Do you replace an existing CRM or ERP?", "هل تستبدلون CRM أو ERP قائماً؟", "Sometimes we extend what you have through APIs. Sometimes we build a purpose-built system. The choice depends on process fit, not a default preference.", "أحياناً نوسّع ما لديكم عبر واجهات برمجية. وأحياناً نبنى نظاماً مخصصاً. الخيار يعتمد على ملاءمة العملية وليس تفضيلاً افتراضياً."),
       faq("Can this become a SaaS product?", "هل يمكن أن يصبح هذا منتج SaaS؟", "Yes. SaaS product development is part of this practice, including multi-tenant structure when the product requires it.", "نعم. تطوير منتجات SaaS جزء من هذه الممارسة، بما في ذلك البنية متعددة المستأجرين عندما يتطلب المنتج ذلك."),
+      faq("Who owns the code after delivery?", "من يملك الشيفرة بعد التسليم؟", "You own the codebase and the roadmap under the engagement terms. We build for handoff so your team or a dedicated REPLA team can keep evolving the product.", "تملكون الشيفرة وخارطة الطريق وفق شروط التعاون. نبنى للتسليم حتى يستطيع فريقكم أو فريق REPLA مخصص مواصلة تطوير المنتج."),
+      faq("Do you build industry applications such as healthcare or fintech?", "هل تبنون تطبيقات قطاعية مثل الرعاية الصحية أو التقنية المالية؟", "Yes. Healthcare and FinTech applications, marketplaces, booking platforms, HRMS, and inventory systems are all part of this catalog line when custom software is the right fit.", "نعم. تطبيقات الرعاية الصحية والتقنية المالية ومنصات الأسواق والحجز وأنظمة الموارد البشرية والمخزون كلها ضمن هذا الخط عندما تكون البرمجيات المخصصة هي الأنسب."),
+      faq("How do you ship without waiting for the entire product?", "كيف تسلمون دون انتظار المنتج كاملاً؟", "We release in slices: modules that can go live with clear APIs so other systems can join later. That reduces risk and lets teams start using value early.", "نُصدر على شرائح: وحدات يمكن تشغيلها بواجهات واضحة حتى تنضم أنظمة أخرى لاحقاً. ذلك يقلل الخطر ويتيح للفرق استخدام القيمة مبكراً."),
     ],
   },
   {
@@ -268,6 +274,9 @@ export const services: Service[] = [
     faqs: [
       faq("Do you work with a CMS?", "هل تعملون مع أنظمة إدارة المحتوى؟", "Yes. CMS development is in this service, including Sanity among the technologies we work with.", "نعم. تطوير أنظمة إدارة المحتوى ضمن هذه الخدمة، بما في ذلك Sanity ضمن التقنيات التي نعمل بها."),
       faq("Can a website become a PWA?", "هل يمكن أن يصبح الموقع تطبيقاً تقدماً؟", "When offline or installable behavior is useful, we build progressive web apps rather than forcing a native app.", "عندما يكون السلوك دون اتصال أو قابلية التثبيت مفيداً، نبنى تطبيقات ويب تقدمية بدل فرض تطبيق أصلي."),
+      faq("Do you build e-commerce and customer portals?", "هل تبنون تجارة إلكترونية وبوابات عملاء؟", "Yes. E-commerce, corporate sites, customer and partner portals, and admin dashboards are all in this service — designed for speed, maintainability, and search readiness.", "نعم. التجارة الإلكترونية والمواقع المؤسسية وبوابات العملاء والشركاء ولوحات الإدارة كلها ضمن هذه الخدمة — مصممة للسرعة وقابلية الصيانة وجاهزية البحث."),
+      faq("How do you approach SEO and performance?", "كيف تتعاملون مع تحسين محركات البحث والأداء؟", "We choose the rendering model for performance and SEO, measure Core Web Vitals as part of delivery, and keep accessibility in scope — not as a post-launch patch.", "نختار نموذج العرض للأداء والبحث، ونقيس مؤشرات الويب الأساسية ضمن التسليم، ونبقي إمكانية الوصول ضمن النطاق — وليس كترقيع بعد الإطلاق."),
+      faq("Can editors publish without a developer release?", "هل يستطيع المحررون النشر دون إصدار من المطور؟", "When a CMS is the right fit, we separate content editing from engineering so marketing and operations can publish without waiting on a release train.", "عندما يكون نظام إدارة المحتوى مناسباً، نفصل تحرير المحتوى عن الهندسة حتى يتمكن التسويق والعمليات من النشر دون انتظار قطار إصدار."),
     ],
   },
   {
@@ -351,6 +360,9 @@ export const services: Service[] = [
     faqs: [
       faq("Flutter or React Native?", "Flutter أم React Native؟", "Both are in this service. We choose from the product’s native needs, existing web stack, and who will maintain the app.", "كلاهما ضمن هذه الخدمة. نختار حسب احتياج المنتج الأصلي ومجموعة الويب القائمة ومن سيصون التطبيق."),
       faq("Do you ship enterprise apps as well as consumer apps?", "هل تسلمون تطبيقات مؤسسات إلى جانب تطبيقات المستهلك؟", "Yes. Enterprise mobile apps are an explicit part of the catalog.", "نعم. تطبيقات الجوال المؤسسية جزء صريح من الفهرس."),
+      faq("Do you build native Android and iOS apps?", "هل تبنون تطبيقات أندرويد وiOS أصلية؟", "Yes. Native Android and iOS are available when device APIs, performance, or store requirements favor a native path over cross-platform.", "نعم. أندرويد وiOS الأصليان متاحان عندما تفضّل واجهات الجهاز أو الأداء أو متطلبات المتجر مساراً أصلياً على متعدد المنصات."),
+      faq("Can the mobile app share a backend with our web product?", "هل يمكن لتطبيق الجوال مشاركة الخلفية مع منتج الويب؟", "Yes. We typically share APIs and backend services so web and mobile stay aligned on data, auth, and business rules.", "نعم. عادةً نشارك واجهات API وخدمات الخلفية حتى يبقى الويب والجوال متوافقين في البيانات والمصادقة وقواعد الأعمال."),
+      faq("Do you cover store release and post-launch support?", "هل تغطون إصدار المتجر والدعم بعد الإطلاق؟", "We plan store submission, monitoring, and a support channel before launch. Ongoing maintenance can continue under a separate support engagement if you need it.", "نخطط لتقديم المتجر والمراقبة وقناة الدعم قبل الإطلاق. يمكن أن تستمر الصيانة ضمن تعاون دعم منفصل إذا احتجتم ذلك."),
     ],
   },
   {
@@ -432,6 +444,9 @@ export const services: Service[] = [
     faqs: [
       faq("Which cloud do you standardize on?", "أي سحابة تعتمدون؟", "AWS, Azure, and Google Cloud are all in the catalog. We follow where your accounts, data residency, and skills already sit when that is sound.", "AWS وAzure وGoogle Cloud كلها في الفهرس. نتبع مكان حساباتكم وإقامة البيانات والمهارات عندما يكون ذلك سليماً."),
       faq("Do you only set up Kubernetes?", "هل تقتصرون على إعداد Kubernetes؟", "Kubernetes is one tool. Many products need simpler container delivery first. We match the platform to the operational load.", "Kubernetes أداة واحدة. كثير من المنتجات تحتاج تسليم حاويات أبسط أولاً. نطابق المنصة مع الحمل التشغيلي."),
+      faq("Can you migrate existing workloads to the cloud?", "هل يمكنكم ترحيل أحمال قائمة إلى السحابة؟", "Yes. Cloud migration is a listed capability. We migrate in waves with rollback plans rather than a single risky cutover.", "نعم. الترحيل السحابي قدرة معلنة. نرحّل على موجات مع خطط تراجع بدل قطع واحد محفوف بالمخاطر."),
+      faq("Do you set up CI/CD and infrastructure as code?", "هل تُعدّون CI/CD والبنية التحتية كرمز؟", "Yes. We standardize environments with containers and infrastructure as code, and put CI/CD in front of every change that can reach users.", "نعم. نوحّد البيئات بالحاويات والبنية التحتية كرمز، ونضع CI/CD أمام كل تغيير يصل إلى المستخدمين."),
+      faq("How do you handle cloud cost and monitoring?", "كيف تتعاملون مع تكلفة السحابة والمراقبة؟", "Cost optimization and monitoring are part of this service. We treat spend and health with the same seriousness as uptime so you can see and control both.", "تحسين التكلفة والمراقبة جزء من هذه الخدمة. نتعامل مع الإنفاق والصحة بجدية مماثلة لوقت التشغيل حتى تتمكنوا من رؤية كليهما والتحكم بهما."),
     ],
   },
   {
@@ -512,7 +527,10 @@ export const services: Service[] = [
     relatedServices: ["quality-assurance", "cloud-devops", "api-development"],
     faqs: [
       faq("Is this only penetration testing?", "هل هذا اختبار اختراق فقط؟", "Penetration testing is included. The service also covers application and API security, cloud IAM, vulnerability assessment, and monitoring.", "اختبار الاختراق مشمول. الخدمة تغطي أيضاً أمن التطبيقات والواجهات وإدارة الهوية السحابية وتقييم الثغرات والمراقبة."),
-      faq("Can you support compliance work?", "هل تدعمون أعمال الامتثال؟", "Compliance and vulnerability assessment are listed capabilities. We do not invent certifications this company does not publish.", "الامتثال وتقييم الثغرات قدرات معلنة. لا نخترع شهادات لا تنشرها الشركة."),
+      faq("Can you support compliance work?", "هل تدعمون أعمال الامتثال؟", "Compliance and vulnerability assessment are listed capabilities. We map controls to your requirements and evidence needs without inventing certifications the company does not publish.", "الامتثال وتقييم الثغرات قدرات معلنة. نربط الضوابط بمتطلباتكم واحتياج الأدلة دون اختراع شهادات لا تنشرها الشركة."),
+      faq("Do you secure APIs and cloud identity?", "هل تؤمّنون واجهات API والهوية السحابية؟", "Yes. Application and API security plus cloud security and IAM are core capabilities — including tightening roles that grew wider than the job required.", "نعم. أمن التطبيقات وواجهات API بالإضافة إلى أمن السحابة وإدارة الهوية قدرات أساسية — بما في ذلك تضييق الأدوار التي أصبحت أوسع من المطلوب."),
+      faq("What happens after an audit or pen test?", "ماذا يحدث بعد التدقيق أو اختبار الاختراق؟", "Findings go into the product backlog with priorities, not into a forgotten PDF. We help remediate and keep monitoring on after the audit week ends.", "تدخل النتائج قائمة المنتج بأولويات، وليس ملفاً منسياً. نساعد على المعالجة ونبقي المراقبة بعد انتهاء أسبوع التدقيق."),
+      faq("Can you provide ongoing SOC-style monitoring?", "هل توفرون مراقبة مستمرة بأسلوب مركز عمليات أمنية؟", "SOC and security monitoring are listed capabilities. Coverage window and escalation paths are defined in the engagement so production changes stay visible.", "مركز العمليات الأمنية والمراقبة قدرات معلنة. نافذة التغطية ومسارات التصعيد تُحدد في التعاون حتى تبقى تغييرات الإنتاج مرئية."),
     ],
   },
   {
@@ -594,6 +612,9 @@ export const services: Service[] = [
     faqs: [
       faq("Do you manufacture hardware?", "هل تصنّعون العتاد؟", "This service is integration of devices, sensors, platforms, lockers, RFID, and GPS with software. Hardware supply depends on the project and is not claimed as a factory line.", "هذه الخدمة تكامل أجهزة ومستشعرات ومنصات وخزائن وRFID وGPS مع البرمجيات. توريد العتاد يعتمد على المشروع ولا يُقدَّم كخط تصنيع."),
       faq("Is the smart locker product part of this?", "هل منتج الخزائن الذكية جزء من هذا؟", "Yes. Smart locker systems and RFID are listed here and as a named solution.", "نعم. أنظمة الخزائن الذكية وRFID مذكورة هنا وكحل مسمّى."),
+      faq("Do you support industrial IoT and GPS tracking?", "هل تدعمون إنترنت الأشياء الصناعي وتتبع GPS؟", "Yes. Industrial IoT, GPS tracking, and sensor integration are listed capabilities. We build the ingest path, rules, and operator UI around the devices you deploy.", "نعم. إنترنت الأشياء الصناعي وتتبع GPS وتكامل المستشعرات قدرات معلنة. نبنى مسار الإدخال والقواعد وواجهة المشغّل حول الأجهزة التي تنشرونها."),
+      faq("How do firmware and cloud teams stay aligned?", "كيف يبقى فريقا العتاد والسحابة متوافقين؟", "We define a clear contract for device identity, events, and actions so hardware constraints become product requirements instead of late surprises.", "نحدد عقداً واضحاً لهوية الجهاز والأحداث والإجراءات حتى تصبح قيود العتاد متطلبات منتج بدل مفاجآت متأخرة."),
+      faq("Can IoT data feed our existing business applications?", "هل يمكن لبيانات إنترنت الأشياء تغذية تطبيقات الأعمال القائمة؟", "Yes. Hardware–software integration includes connecting device events into the platforms and operational software your teams already run.", "نعم. تكامل العتاد والبرمجيات يشمل ربط أحداث الأجهزة بالمنصات وبرمجيات التشغيل التي تديرها فرقكم."),
     ],
   },
   {
@@ -671,6 +692,9 @@ export const services: Service[] = [
     faqs: [
       faq("Do you design without building?", "هل تصممون دون بناء؟", "We can. Most engagements continue into engineering so the system and the interface stay aligned.", "يمكننا ذلك. معظم التعاون يستمر إلى الهندسة حتى يبقى النظام والواجهة متوافقين."),
       faq("Do you create design systems?", "هل تنشئون أنظمة تصميم؟", "Yes. Design systems and dashboard design are listed capabilities.", "نعم. أنظمة التصميم وتصميم اللوحات قدرات معلنة."),
+      faq("What does UX research include?", "ماذا يشمل بحث تجربة المستخدم؟", "We research the job to be done before drawing the UI — interviews, task flows, and validation of risky paths so screens succeed at the actual work.", "نبحث المهمة المطلوب إنجازها قبل رسم الواجهة — مقابلات وتدفقات مهام والتحقق من المسارات الخطرة حتى تنجح الشاشات في العمل الفعلي."),
+      faq("Do you prototype before development?", "هل تصنعون نماذج أولية قبل التطوير؟", "Yes. Wireframing and prototyping focus on the risky flows, not only marketing screens, so stakeholders can click and agree before build starts.", "نعم. الإطارات السلكية والنماذج الأولية تركّز على التدفقات الخطرة وليس شاشات التسويق فقط، حتى ينقر أصحاب المصلحة ويتفقوا قبل بدء البناء."),
+      faq("Can you redesign operational dashboards?", "هل يمكنكم إعادة تصميم لوحات التشغيل؟", "Yes. Dashboard design is a listed capability. We organize metrics around decisions instead of dumping every number on one canvas.", "نعم. تصميم اللوحات قدرة معلنة. ننظم المقاييس حول القرارات بدل تفريغ كل رقم على سطح واحد."),
     ],
   },
   {
@@ -748,6 +772,9 @@ export const services: Service[] = [
     faqs: [
       faq("Do you only test software REPLA built?", "هل تختبرون فقط ما بنته REPLA؟", "We can QA products we build and products already in your landscape. Scope is agreed per engagement.", "يمكننا ضمان جودة منتجات نبنيها ومنتجات قائمة لديكم. النطاق يُتفق عليه لكل تعاون."),
       faq("Is automation always included?", "هل الأتمتة مشمولة دائماً؟", "Manual and automation testing are both in the catalog. The mix depends on release frequency and risk.", "الاختبار اليدوي والآلي كلاهما في الفهرس. المزيج يعتمد على تكرار الإصدار والخطر."),
+      faq("Do you test APIs, performance, and security?", "هل تختبرون واجهات API والأداء والأمان؟", "Yes. API, performance, security, regression, and load testing are listed capabilities and sit in the same program when the risk profile requires them.", "نعم. اختبار واجهات API والأداء والأمان والانحدار والحمل قدرات معلنة وتقع في البرنامج نفسه عندما يتطلب ملف الخطر ذلك."),
+      faq("How do you prioritize what to test?", "كيف تحددون أولوية ما يُختبر؟", "We use risk-based coverage instead of testing everything equally. High-impact paths and recent changes get deeper attention each release.", "نستخدم تغطية حسب الخطر بدل اختبار كل شيء بالتساوي. المسارات عالية الأثر والتغييرات الحديثة تحظى باهتمام أعمق في كل إصدار."),
+      faq("Can QA join a dedicated or mixed delivery team?", "هل يمكن لضمان الجودة الانضمام إلى فريق تسليم مخصص أو مختلط؟", "Yes. QA can sit with a dedicated REPLA team or alongside your engineers, reporting findings in a form the build team can act on the same week.", "نعم. يمكن لضمان الجودة الجلوس مع فريق REPLA مخصص أو إلى جانب مهندسيكم، مع إبلاغ النتائج بشكل تستطيع فرقة البناء التصرف وفقه في الأسبوع نفسه."),
     ],
   },
   {
@@ -827,6 +854,9 @@ export const services: Service[] = [
     faqs: [
       faq("REST or GraphQL?", "REST أم GraphQL؟", "Both are in the catalog. We pick from consumer needs, caching, and how the domain is queried.", "كلاهما في الفهرس. نختار حسب احتياج المستهلك والتخزين المؤقت وطريقة استعلام المجال."),
       faq("Do you integrate existing ERPs?", "هل تدمجون أنظمة ERP قائمة؟", "Yes. ERP and CRM integration is a listed capability, including when REPLA did not build the system of record.", "نعم. تكامل ERP وCRM قدرة معلنة، حتى عندما لم تبنِ REPLA نظام السجلات."),
+      faq("Can you integrate payment gateways?", "هل يمكنكم تكامل بوابات الدفع؟", "Yes. Payment gateway integration is a listed capability. We design clear success and failure paths so retries and refunds are not left to chance.", "نعم. تكامل بوابات الدفع قدرة معلنة. نصمم مسارات نجاح وفشل واضحة حتى لا تُترك إعادة المحاولة والاسترداد للصدفة."),
+      faq("Do you build banking, healthcare, or government APIs?", "هل تبنون واجهات للبنوك أو الرعاية الصحية أو الحكومة؟", "Yes. Banking, healthcare, and government APIs are listed. We respect industry constraints on auth, audit, and data handling as part of the contract design.", "نعم. واجهات البنوك والرعاية الصحية والحكومة معلنة. نحترم قيود القطاعات على المصادقة والتدقيق ومعالجة البيانات ضمن تصميم العقد."),
+      faq("How do you keep partner integrations from breaking silently?", "كيف تمنعون تكاملات الشركاء من الانكسار بصمت؟", "We treat integrations as products: versioned contracts, monitoring, and documentation so consumers are not surprised when a field or behavior changes.", "نتعامل مع التكاملات كمنتجات: عقود بإصدارات ومراقبة وتوثيق حتى لا يُفاجأ المستهلكون عند تغيّر حقل أو سلوك."),
     ],
   },
   {
@@ -906,6 +936,9 @@ export const services: Service[] = [
     faqs: [
       faq("Is this staff augmentation only?", "هل هذا تعزيز موظفين فقط؟", "Augmentation is one option. Dedicated developers, offshore centers, outsourcing, and managed teams with technical PM are all listed.", "التعزيز خيار واحد. المطورون المخصصون والمراكز الخارجية والتعهيد والفرق المُدارة مع إدارة مشاريع كلها معلنة."),
       faq("Where do the teams sit?", "أين تقع الفرق؟", "We deliver worldwide from a Riyadh headquarters. Exact team location is agreed per engagement; we do not invent extra offices here.", "نسلم عالمياً من مقر في الرياض. موقع الفريق يُتفق عليه لكل تعاون؛ لا نخترع مكاتب إضافية هنا."),
+      faq("Can you provide a managed team with a technical PM?", "هل توفرون فريقاً مُداراً مع مدير مشروع تقني؟", "Yes. Managed IT teams and technical project management are listed capabilities when you want planning, reporting, and delivery ownership included.", "نعم. الفرق التقنية المُدارة وإدارة المشاريع التقنية قدرات معلنة عندما تريدون تضمين التخطيط والتقارير وملكية التسليم."),
+      faq("How do you keep the team aligned with our backlog?", "كيف تبقيون الفريق متوافقاً مع قائمة أعمالنا؟", "We staff against a named backlog, work in your tools, and agree timezone and communication norms so the pod stays on your product — not a rotating cast.", "نوظف مقابل قائمة عمل مسماة، ونعمل في أدواتكم، ونتفق على المنطقة الزمنية وقواعد التواصل حتى يبقى الفريق على منتجكم — وليس تشكيلة دوّارة."),
+      faq("Can we scale the team up or down?", "هل يمكن توسيع الفريق أو تقليصه؟", "Yes. Dedicated capacity is meant to expand or reduce as the roadmap changes. Changes are planned with notice so delivery quality stays intact.", "نعم. القدرة المخصصة معدّة للتوسيع أو التقليص مع تغيّر خارطة الطريق. تُخطَّط التغييرات بإشعار مسبق حتى تبقى جودة التسليم سليمة."),
     ],
   },
   {
@@ -982,6 +1015,10 @@ export const services: Service[] = [
     relatedServices: ["smart-contracts", "nft-development", "dao-development", "custom-software-development"],
     faqs: [
       faq("Is every product a good fit for blockchain?", "هل كل منتج يناسب البلوك تشين؟", "No. We use this line when tokens, contracts, NFTs, DeFi, or DAOs are an actual requirement — not as decoration.", "لا. نستخدم هذا الخط عندما تكون الرموز أو العقود أو NFT أو DeFi أو DAO متطلباً فعلياً — وليس للزينة."),
+      faq("Do you build smart contracts and tokens?", "هل تبنون عقوداً ذكية ورموزاً؟", "Yes. Smart contracts and token development are listed capabilities, delivered together with the application that uses them.", "نعم. العقود الذكية وتطوير الرموز قدرات معلنة، تُسلَّم مع التطبيق الذي يستخدمها."),
+      faq("Can you integrate wallets into a Web3 product?", "هل يمكنكم دمج المحافظ في منتج Web3؟", "Yes. Wallet integration is treated as a first-class identity path — not a demo button — across NFT, DeFi, and broader Web3 apps.", "نعم. نتعامل مع تكامل المحافظ كمسار هوية أساسي — وليس زر عرض — عبر NFT وDeFi وتطبيقات Web3 الأوسع."),
+      faq("Do you build DeFi or DAO platforms?", "هل تبنون منصات DeFi أو DAO؟", "Yes. Web3 apps, DeFi, and DAO platforms are in this catalog. Related pages go deeper on smart contracts, NFTs, and DAOs when you need a focused scope.", "نعم. تطبيقات Web3 وDeFi وDAO ضمن هذا الفهرس. صفحات ذات صلة تتعمق في العقود وNFT وDAO عندما تحتاجون نطاقاً مركّزاً."),
+      faq("How do you decide what stays on-chain?", "كيف تقررون ما يبقى على السلسلة؟", "We decide what must be on-chain versus conventional software based on trust, cost, and upgrade needs — then document operational assumptions before launch.", "نقرر ما يجب أن يكون على السلسلة مقابل البرمجيات التقليدية حسب الثقة والتكلفة واحتياج الترقية — ثم نوثق افتراضات التشغيل قبل الإطلاق."),
     ],
   },
   {
@@ -1039,6 +1076,10 @@ export const services: Service[] = [
     relatedServices: ["blockchain-web3", "nft-development", "dao-development"],
     faqs: [
       faq("Is this separate from Blockchain & Web3?", "هل هذا منفصل عن البلوك تشين وWeb3؟", "It is a focused page for a capability already listed there: smart contracts and token development.", "هي صفحة مركّزة لقدرة مذكورة هناك: العقود الذكية وتطوير الرموز."),
+      faq("Do you test contracts before deploy?", "هل تختبرون العقود قبل النشر؟", "Yes. We specify states, permissions, and failure cases in writing, then implement and test the contract as production software before it goes live.", "نعم. نحدد الحالات والصلاحيات وحالات الفشل كتابة، ثم ننفذ العقد ونختبره كبرمجيات إنتاج قبل التشغيل."),
+      faq("Can tokens connect to our application UI?", "هل يمكن ربط الرموز بواجهة تطبيقنا؟", "Yes. Minting, transfers, and governance events are connected to the product UI and wallet-aware flows so the contract is not an orphan deploy.", "نعم. نربط الإصدار والتحويل وأحداث الحوكمة بواجهة المنتج وتدفقات واعية بالمحفظة حتى لا يكون العقد نشراً يتيماً."),
+      faq("What about upgrades after launch?", "ماذا عن الترقيات بعد الإطلاق؟", "We plan monitoring and upgrade assumptions before deploy so on-chain logic has an operational story, not only a first release.", "نخطط للمراقبة وافتراضات الترقية قبل النشر حتى يكون لمنطق السلسلة قصة تشغيل وليست إصداراً أول فقط."),
+      faq("When should rules live in a smart contract?", "متى يجب أن تعيش القواعد في عقد ذكي؟", "When business rules should execute the same way every time without a manual middle step — and the product needs that guarantee on-chain.", "عندما يجب أن تُنفَّذ قواعد الأعمال بالطريقة نفسها في كل مرة دون خطوة وسطى يدوية — ويحتاج المنتج ذلك الضمان على السلسلة."),
     ],
   },
   {
@@ -1096,6 +1137,10 @@ export const services: Service[] = [
     relatedServices: ["blockchain-web3", "smart-contracts", "web-development"],
     faqs: [
       faq("Do you guarantee NFT sales?", "هل تضمنون مبيعات NFT؟", "No. This page is about building platforms and wallet integration. We do not invent market results.", "لا. هذه الصفحة عن بناء المنصات وتكامل المحافظ. لا نخترع نتائج سوق."),
+      faq("What does an NFT platform engagement include?", "ماذا يشمل تعاون منصة NFT؟", "Minting and inventory flows, wallet connection, and the conventional software around the collection — display, transfer, and operational tools as the product requires.", "تدفقات الإصدار والجرد وربط المحفظة والبرمجيات التقليدية حول المجموعة — العرض والنقل وأدوات التشغيل حسب احتياج المنتج."),
+      faq("How do you handle wallet connection reliability?", "كيف تتعاملون مع موثوقية ربط المحفظة؟", "We treat wallets as identity, not a badge, and test unhappy paths: rejected signatures, network switches, and empty wallets on the devices people actually use.", "نتعامل مع المحافظ كهوية وليس كشارة، ونختبر المسارات غير السعيدة: توقيع مرفوض وتبديل شبكة ومحفظة فارغة على الأجهزة المستخدمة فعلاً."),
+      faq("Do you plan metadata and media storage?", "هل تخططون لتخزين البيانات الوصفية والوسائط؟", "Yes. Media and metadata strategies are kept explicit so collections have a durable plan rather than ad-hoc file drops.", "نعم. نبقي استراتيجيات الوسائط والبيانات الوصفية صريحة حتى تكون للمجموعات خطة دائمة بدل إسقاط ملفات عشوائي."),
+      faq("Can NFT features sit inside a broader product?", "هل يمكن لميزات NFT أن تكون داخل منتج أوسع؟", "Yes. We build NFT platforms and Web3 application support so collections live inside a real product, not only a one-off drop page.", "نعم. نبنى منصات NFT ودعم تطبيقات Web3 حتى تعيش المجموعات داخل منتج حقيقي وليس صفحة إسقاط لمرة واحدة فقط."),
     ],
   },
   {
@@ -1151,6 +1196,10 @@ export const services: Service[] = [
     relatedServices: ["blockchain-web3", "smart-contracts", "custom-software-development"],
     faqs: [
       faq("Do you run DAOs for clients after launch?", "هل تديرون DAO للعملاء بعد الإطلاق؟", "We build the platform. Ongoing community operation is only in scope if the engagement says so.", "نبنى المنصة. تشغيل المجتمع المستمر يكون ضمن النطاق فقط إذا نص التعاون على ذلك."),
+      faq("What does a DAO platform typically include?", "ماذا تشمل منصة DAO عادةً؟", "Membership, proposals, and on-chain or hybrid decision flows — a place to propose and decide with rules software can enforce.", "العضوية والمقترحات وتدفقات قرار على السلسلة أو هجينة — مكان للاقتراح والقرار بقواعد تستطيع البرمجيات إنفاذها."),
+      faq("On-chain or off-chain voting?", "تصويت على السلسلة أم خارجها؟", "We choose on-chain versus off-chain voting with risk, cost, and participation in mind. The governance contract and the application are designed together.", "نختار التصويت على السلسلة أو خارجها مع الخطر والتكلفة والمشاركة في الاعتبار. يُصمَّم عقد الحوكمة والتطبيق معاً."),
+      faq("Can DAO governance integrate with wallets and contracts?", "هل يمكن دمج حوكمة DAO مع المحافظ والعقود؟", "Yes. Integration with contracts and wallets is a listed capability so governance ties to the rest of the Web3 product.", "نعم. التكامل مع العقود والمحافظ قدرة معلنة حتى ترتبط الحوكمة ببقية منتج Web3."),
+      faq("Do you invent a token treasury for the client?", "هل تخترعون خزينة رموز للعميل؟", "No. We do not claim a token treasury or community we do not operate. Scope stays on the governance platform and related software.", "لا. لا ندّعي خزينة رموز أو مجتمعاً لا نديره. يبقى النطاق على منصة الحوكمة والبرمجيات ذات الصلة."),
     ],
   },
   {
@@ -1227,6 +1276,10 @@ export const services: Service[] = [
     relatedServices: ["ai-intelligent-automation", "custom-software-development", "cloud-devops"],
     faqs: [
       faq("Do you sell a branded BI product?", "هل تبيعون منتج ذكاء أعمال بعلامتكم؟", "We build warehousing, lakes, BI dashboards, and pipelines. We do not invent a named analytics product that is not in the catalog.", "نبنى المستودعات والبحيرات ولوحات ذكاء الأعمال والمسارات. لا نخترع منتج تحليلات مسمّى غير موجود في الفهرس."),
+      faq("Do you build data warehouses and data lakes?", "هل تبنون مستودعات وبحيرات بيانات؟", "Yes. Data warehousing and data lakes are listed capabilities, modeled with clear sources, grain, and ownership before tools are stacked.", "نعم. مستودعات البيانات وبحيرات البيانات قدرات معلنة، تُصمَّم بمصادر وحبيبات وملكية واضحة قبل رص الأدوات."),
+      faq("Can you deliver ETL and real-time analytics?", "هل يمكنكم تسليم ETL وتحليلات فورية؟", "Yes. ETL pipelines and real-time analytics are in the catalog. We add real-time paths only where latency is a real business requirement.", "نعم. خطوط ETL والتحليلات الفورية في الفهرس. نضيف المسارات الفورية فقط حيث الكمون متطلب أعمال حقيقي."),
+      faq("How do you keep metrics consistent across teams?", "كيف تبقيون المقاييس متسقة عبر الفرق؟", "We put BI on curated datasets with a shared definition of important metrics, so numbers do not disagree depending on who exported a file.", "نضع ذكاء الأعمال على مجموعات منسّقة بتعريف مشترك للمقاييس المهمة، حتى لا تختلف الأرقام حسب من صدّر ملفاً."),
+      faq("Can analytics support later AI work?", "هل يمكن للتحليلات دعم عمل ذكاء اصطناعي لاحقاً؟", "Yes. Clean pipelines and curated datasets become a base for AI and reporting without extra folklore — often paired with our AI & automation service when needed.", "نعم. المسارات النظيفة والمجموعات المنسّقة تصبح أساساً للذكاء الاصطناعي والتقارير دون روايات إضافية — وغالباً تُقرن بخدمة الذكاء الاصطناعي والأتمتة عند الحاجة."),
     ],
   },
   {
@@ -1305,6 +1358,10 @@ export const services: Service[] = [
     relatedServices: ["custom-software-development", "cloud-devops", "dedicated-development-teams"],
     faqs: [
       faq("Is consulting only slides?", "هل الاستشارات شرائح فقط؟", "Discovery and roadmaps are the point of this line. Many clients continue into delivery with the same team.", "الاكتشاف والخرائط هي نقطة هذا الخط. كثير من العملاء يستمرون إلى التسليم مع الفريق نفسه."),
+      faq("What is CTO as a Service?", "ما هي خدمة CTO كخدمة؟", "Standing senior technical leadership for architecture and product decisions when you need a counterpart for the executive team without a full-time hire yet.", "قيادة تقنية كبيرة قائمة لقرارات الهيكلة والمنتج عندما تحتاجون مقابلاً لفريق الإدارة دون توظيف بدوام كامل بعد."),
+      faq("Do you help with legacy modernization?", "هل تساعدون في تحديث الأنظمة القديمة؟", "Yes. Legacy modernization and IT roadmaps are listed capabilities. We sequence work so the business can keep running while systems move forward.", "نعم. تحديث الأنظمة القديمة وخرائط تقنية المعلومات قدرات معلنة. نسلسل العمل حتى يستمر التشغيل أثناء تقدّم الأنظمة."),
+      faq("How does product discovery fit with architecture?", "كيف يتناسب اكتشاف المنتج مع الهيكلة؟", "We discover the product and the architecture in the same conversation — starting from the operating constraint, not a tool shortlist.", "نكتشف المنتج والهيكلة في الحوار نفسه — بدءاً من القيد التشغيلي وليس من قائمة أدوات."),
+      faq("Can consulting lead into a build engagement?", "هل يمكن أن تؤدي الاستشارات إلى تعاون بناء؟", "Yes. Many engagements continue into custom software, cloud, or dedicated teams with people who already know the roadmap.", "نعم. كثير من التعاون يستمر إلى برمجيات مخصصة أو سحابة أو فرق مخصصة مع أشخاص يعرفون خارطة الطريق مسبقاً."),
     ],
   },
   {
@@ -1381,17 +1438,21 @@ export const services: Service[] = [
     relatedServices: ["cloud-devops", "cybersecurity", "dedicated-development-teams"],
     faqs: [
       faq("Is 24/7 included by default?", "هل الدعم على مدار الساعة مضمّن افتراضياً؟", "24/7 monitoring, bug fixes, and SLA support are available in this service. The exact coverage window is set in the engagement.", "المراقبة على مدار الساعة وإصلاح الأخطاء ودعم اتفاقية مستوى الخدمة متاحة في هذه الخدمة. نافذة التغطية تُحدد في التعاون."),
+      faq("Do you maintain applications you did not build?", "هل تصونون تطبيقات لم تبنوها؟", "Yes, when scope and access allow. We assess the stack, monitoring gaps, and handover materials before committing to an SLA.", "نعم، عندما يسمح النطاق والوصول. نقيّم المجموعة وفجوات المراقبة ومواد التسليم قبل الالتزام باتفاقية مستوى خدمة."),
+      faq("Does support include cloud performance and cost?", "هل يشمل الدعم أداء السحابة وتكلفتها؟", "Yes. Cloud support and performance optimization are listed capabilities. We keep spend and health in view as part of ongoing care, not only as a separate project.", "نعم. دعم السحابة وتحسين الأداء قدرات معلنة. نبقي الإنفاق والصحة تحت النظر ضمن الرعاية المستمرة وليس كمشروع منفصل فقط."),
+      faq("Can you modernize while keeping the system live?", "هل يمكنكم التحديث مع إبقاء النظام يعمل؟", "Yes. Application maintenance and modernization include fixing defects on a cadence and upgrading ageing parts without requiring a full rewrite.", "نعم. صيانة التطبيقات وتحديثها تشمل إصلاح العيوب بإيقاع وترقية الأجزاء التي تشيخ دون إعادة كتابة كاملة."),
+      faq("How is the SLA defined?", "كيف تُعرَّف اتفاقية مستوى الخدمة؟", "We put monitoring and an on-call path in place, then write down response times and what coverage includes for your product before promising an SLA.", "نضع المراقبة ومسار المناوبة، ثم نكتب أزمنة الاستجابة وما تشمله التغطية لمنتجكم قبل وعد اتفاقية مستوى الخدمة."),
     ],
   },
 ];
 
 export const featuredServiceSlugs = [
   "ai-intelligent-automation",
-  "custom-software-development",
-  "web-development",
-  "mobile-app-development",
-  "cloud-devops",
+  "blockchain-web3",
+  "iot-embedded-systems",
   "cybersecurity",
+  "cloud-devops",
+  "mobile-app-development",
 ] as const;
 
 export function getService(slug: string) {

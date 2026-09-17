@@ -160,6 +160,7 @@ export function NavbarClient({
           <Mega
             id={`${menuId}-services`}
             label={t("services")}
+            href="/services"
             open={open === "services"}
             onOpen={() => setOpen("services")}
             onClose={() => setOpen(null)}
@@ -209,6 +210,7 @@ export function NavbarClient({
           <Mega
             id={`${menuId}-industries`}
             label={t("industries")}
+            href="/industries"
             open={open === "industries"}
             onOpen={() => setOpen("industries")}
             onClose={() => setOpen(null)}
@@ -474,6 +476,7 @@ function NavLink({
 function Mega({
   id,
   label,
+  href,
   open,
   onOpen,
   onClose,
@@ -481,31 +484,47 @@ function Mega({
 }: {
   id: string;
   label: string;
+  href?: string;
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  const triggerClass = cn(
+    "relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 btn-animate-soft hover:text-foreground",
+    open && "text-foreground",
+  );
+
   return (
     <div
       className="relative"
       onMouseEnter={onOpen}
       onMouseLeave={onClose}
     >
-      <button
-        type="button"
-        className={cn(
-          "relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 btn-animate-soft hover:text-foreground",
-          open && "text-foreground",
-        )}
-        aria-expanded={open}
-        aria-controls={id}
-        onClick={() => (open ? onClose() : onOpen())}
-        onFocus={onOpen}
-      >
-        {label}
-        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
-      </button>
+      {href ? (
+        <Link
+          href={href}
+          className={triggerClass}
+          aria-expanded={open}
+          aria-controls={id}
+          onFocus={onOpen}
+        >
+          {label}
+          <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
+        </Link>
+      ) : (
+        <button
+          type="button"
+          className={triggerClass}
+          aria-expanded={open}
+          aria-controls={id}
+          onClick={() => (open ? onClose() : onOpen())}
+          onFocus={onOpen}
+        >
+          {label}
+          <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
+        </button>
+      )}
       {open ? (
         <div
           id={id}
