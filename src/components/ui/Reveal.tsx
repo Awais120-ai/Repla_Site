@@ -7,10 +7,13 @@ export function Reveal({
   children,
   className,
   delay = 0,
+  tone = "soft",
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  /** `soft` = light rise; `bold` = deeper rise + scale for feature cards */
+  tone?: "soft" | "bold";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
@@ -43,8 +46,12 @@ export function Reveal({
     <div
       ref={ref}
       className={cn(
-        shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
-        "motion-safe:transition-[opacity,transform] motion-safe:duration-700 motion-safe:ease-out",
+        shown
+          ? "translate-y-0 scale-100 opacity-100 blur-0"
+          : tone === "bold"
+            ? "translate-y-8 scale-[0.96] opacity-0 blur-[2px]"
+            : "translate-y-4 opacity-0",
+        "motion-safe:transition-[opacity,transform,filter] motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
         className,
       )}
       style={{ transitionDelay: shown ? `${delay}s` : undefined }}

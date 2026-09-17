@@ -54,7 +54,7 @@ export default async function CareersPage({
                 {loc(companyCopy.careersEyebrow, l)}
               </p>
               <h2 className="mt-3 max-w-xl font-display text-[clamp(1.75rem,4vw,2.35rem)] font-semibold leading-tight text-foreground">
-                {loc(companyCopy.careersTitle, l)}
+                {loc(companyCopy.careersSectionTitle, l)}
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
                 {loc(companyCopy.careersBody, l)}

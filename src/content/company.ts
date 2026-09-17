@@ -210,6 +210,7 @@ export const companyCopy = {
   ),
   careersEyebrow: L("Careers at REPLA", "الوظائف في REPLA"),
   careersTitle: L("Build Your Future With REPLA", "ابنِ مستقبلك مع REPLA"),
+  careersSectionTitle: L("Shape the Future With REPLA", "شكّل المستقبل مع REPLA"),
   careersBody: L(
     "Join REPLA Technologies and work on real-world projects using modern technologies. Become part of a team building innovative solutions in AI, web, mobile, cloud, and software development.",
     "انضموا إلى REPLA Technologies واعملوا على مشاريع واقعية بتقنيات حديثة. كونوا جزءاً من فريق يبني حلولاً مبتكرة في الذكاء الاصطناعي والويب والجوال والسحابة وتطوير البرمجيات.",
