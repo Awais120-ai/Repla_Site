@@ -208,6 +208,50 @@ export const companyCopy = {
     "We hire engineers, designers, and delivery leads who want to build production systems — AI, software, cloud, and industry products. There are no fabricated openings on this page. Open applications go to HR.",
     "نوظف مهندسين ومصممين وقادة تسليم يريدون بناء أنظمة إنتاج — ذكاء اصطناعي وبرمجيات وسحابة ومنتجات قطاعية. لا توجد وظائف مختلقة في هذه الصفحة. الطلبات المفتوحة تُرسل إلى الموارد البشرية.",
   ),
+  careersEyebrow: L("Careers at REPLA", "الوظائف في REPLA"),
+  careersTitle: L("Build Your Future With REPLA", "ابنِ مستقبلك مع REPLA"),
+  careersBody: L(
+    "Join REPLA Technologies and work on real-world projects using modern technologies. Become part of a team building innovative solutions in AI, web, mobile, cloud, and software development.",
+    "انضموا إلى REPLA Technologies واعملوا على مشاريع واقعية بتقنيات حديثة. كونوا جزءاً من فريق يبني حلولاً مبتكرة في الذكاء الاصطناعي والويب والجوال والسحابة وتطوير البرمجيات.",
+  ),
+  careersPoints: [
+    {
+      title: L("Work on Real Projects", "اعملوا على مشاريع حقيقية"),
+      body: L(
+        "Build solutions for real businesses and customers.",
+        "ابنوا حلولاً لأعمال وعملاء حقيقيين.",
+      ),
+    },
+    {
+      title: L("Learn & Grow", "تعلموا وانموا"),
+      body: L(
+        "Improve your skills by working with modern technologies.",
+        "طوّروا مهاراتكم بالعمل مع تقنيات حديثة.",
+      ),
+    },
+    {
+      title: L("Modern Technology", "تقنيات حديثة"),
+      body: L(
+        "Work with AI, React, Next.js, Python, cloud, and more.",
+        "اعملوا مع الذكاء الاصطناعي وReact وNext.js وPython والسحابة وغيرها.",
+      ),
+    },
+    {
+      title: L("Collaborative Team", "فريق تعاوني"),
+      body: L(
+        "Work together, share ideas, and solve challenging problems.",
+        "اعملوا معاً، شاركوا الأفكار، وحلّوا مشكلات صعبة.",
+      ),
+    },
+  ],
+  careersClose: L(
+    "Ready to grow with us? Send your application and let’s build something meaningful together.",
+    "هل أنتم مستعدون للنمو معنا؟ أرسلوا طلبكم ولنبنِ معاً شيئاً ذا معنى.",
+  ),
+  careersNote: L(
+    "There are no invented job listings here. Open applications go to HR.",
+    "لا توجد قوائم وظائف مختلقة هنا. الطلبات المفتوحة تُرسل إلى الموارد البشرية.",
+  ),
   faqIntro: L(
     "Answers based on how REPLA actually delivers: services, teams, security, and engagement.",
     "إجابات وفق طريقة تسليم REPLA فعلياً: الخدمات والفرق والأمن وأشكال التعاون.",
