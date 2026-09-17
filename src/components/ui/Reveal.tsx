@@ -8,12 +8,15 @@ export function Reveal({
   className,
   delay = 0,
   tone = "soft",
+  from = "up",
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   /** `soft` = light rise; `bold` = deeper rise + scale for feature cards */
   tone?: "soft" | "bold";
+  /** Slide origin: vertical (`up`) or horizontal (`start` / `end`) */
+  from?: "up" | "start" | "end";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
@@ -42,15 +45,24 @@ export function Reveal({
     };
   }, []);
 
+  const hiddenMotion =
+    from === "start"
+      ? tone === "bold"
+        ? "-translate-x-12 opacity-0 blur-[2px] rtl:translate-x-12"
+        : "-translate-x-8 opacity-0 rtl:translate-x-8"
+      : from === "end"
+        ? tone === "bold"
+          ? "translate-x-12 opacity-0 blur-[2px] rtl:-translate-x-12"
+          : "translate-x-8 opacity-0 rtl:-translate-x-8"
+        : tone === "bold"
+          ? "translate-y-8 scale-[0.96] opacity-0 blur-[2px]"
+          : "translate-y-4 opacity-0";
+
   return (
     <div
       ref={ref}
       className={cn(
-        shown
-          ? "translate-y-0 scale-100 opacity-100 blur-0"
-          : tone === "bold"
-            ? "translate-y-8 scale-[0.96] opacity-0 blur-[2px]"
-            : "translate-y-4 opacity-0",
+        shown ? "translate-x-0 translate-y-0 scale-100 opacity-100 blur-0" : hiddenMotion,
         "motion-safe:transition-[opacity,transform,filter] motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]",
         className,
       )}

@@ -171,7 +171,7 @@ export function NavbarClient({
                   {technologies.map((tech) => (
                     <li key={tech}>
                       <span className="flex items-center gap-2.5 rounded-lg px-1.5 py-1">
-                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-line bg-foreground/5">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-line bg-foreground/[0.03]">
                           <TechLogo name={tech} className="h-4 w-4" />
                         </span>
                         {tech}
@@ -183,18 +183,18 @@ export function NavbarClient({
               <div>
                 <div className="mb-3 flex items-center justify-between">
                   <p className="text-xs uppercase tracking-widest text-muted">{t("services")}</p>
-                  <Link href="/services" className="text-sm text-brand hover:underline">
+                  <Link href="/services" className="text-sm text-muted transition-colors hover:text-foreground">
                     {t("viewAll")}
                   </Link>
                 </div>
-                <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                <ul className="grid gap-1 sm:grid-cols-2 xl:grid-cols-3">
                   {featured.map((s) => (
                     <li key={s.slug}>
                       <Link
                         href={`/services/${s.slug}`}
-                        className="flex items-start gap-2 rounded-lg p-2 hover:bg-foreground/5"
+                        className="flex items-start gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-foreground/[0.04]"
                       >
-                        <Icon name={s.icon} className="mt-0.5 h-4 w-4 text-brand" />
+                        <Icon name={s.icon} className="mt-0.5 h-4 w-4 text-foreground/55" />
                         <span className="min-w-0">
                           <span className="block text-sm text-foreground">{s.title}</span>
                           <span className="block text-xs text-muted line-clamp-2">{s.tagline}</span>
@@ -218,9 +218,9 @@ export function NavbarClient({
                 <li key={i.slug}>
                   <Link
                     href={`/industries/${i.slug}`}
-                    className="flex items-center gap-2 rounded-lg p-2 text-sm text-foreground/90 hover:bg-foreground/5"
+                    className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-foreground/90 transition-colors hover:bg-foreground/[0.04]"
                   >
-                    <Icon name={i.icon} className="h-4 w-4 text-brand" />
+                    <Icon name={i.icon} className="h-4 w-4 text-foreground/55" />
                     {i.title}
                   </Link>
                 </li>
@@ -234,19 +234,19 @@ export function NavbarClient({
             onOpen={() => setOpen("solutions")}
             onClose={() => setOpen(null)}
           >
-            <ul className="grid gap-2 sm:grid-cols-2">
+            <ul className="grid gap-1 sm:grid-cols-2">
               {solutions.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={`/solutions/${s.slug}`}
-                    className="flex items-start gap-3 rounded-lg p-3 hover:bg-foreground/5"
+                    className="flex items-start gap-3 rounded-lg px-2 py-2.5 transition-colors hover:bg-foreground/[0.04]"
                   >
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-line bg-brand/10 text-brand">
+                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-line bg-foreground/[0.03] text-foreground/60">
                       <Icon name={s.icon} className="h-4 w-4" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block font-medium text-foreground">{s.title}</span>
-                      <span className="mt-1 block text-sm text-muted">{s.tagline}</span>
+                      <span className="block text-sm font-medium text-foreground">{s.title}</span>
+                      <span className="mt-0.5 block text-xs text-muted">{s.tagline}</span>
                     </span>
                   </Link>
                 </li>
@@ -261,14 +261,14 @@ export function NavbarClient({
             onClose={() => setOpen(null)}
           >
             <div className="grid gap-8 sm:grid-cols-2">
-              <ul className="space-y-1 text-sm">
+              <ul className="space-y-0.5 text-sm">
                 {COMPANY_LINKS.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="flex items-center gap-2.5 rounded-lg px-2 py-2 hover:bg-foreground/5"
+                      className="flex items-center gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-foreground/[0.04]"
                     >
-                      <Icon name={item.icon} className="h-4 w-4 shrink-0 text-brand" />
+                      <Icon name={item.icon} className="h-4 w-4 shrink-0 text-foreground/55" />
                       {t(item.labelKey)}
                     </Link>
                   </li>
@@ -277,7 +277,7 @@ export function NavbarClient({
               <div>
                 <p className="text-sm text-muted">{t("partnersNote")}</p>
                 <p className="mt-3 text-xs uppercase tracking-widest text-muted">{t("technologies")}</p>
-                <p className="mt-2 text-sm text-foreground/80">{technologiesPreview}</p>
+                <p className="mt-2 text-sm text-foreground/70">{technologiesPreview}</p>
               </div>
             </div>
           </Mega>

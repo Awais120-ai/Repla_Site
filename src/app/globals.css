@@ -206,23 +206,10 @@ button,
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border: 1px solid var(--panel-line);
-  background:
-    radial-gradient(120% 130% at 0% 0%, color-mix(in srgb, var(--brand) 9%, transparent), transparent 55%),
-    linear-gradient(180deg, color-mix(in srgb, var(--foreground) 5%, transparent), transparent 45%),
-    var(--panel);
+  border: 1px solid var(--line);
+  background: var(--panel);
   box-shadow: var(--panel-shadow);
   animation: nav-panel-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.nav-panel::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--brand), transparent);
-  opacity: 0.7;
 }
 
 @keyframes nav-panel-in {
@@ -367,10 +354,10 @@ button,
 @keyframes brand-float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translate(-50%, calc(-50% - 6px));
   }
 }
 
@@ -378,30 +365,45 @@ button,
   position: absolute;
   z-index: 20;
   display: flex;
-  min-height: 3.35rem;
-  min-width: 7.5rem;
+  width: max-content;
+  max-width: 7.25rem;
   align-items: center;
   justify-content: center;
-  border-radius: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #14161c;
-  padding: 0.55rem 0.8rem;
-  box-shadow: 0 16px 40px rgba(12, 13, 16, 0.28);
-  animation: brand-float 4.6s ease-in-out infinite;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #101218;
+  padding: 0.14rem;
+  box-shadow: 0 10px 22px rgba(12, 13, 16, 0.22);
+  transform: translate(-50%, -50%);
+  animation: brand-float 5.2s ease-in-out infinite;
+}
+
+.brand-float-plate {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4rem;
+  background: #fff;
+  padding: 0.35rem 0.55rem;
 }
 
 @media (max-width: 639px) {
   .brand-float-card {
-    min-height: 2.75rem;
-    min-width: 5.25rem;
-    padding: 0.4rem 0.55rem;
+    max-width: 5.75rem;
+    padding: 0.1rem;
+    border-radius: 0.45rem;
+  }
+
+  .brand-float-plate {
+    padding: 0.28rem 0.4rem;
   }
 }
 
 html.light .brand-float-card {
   border-color: rgba(12, 13, 16, 0.08);
   background: #16181e;
-  box-shadow: 0 18px 40px rgba(12, 13, 16, 0.16);
+  box-shadow: 0 14px 28px rgba(12, 13, 16, 0.14);
 }
 
 .brand-float-card img {

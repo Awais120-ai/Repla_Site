@@ -3,25 +3,28 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-/** Cards on the trailing side anchor to `end` so they can never overflow the square. */
+/** Cards are centered on orbital points so they never crowd one side of the sphere. */
 type FloatingBrand = {
   name: string;
   src: string;
-  top: string;
-  start?: string;
-  end?: string;
+  x: string;
+  y: string;
   delay: string;
 };
 
-/* The sphere is drawn at radius `size * 0.38` about the centre, so its silhouette spans
-   12%–88% of this square. Positions below sit on that rim, not in the empty corners. */
+/* Even ring around the globe (radius ~40% from centre). Sphere silhouette spans ~12%–88%. */
 const FLOATING: FloatingBrand[] = [
-  { name: "Clutch", src: "/brands/clutch.png", top: "13%", end: "13%", delay: "0s" },
-  { name: "GoodFirms", src: "/brands/goodfirms.jpg", top: "21%", start: "7%", delay: "0.6s" },
-  { name: "Upwork", src: "/brands/upwork.png", top: "42%", start: "28%", delay: "1.1s" },
-  { name: "LinkedIn", src: "/brands/linkedin.png", top: "40%", end: "4%", delay: "0.3s" },
-  { name: "Fiverr", src: "/brands/fiverr.jpg", top: "66%", start: "5%", delay: "1.5s" },
-  { name: "Freelancer", src: "/brands/freelancer.png", top: "74%", end: "9%", delay: "0.9s" },
+  { name: "Clutch", src: "/brands/clutch.svg", x: "50%", y: "10%", delay: "0s" },
+  { name: "GoodFirms", src: "/brands/goodfirms.jpg", x: "71.6%", y: "16.3%", delay: "0.35s" },
+  { name: "DesignRush", src: "/brands/designrush.svg", x: "86.4%", y: "33.4%", delay: "0.7s" },
+  { name: "LinkedIn", src: "/brands/linkedin.svg", x: "89.6%", y: "55.7%", delay: "1.05s" },
+  { name: "TopDevelopers", src: "/brands/topdevelopers.svg", x: "80.2%", y: "76.2%", delay: "1.4s" },
+  { name: "Freelancer", src: "/brands/freelancer.svg", x: "61.3%", y: "88.4%", delay: "0.2s" },
+  { name: "Crunchbase", src: "/brands/crunchbase.svg", x: "38.7%", y: "88.4%", delay: "0.55s" },
+  { name: "Fiverr", src: "/brands/fiverr.jpg", x: "19.8%", y: "76.2%", delay: "0.9s" },
+  { name: "BusinessFirms", src: "/brands/businessfirms.svg", x: "10.4%", y: "55.7%", delay: "1.25s" },
+  { name: "Upwork", src: "/brands/upwork.svg", x: "13.6%", y: "33.4%", delay: "1.6s" },
+  { name: "Tech Behemoths", src: "/brands/techbehemoths.svg", x: "28.4%", y: "16.3%", delay: "1.8s" },
 ];
 
 type Point = { x: number; y: number; z: number };
@@ -201,22 +204,20 @@ export function BrandNetworkGlobe() {
           key={brand.name}
           className="brand-float-card"
           style={{
-            top: brand.top,
-            insetInlineStart: brand.start,
-            insetInlineEnd: brand.end,
+            left: brand.x,
+            top: brand.y,
             animationDelay: brand.delay,
           }}
         >
-          {/* Stretches to the card's inner box so short logos (Clutch) fill the plate
-              instead of leaving a dark margin around a small white pill. */}
-          <span className="flex w-full self-stretch items-center justify-center rounded-lg bg-white px-2 py-1 sm:px-2.5 sm:py-1.5">
+          <span className="brand-float-plate">
             <Image
               src={brand.src}
               alt={brand.name}
               width={160}
               height={48}
-              sizes="(max-width: 640px) 80px, 112px"
-              className="h-5 w-auto max-w-[5rem] object-contain sm:h-7 sm:max-w-[6.5rem]"
+              sizes="(max-width: 640px) 72px, 100px"
+              className="h-4 w-auto max-w-[4.75rem] object-contain sm:h-[1.15rem] sm:max-w-[5.5rem]"
+              unoptimized={brand.src.endsWith(".svg")}
             />
           </span>
         </div>

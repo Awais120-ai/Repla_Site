@@ -9,13 +9,21 @@ import { WhyChooseSection } from "@/components/home/WhyChooseSection";
 import { TrustedBrands } from "@/components/home/TrustedBrands";
 import { companyCopy } from "@/content/company";
 import { industries } from "@/content/industries";
-import { getFeaturedServices } from "@/content/services";
+import { getFeaturedServices, getService } from "@/content/services";
 import { loc, type Locale } from "@/content/types";
 import { pageMetadata } from "@/lib/metadata";
 import { Icon } from "@/components/icons";
 import { TechSlider } from "@/components/ui/TechSlider";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+
+const HERO_SERVICE_SLUGS = [
+  "ai-intelligent-automation",
+  "blockchain-web3",
+  "iot-embedded-systems",
+  "cybersecurity",
+  "cloud-devops",
+] as const;
 
 export async function generateMetadata({
   params,
@@ -44,6 +52,7 @@ export default async function HomePage({
   const tn = await getTranslations("nav");
   const tc = await getTranslations("common");
   const featured = getFeaturedServices();
+  const heroServices = HERO_SERVICE_SLUGS.map((slug) => getService(slug)!);
 
   return (
     <>
@@ -76,7 +85,7 @@ export default async function HomePage({
             <div className="rounded-3xl border border-line bg-surface/80 p-6">
               <p className="text-xs uppercase tracking-widest text-muted">{tn("services")}</p>
               <ul className="mt-4 space-y-3">
-                {featured.slice(0, 5).map((s, i) => (
+                {heroServices.map((s, i) => (
                   <li
                     key={s.slug}
                     className="card-hover card-enter flex items-center gap-3 rounded-xl border border-line bg-foreground/[0.04] px-3 py-3"
@@ -85,7 +94,11 @@ export default async function HomePage({
                     <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand/15 text-brand">
                       <Icon name={s.icon} className="h-4 w-4" />
                     </span>
-                    <span className="text-sm text-foreground">{loc(s.shortTitle, l)}</span>
+                    <span className="text-sm text-foreground">
+                      {s.slug === "ai-intelligent-automation" || s.slug === "cloud-devops"
+                        ? loc(s.shortTitle, l)
+                        : loc(s.title, l)}
+                    </span>
                   </li>
                 ))}
               </ul>

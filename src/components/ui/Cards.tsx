@@ -11,6 +11,7 @@ export function ServiceCard({
   description,
   cta,
   featured = false,
+  layout = "stack",
 }: {
   href: string;
   icon: string;
@@ -18,24 +19,35 @@ export function ServiceCard({
   description: string;
   cta: string;
   featured?: boolean;
+  layout?: "stack" | "row";
 }) {
   return (
     <Link
       href={href}
       className={cn(
-        "card-hover group relative flex h-full flex-col rounded-2xl border border-line bg-surface p-6",
+        "card-hover group relative flex h-full rounded-2xl border border-line bg-surface p-6",
+        layout === "row"
+          ? "flex-col gap-5 sm:flex-row sm:items-start sm:gap-6 sm:p-7"
+          : "flex-col",
         featured && "bg-linear-to-b from-brand/10 to-surface",
       )}
     >
-      <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-transform duration-300 group-hover:scale-110">
-        <Icon name={icon} className="h-5 w-5" />
+      <div
+        className={cn(
+          "flex shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand transition-transform duration-300 group-hover:scale-110",
+          layout === "row" ? "h-12 w-12 sm:h-14 sm:w-14" : "mb-5 h-11 w-11",
+        )}
+      >
+        <Icon name={icon} className={layout === "row" ? "h-6 w-6" : "h-5 w-5"} />
       </div>
-      <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{description}</p>
-      <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand">
-        {cta}
-        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-      </span>
+      <div className="min-w-0 flex-1">
+        <h3 className="font-display text-xl font-semibold text-foreground sm:text-2xl">{title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{description}</p>
+        <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand">
+          {cta}
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+        </span>
+      </div>
     </Link>
   );
 }
@@ -45,22 +57,60 @@ export function IndustryCard({
   icon,
   title,
   tagline,
+  cta,
+  layout = "stack",
 }: {
   href: string;
   icon: string;
   title: string;
   tagline: string;
+  cta?: string;
+  layout?: "stack" | "row";
 }) {
   return (
     <Link
       href={href}
-      className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-surface p-5"
+      className={cn(
+        "card-hover group relative flex h-full rounded-2xl border border-line bg-surface",
+        layout === "row"
+          ? "flex-col gap-5 p-6 sm:flex-row sm:items-start sm:gap-6 sm:p-7"
+          : "flex-col p-5",
+      )}
     >
-      <div className="mb-4 flex h-6 w-6 shrink-0 items-center justify-center text-brand">
-        <Icon name={icon} className="h-6 w-6" />
+      <div
+        className={cn(
+          "flex shrink-0 items-center justify-center text-brand transition-transform duration-300 group-hover:scale-110",
+          layout === "row"
+            ? "h-12 w-12 rounded-xl border border-brand/30 bg-brand/10 sm:h-14 sm:w-14"
+            : "mb-4 h-6 w-6",
+        )}
+      >
+        <Icon name={icon} className={layout === "row" ? "h-6 w-6" : "h-6 w-6"} />
       </div>
-      <h3 className="font-display text-lg font-semibold text-foreground">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{tagline}</p>
+      <div className="min-w-0 flex-1">
+        <h3
+          className={cn(
+            "font-display font-semibold text-foreground",
+            layout === "row" ? "text-xl sm:text-2xl" : "text-lg",
+          )}
+        >
+          {title}
+        </h3>
+        <p
+          className={cn(
+            "mt-2 leading-relaxed text-muted",
+            layout === "row" ? "text-sm sm:text-base" : "text-sm",
+          )}
+        >
+          {tagline}
+        </p>
+        {cta ? (
+          <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand">
+            {cta}
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+          </span>
+        ) : null}
+      </div>
     </Link>
   );
 }

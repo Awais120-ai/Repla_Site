@@ -34,19 +34,27 @@ export default async function IndustriesPage({
   const l = locale as Locale;
   const tn = await getTranslations("nav");
   const t = await getTranslations("home");
+  const tc = await getTranslations("common");
 
   return (
     <>
       <PageHero eyebrow={tn("industries")} title={t("industries")} description={t("industriesSub")} />
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-7xl overflow-x-clip px-4 py-16 sm:px-6">
+        <div className="grid grid-cols-1 gap-4">
           {industries.map((ind, i) => (
-            <Reveal key={ind.slug} delay={i * 0.03}>
+            <Reveal
+              key={ind.slug}
+              delay={(i % 4) * 0.06}
+              tone="bold"
+              from={i % 2 === 0 ? "start" : "end"}
+            >
               <IndustryCard
                 href={`/industries/${ind.slug}`}
                 icon={ind.icon}
                 title={loc(ind.title, l)}
                 tagline={loc(ind.tagline, l)}
+                cta={tc("learnMore")}
+                layout="row"
               />
             </Reveal>
           ))}
