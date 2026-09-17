@@ -87,6 +87,14 @@ html.light {
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  /* Anchor targets land below the sticky header instead of under it. */
+  scroll-padding-top: 5.5rem;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 7.5rem;
+  }
 }
 
 html,
