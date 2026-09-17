@@ -14,6 +14,7 @@ import { loc, type Locale } from "@/content/types";
 import { pageMetadata } from "@/lib/metadata";
 import { Icon } from "@/components/icons";
 import { TechSlider } from "@/components/ui/TechSlider";
+import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -86,19 +87,20 @@ export default async function HomePage({
               <p className="text-xs uppercase tracking-widest text-muted">{tn("services")}</p>
               <ul className="mt-4 space-y-3">
                 {heroServices.map((s, i) => (
-                  <li
-                    key={s.slug}
-                    className="card-hover card-enter flex items-center gap-3 rounded-xl border border-line bg-foreground/[0.04] px-3 py-3"
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand/15 text-brand">
-                      <Icon name={s.icon} className="h-4 w-4" />
-                    </span>
-                    <span className="text-sm text-foreground">
-                      {s.slug === "ai-intelligent-automation" || s.slug === "cloud-devops"
-                        ? loc(s.shortTitle, l)
-                        : loc(s.title, l)}
-                    </span>
+                  <li key={s.slug} style={{ animationDelay: `${i * 0.1}s` }} className="card-enter">
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="card-hover flex items-center gap-3 rounded-xl border border-line bg-foreground/[0.04] px-3 py-3 transition-colors hover:border-brand/40"
+                    >
+                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand/15 text-brand">
+                        <Icon name={s.icon} className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm text-foreground">
+                        {s.slug === "ai-intelligent-automation" || s.slug === "cloud-devops"
+                          ? loc(s.shortTitle, l)
+                          : loc(s.title, l)}
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ul>

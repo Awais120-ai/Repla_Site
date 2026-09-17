@@ -60,10 +60,26 @@ export function NavbarClient({
   const bookACallLabel = locale === "ar" ? "احجز مكالمة" : "Book a Call";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    let frame = 0;
+    // Hysteresis avoids flicker when SmoothScroll eases past a single threshold.
+    const sync = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled((was) => {
+        if (was) return y > 4;
+        return y > 20;
+      });
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(sync);
+    };
+    sync();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
@@ -92,8 +108,8 @@ export function NavbarClient({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
-        scrolled || mobile ? "glass" : "bg-transparent",
+        "navbar-shell sticky top-0 z-50 border-b",
+        scrolled || mobile ? "navbar-shell-scrolled" : "navbar-shell-top",
       )}
     >
       <div className="hidden border-b border-line lg:block">
