@@ -117,7 +117,7 @@ export const companyCopy = {
     },
     {
       icon: "Briefcase",
-      title: L("Business-Focused Solutions", "حلول تركز على الأعمال"),
+      title: L("Business-Focused ", "مُركِّز على الأعمال"),
       body: L(
         "We understand your business goals first and then design technology solutions that solve real problems and support long-term growth.",
         "نبدأ بفهم أهداف أعمالكم ثم نصمم حلولاً تقنية تعالج مشكلات حقيقية وتدعم النمو على المدى الطويل.",
