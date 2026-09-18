@@ -62,12 +62,12 @@ export default async function HomePage({
           <div className="glow-orb absolute -top-32 start-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rtl:translate-x-1/2" />
           <div className="absolute inset-0 grid-bg" />
         </div>
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:py-28">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:gap-12 sm:px-6 sm:py-20 lg:grid-cols-2 lg:py-28">
           <div>
             <p className="inline-block max-w-full break-words rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-brand">
               {loc(companyCopy.eyebrow, l)}
             </p>
-            <h2 className="mt-5 font-display text-[clamp(1.8rem,7vw,2.25rem)] font-bold leading-[1.15] text-foreground sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-display text-[clamp(1.75rem,6.5vw,2.25rem)] font-bold leading-[1.15] text-foreground sm:text-4xl lg:text-5xl">
               {loc(companyCopy.heroTitle, l)}
             </h2>
             <p className="mt-5 max-w-xl text-base font-normal leading-relaxed text-muted sm:text-lg">
@@ -82,20 +82,20 @@ export default async function HomePage({
               </ButtonLink>
             </div>
           </div>
-          <div className="relative hidden lg:block">
-            <div className="rounded-3xl border border-line bg-surface/80 p-6">
+          <div className="relative hidden md:block">
+            <div className="rounded-3xl border border-line bg-surface/80 p-5 sm:p-6">
               <p className="text-xs uppercase tracking-widest text-muted">{tn("services")}</p>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-4 grid gap-2.5 sm:gap-3 md:grid-cols-2 lg:grid-cols-1">
                 {heroServices.map((s, i) => (
                   <li key={s.slug} style={{ animationDelay: `${i * 0.1}s` }} className="card-enter">
                     <Link
                       href={`/services/${s.slug}`}
                       className="card-hover flex items-center gap-3 rounded-xl border border-line bg-foreground/[0.04] px-3 py-3 transition-colors hover:border-brand/40"
                     >
-                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand/15 text-brand">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/15 text-brand">
                         <Icon name={s.icon} className="h-4 w-4" />
                       </span>
-                      <span className="text-sm text-foreground">
+                      <span className="min-w-0 text-sm text-foreground">
                         {s.slug === "ai-intelligent-automation" || s.slug === "cloud-devops"
                           ? loc(s.shortTitle, l)
                           : loc(s.title, l)}

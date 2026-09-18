@@ -110,14 +110,14 @@ export function NavbarClient({
       )}
     >
       <div className="hidden border-b border-line lg:block">
-        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-4 px-4 text-xs text-foreground/80 sm:px-6">
-          <div className="flex min-w-0 items-center gap-4">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-3 px-4 text-xs text-foreground/80 sm:px-6">
+          <div className="flex min-w-0 items-center gap-3 overflow-hidden">
             <a
               href={`mailto:${COMPANY.emailInfo}`}
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+              className="inline-flex min-w-0 max-w-[14rem] items-center gap-1.5 truncate transition-colors hover:text-foreground xl:max-w-none"
             >
-              <Mail className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
-              {COMPANY.emailInfo}
+              <Mail className="h-3.5 w-3.5 shrink-0 text-brand" aria-hidden="true" />
+              <span className="truncate">{COMPANY.emailInfo}</span>
             </a>
             <a
               href={`mailto:${COMPANY.email}`}
@@ -128,7 +128,7 @@ export function NavbarClient({
             </a>
             <a
               href={COMPANY.phoneHref}
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+              className="hidden items-center gap-1.5 transition-colors hover:text-foreground xl:inline-flex"
               dir="ltr"
             >
               <Phone className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
@@ -139,7 +139,7 @@ export function NavbarClient({
               {t("location")}
             </span>
           </div>
-          <div className="flex shrink-0 items-center gap-2.5">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               onClick={switchLocale}
@@ -149,13 +149,15 @@ export function NavbarClient({
               {locale === "en" ? "العربية" : "English"}
             </button>
             <ThemeToggle />
-            <SocialLinks size="sm" />
+            <div className="hidden xl:block">
+              <SocialLinks size="sm" />
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6">
+        <Link href="/" className="flex min-w-0 items-center gap-2">
           <Image
             src="/logo.png"
             alt="REPLA"
@@ -163,15 +165,16 @@ export function NavbarClient({
             height={40}
             priority
             sizes="40px"
-            className="h-10 w-10 rounded-full"
+            className="h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10"
           />
-          <span className="font-display text-lg font-semibold tracking-wide text-foreground">
-            Repla technologies
+          <span className="font-display text-base font-semibold tracking-wide text-foreground sm:text-lg">
+            <span className="sm:hidden">REPLA</span>
+            <span className="hidden sm:inline">Repla Technologies</span>
           </span>
         </Link>
 
         {/* No Home entry: the logo is the route home. */}
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="hidden min-w-0 items-center gap-0.5 lg:flex xl:gap-1" aria-label="Primary">
           <Mega
             id={`${menuId}-services`}
             label={t("services")}
@@ -318,7 +321,7 @@ export function NavbarClient({
       {mobile ? (
         <div className="border-t border-line bg-background lg:hidden">
           <div
-            className="mx-auto flex max-h-[calc(100dvh-4.5rem)] max-w-7xl flex-col overflow-y-auto px-4 pb-8 pt-2 sm:px-6"
+            className="mx-auto flex max-h-[calc(100dvh-4.75rem)] max-w-7xl flex-col overflow-y-auto px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-2 sm:px-6"
             data-no-smooth-scroll
           >
             <nav className="flex flex-col" aria-label="Mobile">
@@ -466,7 +469,7 @@ function NavLink({
     <Link
       href={href}
       className={cn(
-        "relative rounded-full px-3 py-2 text-sm font-medium btn-animate-soft",
+        "relative rounded-full px-2 py-2 text-[13px] font-medium btn-animate-soft xl:px-3 xl:text-sm",
         active ? "text-brand" : "text-foreground/80 hover:text-foreground",
       )}
     >
@@ -512,6 +515,7 @@ function Mega({
       const ideal = trigger.left + trigger.width / 2 - width / 2;
       const left = Math.min(Math.max(ideal, pad), window.innerWidth - width - pad);
       panel.style.left = `${left - trigger.left}px`;
+      panel.style.right = "auto";
     };
 
     place();
@@ -520,7 +524,7 @@ function Mega({
   }, [open]);
 
   const triggerClass = cn(
-    "relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 btn-animate-soft hover:text-foreground",
+    "relative inline-flex items-center gap-1 rounded-full px-2 py-2 text-[13px] font-medium text-foreground/80 btn-animate-soft hover:text-foreground xl:px-3 xl:text-sm",
     open && "text-foreground",
   );
 

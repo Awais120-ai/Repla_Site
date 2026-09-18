@@ -27,7 +27,7 @@ export function WhyChooseCards({ locale, items }: { locale: Locale; items: Item[
     <>
       <style>{whyChooseRowCss}</style>
       <div
-        className="why-choose-row mt-10 hidden h-72 gap-4 lg:flex"
+        className="why-choose-row mt-10 hidden min-h-72 gap-4 lg:flex"
         onMouseLeave={() => setActive(0)}
       >
         {items.map((item, i) => (

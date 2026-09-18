@@ -6,7 +6,7 @@ export async function TrustedBrands() {
 
   return (
     <section
-      className="relative overflow-hidden border-y border-line"
+      className="relative overflow-x-clip border-y border-line"
       aria-labelledby="trusted-brands-heading"
     >
       <div className="pointer-events-none absolute inset-0">

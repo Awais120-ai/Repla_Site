@@ -12,15 +12,15 @@ type FloatingBrand = {
   delay: string;
 };
 
-/* Even ring of seven brands around the globe (radius ~40% from centre). */
+/* Even ring of seven brands around the globe (inset enough to avoid clipping). */
 const FLOATING: FloatingBrand[] = [
-  { name: "Clutch", src: "/brands/clutch.svg", x: "50%", y: "10%", delay: "0s" },
-  { name: "GoodFirms", src: "/brands/goodfirms.jpg", x: "81.3%", y: "25.1%", delay: "0.4s" },
-  { name: "DesignRush", src: "/brands/designrush.svg", x: "89%", y: "58.9%", delay: "0.8s" },
-  { name: "LinkedIn", src: "/brands/linkedin.svg", x: "67.4%", y: "86%", delay: "1.2s" },
-  { name: "Freelancer", src: "/brands/freelancer.svg", x: "32.6%", y: "86%", delay: "0.2s" },
-  { name: "Fiverr", src: "/brands/fiverr.jpg", x: "11%", y: "58.9%", delay: "0.6s" },
-  { name: "Upwork", src: "/brands/upwork.svg", x: "18.7%", y: "25.1%", delay: "1s" },
+  { name: "Clutch", src: "/brands/clutch.svg", x: "50%", y: "14%", delay: "0s" },
+  { name: "GoodFirms", src: "/brands/goodfirms.jpg", x: "78%", y: "28%", delay: "0.4s" },
+  { name: "DesignRush", src: "/brands/designrush.svg", x: "84%", y: "58%", delay: "0.8s" },
+  { name: "LinkedIn", src: "/brands/linkedin.svg", x: "66%", y: "84%", delay: "1.2s" },
+  { name: "Freelancer", src: "/brands/freelancer.svg", x: "34%", y: "84%", delay: "0.2s" },
+  { name: "Fiverr", src: "/brands/fiverr.jpg", x: "16%", y: "58%", delay: "0.6s" },
+  { name: "Upwork", src: "/brands/upwork.svg", x: "22%", y: "28%", delay: "1s" },
 ];
 
 type Point = { x: number; y: number; z: number };
@@ -190,34 +190,36 @@ function NetworkGlobe() {
 
 export function BrandNetworkGlobe() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[34rem]">
-      <div className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,196,176,0.42),rgba(196,30,36,0.08)_46%,transparent_72%)]" />
-      <div className="pointer-events-none absolute inset-0">
-        <NetworkGlobe />
-      </div>
-      {FLOATING.map((brand) => (
-        <div
-          key={brand.name}
-          className="brand-float-card"
-          style={{
-            left: brand.x,
-            top: brand.y,
-            animationDelay: brand.delay,
-          }}
-        >
-          <span className="brand-float-plate">
-            <Image
-              src={brand.src}
-              alt={brand.name}
-              width={160}
-              height={48}
-              sizes="(max-width: 640px) 72px, 100px"
-              className="h-4 w-auto max-w-[4.75rem] object-contain sm:h-[1.15rem] sm:max-w-[5.5rem]"
-              unoptimized={brand.src.endsWith(".svg")}
-            />
-          </span>
+    <div className="relative mx-auto aspect-square w-full max-w-[34rem] px-5 sm:px-8">
+      <div className="relative h-full w-full">
+        <div className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,196,176,0.42),rgba(196,30,36,0.08)_46%,transparent_72%)]" />
+        <div className="pointer-events-none absolute inset-0">
+          <NetworkGlobe />
         </div>
-      ))}
+        {FLOATING.map((brand) => (
+          <div
+            key={brand.name}
+            className="brand-float-card"
+            style={{
+              left: brand.x,
+              top: brand.y,
+              animationDelay: brand.delay,
+            }}
+          >
+            <span className="brand-float-plate">
+              <Image
+                src={brand.src}
+                alt={brand.name}
+                width={160}
+                height={48}
+                sizes="(max-width: 640px) 72px, 100px"
+                className="h-4 w-auto max-w-[4.75rem] object-contain sm:h-[1.15rem] sm:max-w-[5.5rem]"
+                unoptimized={brand.src.endsWith(".svg")}
+              />
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

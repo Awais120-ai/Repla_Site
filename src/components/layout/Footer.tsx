@@ -103,13 +103,13 @@ export async function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${COMPANY.emailInfo}`} className="footer-link gap-2.5">
+                <a href={`mailto:${COMPANY.emailInfo}`} className="footer-link gap-2.5 break-all">
                   <Mail className="h-4 w-4 shrink-0 text-brand" aria-hidden />
                   {COMPANY.emailInfo}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${COMPANY.email}`} className="footer-link gap-2.5">
+                <a href={`mailto:${COMPANY.email}`} className="footer-link gap-2.5 break-all">
                   <Mail className="h-4 w-4 shrink-0 text-brand" aria-hidden />
                   {COMPANY.email}
                 </a>

@@ -316,19 +316,44 @@ html.light .navbar-shell-scrolled {
   animation: card-enter 0.6s ease both;
 }
 
-@keyframes tech-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
 .tech-slider {
   cursor: default;
-  mask-image: linear-gradient(to inline-end, transparent, black 7%, black 93%, transparent);
+}
+
+/* Visible window only — logos enter at the right edge and leave at the left. */
+.tech-slider-track {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+[dir="rtl"] .tech-slider-track {
+  -webkit-mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 .tech-tile {
@@ -339,49 +364,16 @@ html.light .navbar-shell-scrolled {
     box-shadow 0.3s ease;
 }
 
-/* Duration, not distance, sets the speed: the track is two identical copies, so
-   translating exactly -50% lands on a seam-free loop point. */
+/* Two identical copies; JS drives continuous right → left motion. */
 .tech-marquee {
+  display: flex;
+  width: max-content;
   flex-wrap: nowrap;
-  animation: tech-marquee var(--marquee-duration, 60s) linear infinite;
-  will-change: transform;
-}
-
-[dir="rtl"] .tech-marquee {
-  animation-direction: reverse;
-}
-
-.tech-slider:hover .tech-marquee,
-.tech-slider:focus-within .tech-marquee {
-  animation-play-state: paused;
-}
-
-@keyframes tech-marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-/* Tiles are narrower below sm, so the track is shorter — shorten the loop to keep
-   the scroll speed (~50px/s) the same across breakpoints. */
-@media (max-width: 639px) {
-  .tech-marquee {
-    --marquee-duration: 46s;
-  }
-}
-
-/* Per-tile bobbing is decorative: keep it off phones and reduced-motion users. */
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .tech-tile {
-    animation: tech-float 3.4s ease-in-out infinite;
-  }
+  align-items: center;
+  backface-visibility: hidden;
 }
 
 .tech-tile:hover {
-  animation-play-state: paused;
   border-color: color-mix(in srgb, var(--brand) 45%, transparent);
   background: var(--tile-fill);
   box-shadow: 0 12px 32px rgba(196, 30, 36, 0.16);
@@ -803,8 +795,7 @@ html.light .btn-slide-round.btn-primary::after {
     transform: none;
   }
 
-  .card-enter,
-  .tech-tile {
+  .card-enter {
     animation: none;
   }
 }
