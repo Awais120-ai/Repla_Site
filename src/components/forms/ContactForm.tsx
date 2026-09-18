@@ -16,22 +16,56 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  function validateField(name: string, value: string): string | undefined {
+    const v = value.trim();
+    if (name === "firstName" || name === "lastName" || name === "subject") {
+      return v ? undefined : t("required");
+    }
+    if (name === "email") {
+      return v.includes("@") && v.includes(".") ? undefined : t("invalidEmail");
+    }
+    if (name === "message") {
+      return v.length >= 10 ? undefined : t("messageMin");
+    }
+    return undefined;
+  }
+
+  function clearFieldError(name: string, value: string) {
+    setErrors((prev) => {
+      if (!prev[name]) return prev;
+      const nextError = validateField(name, value);
+      if (nextError) {
+        // Keep showing the same message until the field is valid.
+        return prev;
+      }
+      const next = { ...prev };
+      delete next[name];
+      return next;
+    });
+    setStatus((s) => (s === "invalid" ? "idle" : s));
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setErrors({});
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     const next: Record<string, string> = {};
-    if (!String(data.firstName || "").trim()) next.firstName = t("required");
-    if (!String(data.lastName || "").trim()) next.lastName = t("required");
-    if (!String(data.email || "").includes("@")) next.email = t("invalidEmail");
-    if (!String(data.subject || "").trim()) next.subject = t("required");
-    if (String(data.message || "").trim().length < 10) next.message = t("messageMin");
+    const firstNameErr = validateField("firstName", String(data.firstName || ""));
+    const lastNameErr = validateField("lastName", String(data.lastName || ""));
+    const emailErr = validateField("email", String(data.email || ""));
+    const subjectErr = validateField("subject", String(data.subject || ""));
+    const messageErr = validateField("message", String(data.message || ""));
+    if (firstNameErr) next.firstName = firstNameErr;
+    if (lastNameErr) next.lastName = lastNameErr;
+    if (emailErr) next.email = emailErr;
+    if (subjectErr) next.subject = subjectErr;
+    if (messageErr) next.message = messageErr;
     if (Object.keys(next).length) {
       setErrors(next);
       setStatus("invalid");
       return;
     }
+    setErrors({});
     setStatus("submitting");
     try {
       const res = await fetch("/api/contact", {
@@ -61,7 +95,11 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
     }
   }
 
-  const field = (name: string, label: string, opts?: { textarea?: boolean; type?: string; optional?: boolean; defaultValue?: string }) => (
+  const field = (
+    name: string,
+    label: string,
+    opts?: { textarea?: boolean; type?: string; optional?: boolean; defaultValue?: string },
+  ) => (
     <label className="block text-sm">
       <span className="text-foreground/90">
         {label}
@@ -73,6 +111,8 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
           rows={5}
           className={inputClass(errors[name])}
           placeholder={t(`placeholders.${name}`)}
+          aria-invalid={Boolean(errors[name])}
+          onChange={(e) => clearFieldError(name, e.target.value)}
         />
       ) : (
         <input
@@ -82,6 +122,8 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
           className={inputClass(errors[name])}
           placeholder={t(`placeholders.${name}`)}
           autoComplete={name}
+          aria-invalid={Boolean(errors[name])}
+          onChange={(e) => clearFieldError(name, e.target.value)}
         />
       )}
       {errors[name] ? <span className="mt-1 block text-xs text-brand">{errors[name]}</span> : null}

@@ -5,7 +5,13 @@ import { cn } from "@/lib/cn";
 import { Moon, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-export function ThemeToggle({ className }: { className?: string }) {
+export function ThemeToggle({
+  className,
+  size = "sm",
+}: {
+  className?: string;
+  size?: "sm" | "md";
+}) {
   const { theme, toggle } = useTheme();
   const t = useTranslations("nav");
   const isLight = theme === "light";
@@ -13,16 +19,19 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <button
       type="button"
-      className={cn(
-        "relative inline-flex h-7 w-7 items-center justify-center rounded-full text-foreground/70 btn-animate-soft hover:bg-foreground/10 hover:text-foreground",
-        className,
-      )}
+      className={cn("social-icon", size === "sm" ? "social-icon-sm" : "social-icon-md", className)}
       aria-label={isLight ? t("switchToDark") : t("switchToLight")}
       title={isLight ? t("switchToDark") : t("switchToLight")}
       onClick={(event) => toggle({ x: event.clientX, y: event.clientY })}
     >
-      <Sun className="theme-icon-sun h-4 w-4" aria-hidden="true" />
-      <Moon className="theme-icon-moon h-4 w-4" aria-hidden="true" />
+      <Sun
+        className={cn("theme-icon-sun", size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4")}
+        aria-hidden="true"
+      />
+      <Moon
+        className={cn("theme-icon-moon", size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4")}
+        aria-hidden="true"
+      />
     </button>
   );
 }

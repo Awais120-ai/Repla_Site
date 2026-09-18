@@ -143,7 +143,7 @@ export function NavbarClient({
             <button
               type="button"
               onClick={switchLocale}
-              className="relative rounded-full px-2.5 py-1 text-xs font-medium text-foreground/80 btn-animate-soft hover:bg-foreground/10 hover:text-foreground"
+              className="social-icon social-icon-sm !w-auto min-w-7 px-2.5 text-xs font-medium"
               aria-label={locale === "en" ? t("switchToArabic") : t("switchToEnglish")}
             >
               {locale === "en" ? "العربية" : "English"}
@@ -305,7 +305,7 @@ export function NavbarClient({
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle className="h-10 w-10" />
+          <ThemeToggle size="md" />
           <button
             type="button"
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line btn-animate-soft"
@@ -437,7 +437,7 @@ export function NavbarClient({
                 <button
                   type="button"
                   onClick={switchLocale}
-                  className="relative min-h-10 rounded-full border border-line px-4 py-2 text-sm font-medium btn-animate-soft"
+                  className="social-icon social-icon-md !w-auto min-w-10 px-4 text-sm font-medium"
                 >
                   {locale === "en" ? "العربية" : "English"}
                 </button>

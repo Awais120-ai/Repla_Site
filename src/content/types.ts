@@ -46,10 +46,23 @@ export type Industry = {
   icon: string;
   title: L;
   shortTitle: L;
+  /** Detail-page H1 (industry-specific software headline). */
+  heroTitle: L;
   tagline: L;
   description: L;
+  metaTitle: L;
+  metaDescription: L;
+  overview: L;
   challenges: LList;
-  capabilities: LList;
+  solutions: LList;
+  features: LList;
+  aiIntro: L;
+  aiUseCases: LList;
+  technologies: string[];
+  whyRepla: LList;
+  faqs: { q: L; a: L }[];
+  ctaTitle: L;
+  ctaBody: L;
   relatedServices: string[];
 };
 

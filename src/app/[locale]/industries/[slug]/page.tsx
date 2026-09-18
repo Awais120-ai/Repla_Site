@@ -1,10 +1,10 @@
 import { Icon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/Button";
 import { CTASection, PageHero } from "@/components/ui/PageHero";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { getIndustry, industries } from "@/content/industries";
 import { getService } from "@/content/services";
 import { loc, locList, type Locale } from "@/content/types";
-import { companyCopy } from "@/content/company";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { pageMetadata } from "@/lib/metadata";
@@ -26,10 +26,11 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) return {};
+  const l = locale as Locale;
   return pageMetadata({
-    locale: locale as Locale,
-    title: loc(industry.title, locale as Locale),
-    description: loc(industry.description, locale as Locale),
+    locale: l,
+    title: loc(industry.metaTitle, l),
+    description: loc(industry.metaDescription, l),
     path: `/industries/${slug}`,
   });
 }
@@ -51,14 +52,27 @@ export default async function IndustryDetailPage({
     <>
       <PageHero
         eyebrow={tn("industries")}
-        title={loc(industry.title, l)}
+        title={loc(industry.heroTitle, l)}
         description={loc(industry.tagline, l)}
       />
+
       <article className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-6 text-brand">
-          <Icon name={industry.icon} className="h-8 w-8" />
+        <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/15 text-brand">
+          <Icon name={industry.icon} className="h-6 w-6" />
         </div>
-        <p className="max-w-3xl leading-relaxed text-muted">{loc(industry.description, l)}</p>
+
+        <div className="flex flex-wrap gap-3">
+          <ButtonLink href="/contact">{tn("startProject")}</ButtonLink>
+          <ButtonLink href="/contact" variant="secondary">
+            {tn("contact")}
+          </ButtonLink>
+        </div>
+
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-foreground">{tc("overview")}</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-muted">{loc(industry.overview, l)}</p>
+        </section>
+
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <section>
             <h2 className="font-display text-2xl font-semibold text-foreground">{tc("challenges")}</h2>
@@ -71,9 +85,9 @@ export default async function IndustryDetailPage({
             </ul>
           </section>
           <section>
-            <h2 className="font-display text-2xl font-semibold text-foreground">{tc("howWeHelp")}</h2>
+            <h2 className="font-display text-2xl font-semibold text-foreground">{tc("industrySolutions")}</h2>
             <ul className="mt-4 space-y-3">
-              {locList(industry.capabilities, l).map((item) => (
+              {locList(industry.solutions, l).map((item) => (
                 <li key={item} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
                   {item}
                 </li>
@@ -81,6 +95,53 @@ export default async function IndustryDetailPage({
             </ul>
           </section>
         </div>
+
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-foreground">{tc("industryFeatures")}</h2>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {locList(industry.features, l).map((item) => (
+              <li key={item} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-foreground">{tc("aiAutomation")}</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-muted">{loc(industry.aiIntro, l)}</p>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {locList(industry.aiUseCases, l).map((item) => (
+              <li key={item} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-foreground">{tc("technologies")}</h2>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {industry.technologies.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-full border border-line px-3 py-1 text-sm text-foreground/80"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="font-display text-2xl font-semibold text-foreground">{tc("whyReplaIndustry")}</h2>
+          <ul className="mt-4 space-y-2 text-sm text-muted">
+            {locList(industry.whyRepla, l).map((item) => (
+              <li key={item}>— {item}</li>
+            ))}
+          </ul>
+        </section>
+
         <section className="mt-12">
           <h2 className="font-display text-2xl font-semibold text-foreground">{tc("relatedServices")}</h2>
           <ul className="mt-4 flex flex-wrap gap-2">
@@ -103,10 +164,20 @@ export default async function IndustryDetailPage({
             <ButtonLink href="/contact">{tn("startProject")}</ButtonLink>
           </div>
         </section>
+
+        {industry.faqs.length ? (
+          <section className="mt-12">
+            <h2 className="mb-4 font-display text-2xl font-semibold text-foreground">{tc("faq")}</h2>
+            <FaqAccordion
+              items={industry.faqs.map((f) => ({ q: loc(f.q, l), a: loc(f.a, l) }))}
+            />
+          </section>
+        ) : null}
       </article>
+
       <CTASection
-        title={loc(companyCopy.ctaTitle, l)}
-        body={loc(companyCopy.ctaBody, l)}
+        title={loc(industry.ctaTitle, l)}
+        body={loc(industry.ctaBody, l)}
         primary={{ href: "/contact", label: tn("startProject") }}
         secondary={{ href: "/industries", label: tc("allIndustries") }}
       />
