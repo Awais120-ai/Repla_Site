@@ -165,7 +165,16 @@ export function NavbarClient({
             height={40}
             priority
             sizes="40px"
-            className="h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10"
+            className="logo-dark-only h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10"
+          />
+          <Image
+            src="/logo-light.png"
+            alt="REPLA"
+            width={40}
+            height={40}
+            priority
+            sizes="40px"
+            className="logo-light-only h-9 w-9 shrink-0 object-contain sm:h-10 sm:w-10"
           />
           <span className="font-display text-base font-semibold tracking-wide text-foreground sm:text-lg">
             <span className="sm:hidden">REPLA</span>

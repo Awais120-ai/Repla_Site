@@ -73,7 +73,7 @@ function WhyChooseCard({
         "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-surface p-6",
         variant === "grid" && "card-hover border-line",
         variant === "row" &&
-          "why-choose-card border-line transition-[flex-grow,border-color,box-shadow] duration-500 ease-out",
+        "why-choose-card border-line transition-[flex-grow,border-color,box-shadow] duration-500 ease-out",
         variant === "row" && (active ? "why-choose-card-active" : "why-choose-card-idle"),
       )}
       onMouseEnter={onActivate}

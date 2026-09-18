@@ -69,6 +69,21 @@ html.light {
   --panel-shadow: 0 28px 60px -24px rgba(12, 13, 16, 0.32), 0 6px 18px -10px rgba(12, 13, 16, 0.18);
 }
 
+/* Theme-specific logo switching */
+.logo-light-only {
+  display: none !important;
+}
+.logo-dark-only {
+  display: inline-block !important;
+}
+
+html.light .logo-dark-only {
+  display: none !important;
+}
+html.light .logo-light-only {
+  display: inline-block !important;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -137,6 +152,24 @@ h4 {
 button,
 .font-button {
   font-family: var(--font-button);
+}
+
+/* Ensure all links, buttons, and clickable controls show pointer cursor on hover */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+input:disabled {
+  cursor: not-allowed;
 }
 
 [lang="ar"] h1,
