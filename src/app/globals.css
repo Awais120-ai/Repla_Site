@@ -866,6 +866,28 @@ html.light .card-hover:hover {
   box-shadow: 0 18px 50px rgba(196, 30, 36, 0.1);
 }
 
+/* Why Choose — asymmetric bento tiles (gradient hairline + hover lift). */
+.why-bento-card {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(135deg, var(--bento-glow, var(--brand)), transparent 70%) border-box;
+  box-shadow: none;
+}
+
+.why-bento-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px var(--bento-glow, var(--brand)),
+    0 20px 40px -20px color-mix(in srgb, var(--bento-glow, var(--brand)) 50%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-bento-card:hover {
+    transform: none;
+  }
+}
+
 .contact-form-shell {
   box-shadow: 0 28px 70px -36px rgba(0, 0, 0, 0.72);
 }
