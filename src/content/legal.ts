@@ -20,11 +20,11 @@ export const privacy = {
       title: L("What we collect", "ما نجمعه"),
       body: LL(
         [
-          "If you submit the contact or careers form, we process the fields you enter: name, email, phone (optional), subject, and message. Server logs may include IP address, user agent, and the pages requested.",
+          "If you submit the contact or careers form, we process the fields you enter: name, work email, company (optional), phone (optional), service, industry, budget, timeline, how you heard about us, subject, and project details. Server logs may include IP address, user agent, and the pages requested.",
           "We do not sell personal information. We do not run a hidden analytics product that we have not disclosed here.",
         ],
         [
-          "إذا أرسلتم نموذج التواصل أو الوظائف، نعالج الحقول التي تدخلونها: الاسم والبريد والهاتف (اختياري) والموضوع والرسالة. قد تتضمن سجلات الخادم عنوان IP ووكيل المستخدم والصفحات المطلوبة.",
+          "إذا أرسلتم نموذج التواصل أو الوظائف، نعالج الحقول التي تدخلونها: الاسم والبريد المهني والشركة (اختياري) والهاتف (اختياري) والخدمة والقطاع والميزانية والجدول الزمني وكيف عرفتم بنا والموضوع وتفاصيل المشروع. قد تتضمن سجلات الخادم عنوان IP ووكيل المستخدم والصفحات المطلوبة.",
           "لا نبيع المعلومات الشخصية. لا نشغّل منتج تحليلات مخفياً لم نفصح عنه هنا.",
         ],
       ),

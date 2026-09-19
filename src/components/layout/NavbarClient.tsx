@@ -191,26 +191,26 @@ export function NavbarClient({
             open={open === "services"}
             onOpen={() => setOpen("services")}
             onClose={() => setOpen(null)}
-            panelClassName="w-[min(760px,calc(100vw-2rem))]"
+            panelClassName="w-[min(900px,calc(50vw))]"
           >
             <div>
-              <div className="mb-3 flex items-center justify-between">
+              <div className="mb-5 flex items-center justify-between">
                 <p className="text-xs uppercase tracking-widest text-muted">{t("services")}</p>
                 <Link href="/services" className="text-sm text-muted transition-colors hover:text-foreground">
                   {t("viewAll")}
                 </Link>
               </div>
-              <ul className="grid gap-1 sm:grid-cols-2 xl:grid-cols-3">
+              <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
                 {featured.map((s) => (
                   <li key={s.slug}>
                     <Link
                       href={`/services/${s.slug}`}
-                      className="flex items-start gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-foreground/[0.04]"
+                      className="flex items-start gap-3.5 rounded-xl px-3 py-3 transition-colors hover:bg-foreground/[0.04]"
                     >
-                      <Icon name={s.icon} className="mt-0.5 h-4 w-4 text-foreground/55" />
+                      <Icon name={s.icon} className="mt-0.5 h-5 w-5 shrink-0 text-foreground/55" />
                       <span className="min-w-0">
-                        <span className="block text-sm text-foreground">{s.title}</span>
-                        <span className="block text-xs text-muted line-clamp-2">{s.tagline}</span>
+                        <span className="block text-sm font-medium text-foreground">{s.title}</span>
+                        <span className="mt-0.5 block text-xs leading-relaxed text-muted line-clamp-2">{s.tagline}</span>
                       </span>
                     </Link>
                   </li>
@@ -225,16 +225,16 @@ export function NavbarClient({
             open={open === "industries"}
             onOpen={() => setOpen("industries")}
             onClose={() => setOpen(null)}
-            panelClassName="w-[min(720px,calc(100vw-2rem))]"
+            panelClassName="w-[min(860px,calc(50vw))]"
           >
-            <ul className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {industries.map((i) => (
                 <li key={i.slug}>
                   <Link
                     href={`/industries/${i.slug}`}
-                    className="flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm text-foreground/90 transition-colors hover:bg-foreground/[0.04]"
+                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground/90 transition-colors hover:bg-foreground/[0.04]"
                   >
-                    <Icon name={i.icon} className="h-4 w-4 text-foreground/55" />
+                    <Icon name={i.icon} className="h-5 w-5 shrink-0 text-foreground/55" />
                     {i.title}
                   </Link>
                 </li>
@@ -247,21 +247,21 @@ export function NavbarClient({
             open={open === "solutions"}
             onOpen={() => setOpen("solutions")}
             onClose={() => setOpen(null)}
-            panelClassName="w-[min(560px,calc(100vw-2rem))]"
+            panelClassName="w-[min(720px,calc(50vw))]"
           >
-            <ul className="grid gap-1 sm:grid-cols-2">
+            <ul className="grid gap-2 sm:grid-cols-2">
               {solutions.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={`/solutions/${s.slug}`}
-                    className="flex items-start gap-3 rounded-lg px-2 py-2.5 transition-colors hover:bg-foreground/[0.04]"
+                    className="flex items-start gap-3.5 rounded-xl px-3 py-3 transition-colors hover:bg-foreground/[0.04]"
                   >
-                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-line bg-foreground/[0.03] text-foreground/60">
-                      <Icon name={s.icon} className="h-4 w-4" />
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line bg-foreground/[0.03] text-foreground/60">
+                      <Icon name={s.icon} className="h-5 w-5" />
                     </span>
                     <span className="min-w-0">
                       <span className="block text-sm font-medium text-foreground">{s.title}</span>
-                      <span className="mt-0.5 block text-xs text-muted">{s.tagline}</span>
+                      <span className="mt-1 block text-xs leading-relaxed text-muted">{s.tagline}</span>
                     </span>
                   </Link>
                 </li>
@@ -274,17 +274,17 @@ export function NavbarClient({
             open={open === "company"}
             onOpen={() => setOpen("company")}
             onClose={() => setOpen(null)}
-            panelClassName="w-[min(560px,calc(100vw-2rem))]"
+            panelClassName="w-[min(700px,calc(50vw))]"
           >
-            <div className="grid gap-8 sm:grid-cols-2">
-              <ul className="space-y-0.5 text-sm">
+            <div className="grid gap-10 sm:grid-cols-2">
+              <ul className="space-y-1 text-sm">
                 {COMPANY_LINKS.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="flex items-center gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-foreground/[0.04]"
+                      className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-foreground/[0.04]"
                     >
-                      <Icon name={item.icon} className="h-4 w-4 shrink-0 text-foreground/55" />
+                      <Icon name={item.icon} className="h-5 w-5 shrink-0 text-foreground/55" />
                       {t(item.labelKey)}
                     </Link>
                   </li>
@@ -292,8 +292,8 @@ export function NavbarClient({
               </ul>
               <div>
                 <p className="text-sm text-muted">{t("partnersNote")}</p>
-                <p className="mt-3 text-xs uppercase tracking-widest text-muted">{t("technologies")}</p>
-                <p className="mt-2 text-sm text-foreground/70">{technologiesPreview}</p>
+                <p className="mt-4 text-xs uppercase tracking-widest text-muted">{t("technologies")}</p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">{technologiesPreview}</p>
               </div>
             </div>
           </Mega>
@@ -577,7 +577,7 @@ function Mega({
             panelClassName ?? "w-[min(720px,calc(100vw-2rem))]",
           )}
         >
-          <div className="nav-panel rounded-2xl p-6">{children}</div>
+          <div className="nav-panel rounded-2xl p-7 lg:p-8">{children}</div>
         </div>
       ) : null}
     </div>

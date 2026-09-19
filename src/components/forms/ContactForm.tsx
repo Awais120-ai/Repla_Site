@@ -4,28 +4,62 @@ import { companyCopy } from "@/content/company";
 import { loc, type Locale } from "@/content/types";
 import { COMPANY } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
+import { FormSelect } from "@/components/forms/FormSelect";
+import { PhoneField } from "@/components/forms/PhoneField";
+import {
+  BUDGET_VALUES,
+  INDUSTRY_VALUES,
+  SERVICE_LABELS,
+  SERVICE_VALUES,
+  SOURCE_VALUES,
+  TIMELINE_VALUES,
+  isValidEmail,
+} from "@/lib/contact-options";
+import { isValidPhoneNumber } from "@/lib/phone-countries";
 import { cn } from "@/lib/cn";
 import { useLocale, useTranslations } from "next-intl";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
 type Status = "idle" | "submitting" | "success" | "invalid" | "not_configured" | "error";
+type Variant = "inquiry" | "careers";
 
-export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
+export function ContactForm({
+  defaultSubject,
+  variant = "inquiry",
+}: {
+  defaultSubject?: string;
+  variant?: Variant;
+}) {
   const t = useTranslations("form");
   const locale = useLocale() as Locale;
+  const isInquiry = variant === "inquiry";
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formKey, setFormKey] = useState(0);
+  const [service, setService] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [source, setSource] = useState("");
+  const [phoneCountry, setPhoneCountry] = useState("PK");
+  const [phoneNational, setPhoneNational] = useState("");
 
   function validateField(name: string, value: string): string | undefined {
     const v = value.trim();
-    if (name === "firstName" || name === "lastName" || name === "subject") {
-      return v ? undefined : t("required");
-    }
+    if (name === "fullName") return v ? undefined : t("requiredName");
     if (name === "email") {
-      return v.includes("@") && v.includes(".") ? undefined : t("invalidEmail");
+      if (!v) return t("requiredEmail");
+      return isValidEmail(v) ? undefined : t("invalidEmail");
     }
+    if (name === "service" && isInquiry) return v ? undefined : t("requiredService");
     if (name === "message") {
+      if (!v) return t("requiredMessage");
       return v.length >= 10 ? undefined : t("messageMin");
+    }
+    if (name === "phone") {
+      return isValidPhoneNumber(phoneCountry, phoneNational) ? undefined : t("invalidPhone");
     }
     return undefined;
   }
@@ -34,10 +68,7 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
     setErrors((prev) => {
       if (!prev[name]) return prev;
       const nextError = validateField(name, value);
-      if (nextError) {
-        // Keep showing the same message until the field is valid.
-        return prev;
-      }
+      if (nextError) return prev;
       const next = { ...prev };
       delete next[name];
       return next;
@@ -45,38 +76,63 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
     setStatus((s) => (s === "invalid" ? "idle" : s));
   }
 
+  function resetInquiryFields() {
+    setService("");
+    setIndustry("");
+    setBudget("");
+    setTimeline("");
+    setSource("");
+    setPhoneCountry("PK");
+    setPhoneNational("");
+    setFormKey((k) => k + 1);
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     const next: Record<string, string> = {};
-    const firstNameErr = validateField("firstName", String(data.firstName || ""));
-    const lastNameErr = validateField("lastName", String(data.lastName || ""));
+    const fullNameErr = validateField("fullName", String(data.fullName || ""));
     const emailErr = validateField("email", String(data.email || ""));
-    const subjectErr = validateField("subject", String(data.subject || ""));
+    const phoneErr = validateField("phone", String(data.phone || ""));
     const messageErr = validateField("message", String(data.message || ""));
-    if (firstNameErr) next.firstName = firstNameErr;
-    if (lastNameErr) next.lastName = lastNameErr;
+    if (fullNameErr) next.fullName = fullNameErr;
     if (emailErr) next.email = emailErr;
-    if (subjectErr) next.subject = subjectErr;
+    if (phoneErr) next.phone = phoneErr;
     if (messageErr) next.message = messageErr;
+    if (isInquiry) {
+      const serviceErr = validateField("service", service);
+      if (serviceErr) next.service = serviceErr;
+    }
     if (Object.keys(next).length) {
       setErrors(next);
       setStatus("invalid");
+      const first = Object.keys(next)[0];
+      form.querySelector<HTMLElement>(`[data-field="${first}"]`)?.focus();
       return;
     }
     setErrors({});
     setStatus("submitting");
+    const serviceLabel = service ? SERVICE_LABELS[service as keyof typeof SERVICE_LABELS] : "";
+    const subject =
+      defaultSubject ||
+      (serviceLabel ? `Project inquiry — ${serviceLabel}` : "Project inquiry");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: data.firstName,
-          lastName: data.lastName,
+          fullName: data.fullName,
           email: data.email,
+          company: data.company,
           phone: data.phone,
-          subject: data.subject,
+          phoneCountry: data.phoneCountry,
+          service: service || undefined,
+          industry: industry || undefined,
+          budget: budget || undefined,
+          timeline: timeline || undefined,
+          source: source || undefined,
+          subject,
           message: data.message,
         }),
       });
@@ -90,68 +146,169 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
       }
       setStatus("success");
       form.reset();
+      resetInquiryFields();
     } catch {
       setStatus("error");
     }
   }
 
-  const field = (
-    name: string,
-    label: string,
-    opts?: { textarea?: boolean; type?: string; optional?: boolean; defaultValue?: string },
-  ) => (
-    <label className="block text-sm">
-      <span className="text-foreground/90">
-        {label}
-        {opts?.optional ? <span className="text-muted"> ({t("optional")})</span> : null}
-      </span>
-      {opts?.textarea ? (
-        <textarea
-          name={name}
-          rows={5}
-          className={inputClass(errors[name])}
-          placeholder={t(`placeholders.${name}`)}
-          aria-invalid={Boolean(errors[name])}
-          onChange={(e) => clearFieldError(name, e.target.value)}
-        />
-      ) : (
-        <input
-          name={name}
-          type={opts?.type ?? "text"}
-          defaultValue={opts?.defaultValue}
-          className={inputClass(errors[name])}
-          placeholder={t(`placeholders.${name}`)}
-          autoComplete={name}
-          aria-invalid={Boolean(errors[name])}
-          onChange={(e) => clearFieldError(name, e.target.value)}
-        />
-      )}
-      {errors[name] ? <span className="mt-1 block text-xs text-brand">{errors[name]}</span> : null}
-    </label>
-  );
+  const serviceOptions = SERVICE_VALUES.map((value) => ({ value, label: t(`serviceOptions.${value}`) }));
+  const industryOptions = INDUSTRY_VALUES.map((value) => ({ value, label: t(`industryOptions.${value}`) }));
+  const budgetOptions = BUDGET_VALUES.map((value) => ({ value, label: t(`budgetOptions.${value}`) }));
+  const timelineOptions = TIMELINE_VALUES.map((value) => ({ value, label: t(`timelineOptions.${value}`) }));
+  const sourceOptions = SOURCE_VALUES.map((value) => ({ value, label: t(`sourceOptions.${value}`) }));
 
-  return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-line bg-surface p-6 sm:p-8" noValidate>
-      <h2 className="font-display text-2xl font-semibold text-foreground">{t("title")}</h2>
-      <p className="text-sm text-muted">{loc(companyCopy.contactHelp, locale)}</p>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {field("firstName", t("firstName"))}
-        {field("lastName", t("lastName"))}
+  const form = (
+    <form
+      onSubmit={onSubmit}
+      className="contact-form-shell space-y-6 overflow-visible rounded-2xl border border-line bg-surface p-6 sm:p-8 lg:p-10"
+      noValidate
+    >
+      <div>
+        <h2 className="font-display text-2xl font-semibold text-foreground">{t("title")}</h2>
+        <p className="mt-2 text-sm text-muted">{loc(companyCopy.contactHelp, locale)}</p>
       </div>
-      {field("email", t("email"), { type: "email" })}
-      {field("phone", t("phone"), { type: "tel", optional: true })}
-      {field("subject", t("subject"), { defaultValue: defaultSubject })}
-      {field("message", t("message"), { textarea: true })}
-      <Button type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? t("submitting") : t("submit")}
+
+      <div className="grid gap-4 md:grid-cols-2 md:gap-x-5 md:gap-y-4">
+        <Field
+          name="fullName"
+          label={t("fullName")}
+          error={errors.fullName}
+          placeholder={t("placeholders.fullName")}
+          autoComplete="name"
+          onValue={(v) => clearFieldError("fullName", v)}
+        />
+        <Field
+          name="email"
+          label={t("email")}
+          type="email"
+          error={errors.email}
+          placeholder={t("placeholders.email")}
+          autoComplete="email"
+          onValue={(v) => clearFieldError("email", v)}
+        />
+        <Field
+          name="company"
+          label={t("company")}
+          optional={t("optional")}
+          error={errors.company}
+          placeholder={t("placeholders.company")}
+          autoComplete="organization"
+        />
+        <label className="block text-sm">
+          <FieldCaption label={t("phone")} optional={t("optional")} />
+          <PhoneField
+            key={formKey}
+            error={errors.phone}
+            placeholder={t("placeholders.phone")}
+            searchLabel={t("countrySearch")}
+            emptyLabel={t("noCountry")}
+            onChange={(value, iso, national) => {
+              setPhoneCountry(iso);
+              setPhoneNational(national);
+              clearFieldError("phone", value);
+            }}
+          />
+          <FieldError message={errors.phone} />
+        </label>
+
+        {isInquiry ? (
+          <>
+            <label className="block text-sm">
+              <FieldCaption label={t("service")} required />
+              <FormSelect
+                name="service"
+                value={service}
+                onChange={(v) => {
+                  setService(v);
+                  clearFieldError("service", v);
+                }}
+                options={serviceOptions}
+                placeholder={t("selectService")}
+                error={errors.service}
+                required
+              />
+              <FieldError message={errors.service} />
+            </label>
+            <label className="block text-sm">
+              <FieldCaption label={t("industry")} optional={t("optional")} />
+              <FormSelect
+                name="industry"
+                value={industry}
+                onChange={setIndustry}
+                options={industryOptions}
+                placeholder={t("selectIndustry")}
+              />
+            </label>
+            <label className="block text-sm">
+              <FieldCaption label={t("budget")} optional={t("optional")} />
+              <FormSelect
+                name="budget"
+                value={budget}
+                onChange={setBudget}
+                options={budgetOptions}
+                placeholder={t("selectBudget")}
+              />
+            </label>
+            <label className="block text-sm">
+              <FieldCaption label={t("timeline")} optional={t("optional")} />
+              <FormSelect
+                name="timeline"
+                value={timeline}
+                onChange={setTimeline}
+                options={timelineOptions}
+                placeholder={t("selectTimeline")}
+              />
+            </label>
+          </>
+        ) : null}
+
+        <label className="block text-sm md:col-span-2">
+          <FieldCaption label={isInquiry ? t("message") : t("application")} required />
+          <textarea
+            name="message"
+            data-field="message"
+            rows={6}
+            className={cn("form-field mt-1.5 min-h-[9rem] resize-y", errors.message && "form-field-error")}
+            placeholder={isInquiry ? t("placeholders.message") : t("placeholders.application")}
+            aria-invalid={Boolean(errors.message)}
+            onChange={(e) => clearFieldError("message", e.target.value)}
+          />
+          <FieldError message={errors.message} />
+        </label>
+
+        {isInquiry ? (
+          <label className="block text-sm md:col-span-2">
+            <FieldCaption label={t("source")} optional={t("optional")} />
+            <FormSelect
+              name="source"
+              value={source}
+              onChange={setSource}
+              options={sourceOptions}
+              placeholder={t("selectSource")}
+            />
+          </label>
+        ) : null}
+      </div>
+
+      <Button type="submit" disabled={status === "submitting"} size="lg" className="min-w-[8.75rem] px-8">
+        {status === "submitting" ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+            {t("submitting")}
+          </>
+        ) : (
+          t("submit")
+        )}
       </Button>
+
       {status === "success" ? (
-        <p className="text-sm text-emerald-400" role="status">
+        <p className="rounded-xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400" role="status">
           {loc(companyCopy.formSuccess, locale)}
         </p>
       ) : null}
       {status === "not_configured" ? (
-        <p className="text-sm text-amber-300" role="status">
+        <p className="rounded-xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-300" role="status">
           {loc(companyCopy.formNotConfigured, locale)}{" "}
           <a className="underline" href={`mailto:${COMPANY.email}`}>
             {COMPANY.email}
@@ -159,18 +316,86 @@ export function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
         </p>
       ) : null}
       {status === "error" ? (
+        <p className="rounded-xl border border-brand/30 bg-brand-soft px-4 py-3 text-sm text-brand" role="alert">
+          {loc(companyCopy.formError, locale)}{" "}
+          <a className="underline" href={`mailto:${COMPANY.email}`}>
+            {COMPANY.email}
+          </a>
+        </p>
+      ) : null}
+      {status === "invalid" ? (
         <p className="text-sm text-brand" role="alert">
-          {loc(companyCopy.formNotConfigured, locale)}
+          {t("invalidForm")}
         </p>
       ) : null}
     </form>
   );
+
+  if (variant === "careers") return form;
+  return <Reveal>{form}</Reveal>;
 }
 
-function inputClass(error?: string) {
-  return cn(
-    // 16px text keeps iOS Safari from zooming the viewport on focus.
-    "mt-1.5 w-full rounded-xl border bg-surface-2 px-3 py-3 text-base text-foreground placeholder:text-muted focus:border-brand sm:text-sm",
-    error ? "border-brand" : "border-line",
+function FieldCaption({
+  label,
+  optional,
+  required,
+}: {
+  label: string;
+  optional?: string;
+  required?: boolean;
+}) {
+  return (
+    <span className="text-foreground/90">
+      {label}
+      {optional ? <span className="text-muted"> ({optional})</span> : null}
+      {required ? (
+        <span className="text-brand" aria-hidden>
+          {" "}
+          *
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return <span className="mt-1 block text-xs text-brand">{message}</span>;
+}
+
+function Field({
+  name,
+  label,
+  optional,
+  type = "text",
+  error,
+  placeholder,
+  autoComplete,
+  onValue,
+}: {
+  name: string;
+  label: string;
+  optional?: string;
+  type?: string;
+  error?: string;
+  placeholder: string;
+  autoComplete?: string;
+  onValue?: (value: string) => void;
+}) {
+  return (
+    <label className="block text-sm">
+      <FieldCaption label={label} optional={optional} required={!optional} />
+      <input
+        name={name}
+        data-field={name}
+        type={type}
+        autoComplete={autoComplete}
+        className={cn("form-field mt-1.5", error && "form-field-error")}
+        placeholder={placeholder}
+        aria-invalid={Boolean(error)}
+        onChange={(e) => onValue?.(e.target.value)}
+      />
+      <FieldError message={error} />
+    </label>
   );
 }

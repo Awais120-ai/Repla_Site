@@ -1,3 +1,4 @@
+import { ContactDetailCards } from "@/components/contact/ContactDetailCards";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/ui/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -5,8 +6,6 @@ import { companyCopy } from "@/content/company";
 import { loc, type Locale } from "@/content/types";
 import { COMPANY, SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { SocialLinks } from "@/components/layout/SocialLinks";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -34,7 +33,6 @@ export default async function ContactPage({
   const l = locale as Locale;
   const tn = await getTranslations("nav");
   const tc = await getTranslations("common");
-  const tf = await getTranslations("footer");
 
   return (
     <>
@@ -47,50 +45,9 @@ export default async function ContactPage({
         }}
       />
       <PageHero eyebrow={tn("contact")} title={tn("contact")} description={loc(companyCopy.contactIntro, l)} />
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.1fr]">
-        <div className="space-y-4">
-          <a
-            href={COMPANY.phoneHref}
-            className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
-          >
-            <Phone className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-            <span className="min-w-0">
-              <span className="block text-sm text-muted">{tc("phone")}</span>
-              <span className="block text-foreground" dir="ltr">
-                {COMPANY.phone} ({tf("hr")})
-              </span>
-            </span>
-          </a>
-          <a
-            href={`mailto:${COMPANY.emailInfo}`}
-            className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
-          >
-            <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-            <span className="min-w-0">
-              <span className="block text-sm text-muted">{tc("email")}</span>
-              <span className="block break-all text-foreground">{COMPANY.emailInfo}</span>
-            </span>
-          </a>
-          <a
-            href={`mailto:${COMPANY.email}`}
-            className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 hover:border-brand/40"
-          >
-            <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-            <span className="min-w-0">
-              <span className="block text-sm text-muted">{tc("email")}</span>
-              <span className="block break-all text-foreground">{COMPANY.email}</span>
-            </span>
-          </a>
-          <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5">
-            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
-            <span className="min-w-0">
-              <span className="block text-sm text-muted">{tc("office")}</span>
-              <span className="text-foreground">{COMPANY.address}</span>
-            </span>
-          </div>
-          <SocialLinks className="pt-2" />
-        </div>
+      <section className="mx-auto max-w-6xl space-y-6 px-4 py-16 sm:px-6 lg:space-y-8 lg:py-20">
         <ContactForm />
+        <ContactDetailCards />
       </section>
       <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
         <h2 className="sr-only">{tc("map")}</h2>

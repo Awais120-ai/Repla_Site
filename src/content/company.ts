@@ -269,6 +269,10 @@ export const companyCopy = {
     "This environment cannot send email yet. Please write to us with the same details:",
     "هذه البيئة لا تستطيع إرسال البريد بعد. راسلونا بالتفاصيل نفسها:",
   ),
+  formError: L(
+    "We could not send your message just now. Please try again or write to us directly:",
+    "تعذر إرسال رسالتكم الآن. حاولوا مرة أخرى أو راسلونا مباشرة:",
+  ),
   formSuccess: L(
     "Message received. Our HR team will follow up.",
     "تم استلام الرسالة. سيتابع فريق الموارد البشرية معكم.",
